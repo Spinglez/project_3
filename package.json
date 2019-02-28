@@ -1,0 +1,22 @@
+{
+  "name": "project_3",
+  "version": "1.0.0",
+  "description": "Final UC Berkeley Fullstack Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spinglez/project_3.git"
+  },
+  "author": "Tam, James, Matt, Nareg, Christian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Spinglez/project_3/issues"
+  },
+  "homepage": "https://github.com/Spinglez/project_3#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0"
+  }
+}
