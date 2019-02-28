@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/Spinglez/project_3#readme",
   "dependencies": {
-    "dotenv": "^6.2.0"
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.16",
+    "morgan": "^1.9.1"
   }
 }
