@@ -5,7 +5,7 @@ const Users = new Schema(
   {
     firstName: String,
     lastName: String,
-    UUID: {
+    uuid: {
       type: String,
       required: true
     },
@@ -21,7 +21,7 @@ const Users = new Schema(
       required: true
     },
     userDescription: String,
-    image: String
+    // image: String
   },
   { timestamps: true }
 );
