@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-// const Data = require("./data");
+const Data = require("./db/data");
 require('dotenv').config();
 
 const API_PORT = 3001;
