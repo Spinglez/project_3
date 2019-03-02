@@ -1,4 +1,5 @@
 const Data = require("../../db/Data");
+const Call = require('../utils/Call');
 
 module.exports = app => {
 
@@ -28,7 +29,6 @@ module.exports = app => {
   })
 
   app.post('/api/Users', (req,res) => {
-    console.log('testing');
     let data = new Data();
 
     console.log(req.body);
@@ -51,5 +51,26 @@ module.exports = app => {
       if (err) throw err;
       return res.json();
     });
+  })
+
+  // End user <API>Routes</API>
+  // Start Daata Processing Routes
+
+  app.get('/api/match', (req,res) => {
+      let { user1Arr, user2Arr } = req.body;
+      dataProc.Match(user1Arr, user2Arr)
+
+  })
+
+  app.get('/api/call:call', (req,res) =>{
+    let query = req.params.call
+    console.log(
+      Call.tmDB(query).then(response => {
+        return res.json(response.data);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+    );
   })
 }
