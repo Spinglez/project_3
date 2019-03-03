@@ -16,6 +16,12 @@ export class SurveyForm extends Component {
         answered: false
     }
 
+    handleBack = () => {
+        this.setState(state => ({
+          step: state.step - 1,
+        }));
+      };
+
     handleNext = () => {
         window.scrollTo(0, 0);
         const { step } = this.state
@@ -117,6 +123,9 @@ export class SurveyForm extends Component {
                     justify="center"
                     alignItems="center"
                 >
+                <Button size="small" onClick={this.handleBack} disabled={this.state.step === 0}>
+                        BACK
+                    </Button>
                     <Button size="small" onClick={this.handleNext} disabled={this.state.step === 10}>
                         Next
                         </Button>
