@@ -3,12 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
-=======
     "node-sass": "^4.11.0",
->>>>>>> d4e966e2051dc7478f06a6ec71ff2cee5ea5abc7
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-router-dom": "^4.3.1",
