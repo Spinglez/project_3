@@ -1,0 +1,37 @@
+[
+    {
+        "step": 0,
+        "question": "Pick any of the following genres you enjoy.",
+        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Music","Mystery","Romance","Thriller"]
+    },
+    {
+        "step": 1,
+        "question": "Pick any of the following genres you don't sit well with.",
+        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Music","Mystery","Romance","Thriller"]
+    },
+    {
+        "step": 2,
+        "question": "What kind of heroes do you like?",
+        "answerOptions": ["Superheroes", "Gangsters", "Anime Characters with Lightning Bolts", "Unfit Heroes"]
+    },
+    {
+        "step": 3,
+        "question": "What kind of visuals do you like?",
+        "answerOptions": ["Lazers", "Animated Elements", "Blood", "Nudity"]
+    },
+    {
+        "step": 4,
+        "question": "What makes your heart race?",
+        "answerOptions": ["What's around the corner", "Kissing scenes", "Skydiving moments", "Fighting scenes"]
+    },
+    {
+        "step": 5,
+        "question": "What's your typical movie night?",
+        "answerOptions": ["Netflix and Chill","Movies in Theatre","Anything on Crunchyroll","TV shows are cool"]
+    },
+    {
+        "step": 6,
+        "question": "What kind of mood do you want to have after the movie?",
+        "answerOptions": ["Hehe","A New Hope","Left With Questions","General Satisfaction"]
+    }
+]

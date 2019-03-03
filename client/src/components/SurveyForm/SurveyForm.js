@@ -1,34 +1,64 @@
 import React, { Component, Fragment } from 'react'
-import { Card, CardHeader, CardContent, Typography, Grid, MobileStepper, Button } from '@material-ui/core';
-import Logo from '../Logo/Logo';
+import { Card, CardHeader, CardContent, Typography, Grid, MobileStepper, Button, AppBar, Toolbar } from '@material-ui/core';
+import { Checkbox, Row, Col } from 'antd';
+import surveyData from '../../surveyData.json'
 
 export class SurveyForm extends Component {
 
     state = {
         step: 0,
-        questionSet: ["Question 1", "Question 2", "Question 3", "Question 4"],
+        questionSet: surveyData,
         responseSet: [],
+        answered: false
     }
 
     handleNext = () => {
         window.scrollTo(0, 0);
         const { step } = this.state
-    
-          this.setState({ step: step + 1 })
-    } 
 
-    
-  render() {
+        this.setState({ step: step + 1 })
+    }
 
-    return (
-        <Fragment>
-        <Grid
+    onChange = (checkedValues) => {
+        console.log('checked = ', checkedValues);
+    }
+
+
+    render() {
+        const styles = {
+            root: {
+                flexGrow: 1,
+            },
+            grow: {
+                flexGrow: 1,
+            },
+            menuButton: {
+                marginLeft: -12,
+                marginRight: 20,
+            },
+        };
+
+        const { classes } = this.props;
+
+        return (
+            <Fragment>
+                <div className={styles.root}>
+                    <AppBar position="static">
+                        <Toolbar>
+                            <Typography variant="h6" color="inherit" className={styles.grow}>
+                                APP NAME
+          </Typography>
+                            {/* <Button color="inherit">Login</Button> */}
+                        </Toolbar>
+                    </AppBar>
+                </div>
+                <Grid
                     justify="center"
                     style={{ display: "flex" }}
                 >
                     <MobileStepper
                         variant="dots"
-                        steps={6}
+                        steps={10}
                         position="static"
                         activeStep={this.state.activeStep}
                     />
@@ -44,18 +74,32 @@ export class SurveyForm extends Component {
                         <CardHeader></CardHeader>
                         <CardContent>
                             <Typography component="p">
-                                This impressive paella is a perfect party dish and a fun meal to cook together with your
-                                guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                                { this.state.questionSet[this.state.step].question}
                             </Typography>
                         </CardContent>
                     </Card>
-                    <Button size="small" onClick={this.handleNext} disabled={this.state.activeStep === 5}>
+                    {
+                        this.state.step === 0 &&
+                        <Checkbox.Group style={{ width: '100%' }} onChange={this.onChange}>
+                            <Row
+                            >
+                                <Col
+                                >
+                                <Checkbox value="B">B</Checkbox>
+                                <Checkbox value="B">B</Checkbox>
+                                <Checkbox value="B">B</Checkbox>
+                                </Col>
+                                
+                            </Row>
+                        </Checkbox.Group>
+                    }
+                    <Button size="small" onClick={this.handleNext} disabled={this.state.step === 10}>
                         Next
                         </Button>
                 </Grid>
-        </Fragment>
-    )
-  }
+            </Fragment>
+        )
+    }
 }
 
 export default SurveyForm;
