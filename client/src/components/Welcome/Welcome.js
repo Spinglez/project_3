@@ -13,8 +13,8 @@ const styles = {
 
 export class Welcome extends Component {
     state = {
-        step: 0,
-        activeStep: 0
+        activeStep: 0,
+        appInfo: ["This app is awesome", "You can decide what movie to watch", "Take this survey!"]
     }
 
     handleNextSurvey = () => {
@@ -96,8 +96,7 @@ export class Welcome extends Component {
                         <CardHeader></CardHeader>
                         <CardContent>
                             <Typography component="p">
-                                This impressive paella is a perfect party dish and a fun meal to cook together with your
-                                guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                               {this.state.appInfo[this.state.activeStep]}
                             </Typography>
                         </CardContent>
                     </Card>

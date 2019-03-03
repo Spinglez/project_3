@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter , Route, Switch} from "react-router-dom";
 import { Welcome, SurveyForm, ErrorPage } from './components/index';
 
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   render() {
