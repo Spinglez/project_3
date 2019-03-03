@@ -1,7 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { Card, CardHeader, CardContent, Typography, Grid, MobileStepper, Button, AppBar, Toolbar } from '@material-ui/core';
-import { Checkbox, Row, Col } from 'antd';
+import { Checkbox, Card as AntCard, Row, Col } from 'antd';
+import { Image } from 'react-bootstrap'
 import surveyData from '../../surveyData.json'
+
+
+const { Meta } = Card;
 
 export class SurveyForm extends Component {
 
@@ -38,6 +42,15 @@ export class SurveyForm extends Component {
             },
         };
 
+        const imageStyle = {
+            card: {
+                maxWidth: 345,
+            },
+            media: {
+                height: 140,
+            },
+        };
+
         const { classes } = this.props;
 
         return (
@@ -58,9 +71,9 @@ export class SurveyForm extends Component {
                 >
                     <MobileStepper
                         variant="dots"
-                        steps={10}
+                        steps={7}
                         position="static"
-                        activeStep={this.state.activeStep}
+                        activeStep={this.state.step}
                     />
                 </Grid>
                 <Grid
@@ -74,29 +87,41 @@ export class SurveyForm extends Component {
                         <CardHeader></CardHeader>
                         <CardContent>
                             <Typography component="p">
-                                { this.state.questionSet[this.state.step].question}
+                                {this.state.questionSet[this.state.step].question}
                             </Typography>
                         </CardContent>
                     </Card>
+                    </Grid>
                     {
-                        this.state.step === 0 &&
-                        <Checkbox.Group style={{ width: '100%' }} onChange={this.onChange}>
-                            <Row
-                            >
-                                <Col
-                                >
-                                <Checkbox value="B">B</Checkbox>
-                                <Checkbox value="B">B</Checkbox>
-                                <Checkbox value="B">B</Checkbox>
-                                </Col>
-                                
-                            </Row>
-                        </Checkbox.Group>
+                        <div style={{ padding: '5px', display: "flex", justifyContent: "center"}}>
+                            {
+                                this.state.questionSet[this.state.step].answerOptions.map((answerOption, index) => {
+                                    console.log(this.state.questionSet[this.state.step].answerOptions[index], this.state.questionSet[this.state.step].image[index])
+                                    return (
+                                        <AntCard bordered={false} style={{ marginLeft: "5%" }}>
+                                            <Image
+                                                style={{ maxWidth: "50px" }}
+                                                src={this.state.questionSet[this.state.step].image[index]}
+                                                title="Contemplative Reptile" />
+                                        <div>{answerOption}</div>
+                                        </AntCard>
+                                    
+                                    )
+                                })
+                            }
+                        </div>
                     }
+                    <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                >
                     <Button size="small" onClick={this.handleNext} disabled={this.state.step === 10}>
                         Next
                         </Button>
                 </Grid>
+                
             </Fragment>
         )
     }

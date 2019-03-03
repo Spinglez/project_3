@@ -2,36 +2,43 @@
     {
         "step": 0,
         "question": "Pick any of the following genres you enjoy.",
-        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Music","Mystery","Romance","Thriller"]
+        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Musical","Mystery","Romance","Thriller"],
+        "image": ["./images/happy.png", "./images/interview.png", "./images/masks.png", "./images/harry-potter.png", "./images/karaoke.png", "./images/search.png", "./images/like.png", "./images/james-bond-007.png", "./images/special-effects.png"]
     },
     {
         "step": 1,
         "question": "Pick any of the following genres you don't sit well with.",
-        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Music","Mystery","Romance","Thriller"]
+        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Music","Mystery","Romance","Thriller"],
+        "image": ["./images/happy.png", "./images/interview.png", "./images/masks.png", "./images/harry-potter.png", "./images/karaoke.png", "./images/search.png", "./images/like.png", "./images/james-bond-007.png", "./images/special-effects.png"]
     },
     {
         "step": 2,
         "question": "What kind of heroes do you like?",
-        "answerOptions": ["Superheroes", "Gangsters", "Anime Characters with Lightning Bolts", "Unfit Heroes"]
+        "answerOptions": ["Superheroes", "Gangsters", "Anime Characters with Lightning Bolts", "Unfit Heroes"],
+        "image": ["./images/superman.png", "./images/gangster.png","./images/superhero.png", "./images/kid.png"]
     },
     {
         "step": 3,
         "question": "What kind of visuals do you like?",
-        "answerOptions": ["Lazers", "Animated Elements", "Blood", "Nudity"]
+        "answerOptions": ["Lazers", "Animated Elements", "Blood", "Nudity"],
+        "image": ["./images/space-gun.png", "./images/origami-bird.png","./images/blood-donation.png", "./images/hip.png"]
     },
     {
         "step": 4,
         "question": "What makes your heart race?",
-        "answerOptions": ["What's around the corner", "Kissing scenes", "Skydiving moments", "Fighting scenes"]
+        "answerOptions": ["What's around the corner", "Kissing scenes", "Skydiving moments", "Fighting scenes"],
+        "image": ["./images/cat.png", "./images/kiss.png","./images/skydiving.png", "./images/boxing-gloves.png"]
     },
     {
         "step": 5,
         "question": "What's your typical movie night?",
-        "answerOptions": ["Netflix and Chill","Movies in Theatre","Anything on Crunchyroll","TV shows are cool"]
+        "answerOptions": ["Netflix and Chill","Movies in Theatre","Anything on Crunchyroll","TV shows are cool"],
+        "image": ["./images/wink.png", "./images/cinema.png","./images/domain.png", "./images/television.png"]
     },
     {
         "step": 6,
         "question": "What kind of mood do you want to have after the movie?",
-        "answerOptions": ["Hehe","A New Hope","Left With Questions","General Satisfaction"]
+        "answerOptions": ["Hehe","A New Hope","Left With Questions","General Satisfaction"],
+        "image": ["./images/wink.png", "./images/children.png","./images/thinking.png", "./images/smiley-face.png"]
     }
 ]
