@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { Card, CardHeader, CardContent, Typography, Grid, MobileStepper, Button } from '@material-ui/core';
+import { NavLink } from 'react-router-dom'
 import Logo from '../Logo/Logo';
-
+import appDescription from '../../appDescription.json'
 
 const styles = {
     root: {
@@ -14,7 +15,7 @@ const styles = {
 export class Welcome extends Component {
     state = {
         activeStep: 0,
-        appInfo: ["This app is awesome", "You can decide what movie to watch", "Take this survey!"]
+        appInfo: appDescription
     }
 
     handleNextSurvey = () => {
@@ -80,7 +81,7 @@ export class Welcome extends Component {
                 >
                     <MobileStepper
                         variant="dots"
-                        steps={6}
+                        steps={5}
                         position="static"
                         activeStep={this.state.activeStep}
                     />
@@ -96,16 +97,27 @@ export class Welcome extends Component {
                         <CardHeader></CardHeader>
                         <CardContent>
                             <Typography component="p">
-                               {this.state.appInfo[this.state.activeStep]}
+                               ADD IMAGE
                             </Typography>
                         </CardContent>
                     </Card>
+                    <h1>{this.state.appInfo[this.state.activeStep].header}</h1>
+                    <h2>{this.state.appInfo[this.state.activeStep].description1}</h2>
+                    <p>{this.state.appInfo[this.state.activeStep].description2}</p>
                     <Button size="small" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
-                        Back
-          </Button>
-                    <Button size="small" onClick={this.handleNext} disabled={this.state.activeStep === 5}>
-                        Next
+                        BACK
+                    </Button>
+                    { this.state.activeStep < 4 ?
+                    <Button size="small" onClick={this.handleNext}>
+                        NEXT
                         </Button>
+                        :
+                        <NavLink to= "/register">
+                        <Button size="small" onClick={this.handleNext}>
+                        CREATE ACCOUNT
+                        </Button>
+                        </NavLink>
+                    }
                 </Grid>
             </Fragment>
         )
