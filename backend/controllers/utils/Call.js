@@ -1,4 +1,17 @@
 const axios = require('axios');
+const imdb = require('imdb-prime');
+
+// keyless api - provides amazon prime availability
+const primeCall = {
+  
+  async Movie(movieId) {
+    // imdb id for movie passed into imdb.title
+    let movieById = await imdb.title(movieId)
+    console.log("movie", movieById);
+    return axios.get(movieById)
+    }
+    
+}
 
 const Call = {
 
@@ -13,4 +26,4 @@ const Call = {
 
 }
 
-module.exports = Call
+module.exports = Call, primeCall

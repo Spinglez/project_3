@@ -1,5 +1,6 @@
 const Data = require("../../db/Data");
 const Call = require('../utils/Call');
+const primeCall = require('../utils/Call');
 
 module.exports = app => {
 
@@ -54,7 +55,7 @@ module.exports = app => {
   })
 
   // End user <API>Routes</API>
-  // Start Daata Processing Routes
+  // Start Data Processing Routes
 
   app.get('/api/match', (req,res) => {
       let { user1Arr, user2Arr } = req.body;
@@ -66,6 +67,15 @@ module.exports = app => {
     let query = req.params.call
     console.log(
       Call.tmDB(query).then(response => {
+        return res.json(response.data);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+    )
+    let movieId = 'tt0105793'
+    console.log(
+      primeCall.Movie(movieId).then(response => {
         return res.json(response.data);
       })
       .catch(err => {
