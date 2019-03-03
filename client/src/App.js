@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-// import { BrowserRouter as Router, Route } from "react-router-dom";
-import './App.scss';
+import { BrowserRouter , Route, Switch} from "react-router-dom";
+import { Welcome, SurveyForm, ErrorPage } from './components/index';
+
+import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-
-        <h1>I'm an empty app!</h1>
-        <h2>Heyyy I'm testing Sass Variables</h2>
-
-      </div>
+      <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Welcome}></Route>
+        <Route exact path="/survey" component={SurveyForm}></Route>
+        <Route component={ErrorPage}></Route>
+      </Switch>
+      </BrowserRouter>
     );
   }
 }
