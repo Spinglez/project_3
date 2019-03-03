@@ -54,23 +54,20 @@ module.exports = app => {
   })
 
   // End user <API>Routes</API>
-  // Start Daata Processing Routes
+  // Start Data Processing Routes
 
   app.get('/api/match', (req,res) => {
       let { user1Arr, user2Arr } = req.body;
       dataProc.Match(user1Arr, user2Arr)
-
   })
 
   app.get('/api/call:call', (req,res) =>{
     let query = req.params.call
-    console.log(
-      Call.tmDB(query).then(response => {
-        return res.json(response.data);
-      })
-      .catch(err => {
-        console.error(err);
-      })
-    );
+    Call.tmDB(query).then(response => {
+      return res.json(response.data);
+    })
+    .catch(err => {
+      console.error(err);
+    })
   })
 }
