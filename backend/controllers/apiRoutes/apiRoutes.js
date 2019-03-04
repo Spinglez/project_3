@@ -64,15 +64,16 @@ module.exports = app => {
   })
 
   app.get('/api/call:call', (req,res) =>{
-    let query = req.params.call
-    console.log(
-      Call.tmDB(query).then(response => {
-        return res.json(response.data);
-      })
-      .catch(err => {
-        console.error(err);
-      })
-    )
+    // let query = req.params.call
+    // console.log(
+    //   Call.tmDB(query).then(response => {
+    //     return res.json(response.data);
+    //   })
+    //   .catch(err => {
+    //     console.error(err);
+    //   })
+    // )
+
     let movieId = 'tt0105793'
     console.log(
       primeCall.Movie(movieId).then(response => {
