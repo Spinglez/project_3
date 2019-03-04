@@ -6,6 +6,7 @@ import surveyData from '../../surveyData.json'
 
 
 const { Meta } = Card;
+var responseSetArray = [{},{},{},{},{},{}];
 
 export class SurveyForm extends Component {
 
@@ -13,7 +14,17 @@ export class SurveyForm extends Component {
         step: 0,
         questionSet: surveyData,
         responseSet: [],
-        answered: false
+        setSelectionStatus: []
+    }
+
+    componentDidUpdate(){
+        if(this.state.setSelectionStatus.length === 0){
+            this.setState({setSelectionStatus: this.populateSelectionStatus()});
+        }
+    }
+
+    componentDidMount(){
+        this.setState({setSelectionStatus: this.populateSelectionStatus()})
     }
 
     handleBack = () => {
@@ -27,10 +38,31 @@ export class SurveyForm extends Component {
         const { step } = this.state
 
         this.setState({ step: step + 1 })
+        this.setState({setSelectionStatus: []})
+    }
+
+    handleSelect = (optionIndex) => {
+        if(this.state.setSelectionStatus[optionIndex]){
+            this.state.setSelectionStatus.splice(optionIndex,1,false)
+        }
+        else{
+            this.state.setSelectionStatus.splice(optionIndex,1,true)
+        }
+        console.log(this.state.setSelectionStatus)
+        console.log("selected at index ", optionIndex)
     }
 
     onChange = (checkedValues) => {
         console.log('checked = ', checkedValues);
+    }
+
+    populateSelectionStatus = () => {
+        var questionLength = this.state.questionSet[this.state.step].answerOptions.length;
+        var boolArray = [];
+        for(var i = 0; i < questionLength; i++){
+            boolArray.push(false);
+        }
+        return boolArray;
     }
 
 
@@ -102,10 +134,15 @@ export class SurveyForm extends Component {
                         <div style={{ padding: '5px', display: "flex", justifyContent: "center"}}>
                             {
                                 this.state.questionSet[this.state.step].answerOptions.map((answerOption, index) => {
-                                    console.log(this.state.questionSet[this.state.step].answerOptions[index], this.state.questionSet[this.state.step].image[index])
                                     return (
                                         <Button>
-                                        <AntCard bordered={false} style={{ marginLeft: "5%", maxWidth: "200px" }}>
+                                        <AntCard 
+                                        data-id ={index} 
+                                        bordered={false} 
+                                        style={{ marginLeft: "5%", maxWidth: "200px", 
+                                        backgroundColor: this.state.setSelectionStatus[index] ? "green" : "white" }}
+                                        onClick={() => this.handleSelect(index)}
+                                        >
                                             <Image
                                                 style={{ maxWidth: "50px" }}
                                                 src={this.state.questionSet[this.state.step].image[index]}
