@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom'
 import Logo from '../Logo/Logo';
 import appDescription from '../../appDescription.json'
 
+import WelcomPage from '../../styles/WelcomeStyles';
+
 const styles = {
     root: {
         maxWidth: 400,
@@ -92,7 +94,10 @@ export class Welcome extends Component {
                     justify="center"
                     alignItems="center"
                 >
-                    <Card
+
+                <WelcomPage/>
+               
+                    {/* <Card
                     >
                         <CardHeader></CardHeader>
                         <CardContent>
@@ -100,7 +105,7 @@ export class Welcome extends Component {
                                ADD IMAGE
                             </Typography>
                         </CardContent>
-                    </Card>
+                    </Card> */}
                     <h1>{this.state.appInfo[this.state.activeStep].header}</h1>
                     <h2>{this.state.appInfo[this.state.activeStep].description1}</h2>
                     <p>{this.state.appInfo[this.state.activeStep].description2}</p>
