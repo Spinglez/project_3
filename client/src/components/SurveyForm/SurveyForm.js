@@ -6,14 +6,14 @@ import surveyData from '../../surveyData.json'
 
 
 const { Meta } = Card;
-var responseSetArray = [{},{},{},{},{},{}];
+var responseSetArray = [];
 
 export class SurveyForm extends Component {
 
     state = {
         step: 0,
         questionSet: surveyData,
-        responseSet: [],
+        responseSet: responseSetArray,
         setSelectionStatus: []
     }
 
@@ -36,7 +36,9 @@ export class SurveyForm extends Component {
     handleNext = () => {
         window.scrollTo(0, 0);
         const { step } = this.state
-
+        responseSetArray.push(this.state.setSelectionStatus);
+        console.log(responseSetArray);
+        this.setState({responseSet: responseSetArray});
         this.setState({ step: step + 1 })
         this.setState({setSelectionStatus: []})
     }
