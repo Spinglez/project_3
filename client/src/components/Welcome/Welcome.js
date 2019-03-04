@@ -96,7 +96,7 @@ export class Welcome extends Component {
                 >
 
                 <WelcomPage/>
-                
+
                     <h1>{this.state.appInfo[this.state.activeStep].header}</h1>
                     <h2>{this.state.appInfo[this.state.activeStep].description1}</h2>
                     <p>{this.state.appInfo[this.state.activeStep].description2}</p>

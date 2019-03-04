@@ -1,6 +1,27 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+
+import { Icon } from 'react-icons-kit'
+import { withBaseIcon } from 'react-icons-kit'
+
+// Couple icon
+import {u1F491} from 'react-icons-kit/noto_emoji_regular/u1F491'
+
+// Camera
+import {u1F3A5} from 'react-icons-kit/noto_emoji_regular/u1F3A5'
+
+// Tivi
+import {u1F4FA} from 'react-icons-kit/noto_emoji_regular/u1F4FA'
+
+//lets say the icons on your side navigation are all color red
+const SideIconContainer = 
+    withBaseIcon({ size: 50, style: {color: '#e53935'}})
+
+export const Couple = () => <SideIconContainer icon={u1F491}/>
+
+
+
 const StylePage = styled.div `
     width: 250px;
     height: 240px;
@@ -15,9 +36,10 @@ const StylePage = styled.div `
 const Navbar = styled.div `
     width: 100%;
     background-color: #78909c;
-    height: 40px;
+    height: 25px;
     border-radius: 5px;
 `;
+
 const Container = styled.div `
     background-color: #29b6f6;
     width: 170px;
@@ -25,59 +47,73 @@ const Container = styled.div `
     border-radius: 5%;
     margin: 10px auto;
 `;
+
+
 const Content = styled.div `
     margin-left: 0px;
     margin-top: 10px;
     display: flex;
     justify-content: center;
 `;
-const Icon = styled.div `
-    width: 40px;
-    height: 40px;
-    background-color: #e53935;
-    border-radius: 5%;
-`;
-const ParaA = styled.div `
-    width: 100px;
-    margin-left: 10px;
-    background-color: #fff9b5;;
-    height: 10px;
-    border-radius: 5%;
-`;
+
+// const ParaA = styled.div `
+//     width: 40px;
+//     margin-left: 5px;
+//     background-color: #fff9b5;;
+//     height: 40px;
+//     border-radius: 5%;
+    
+// `;
 const ParaB = styled.div `
-    width: 80px;
-    margin-left: 10px;
+    width: 70px;
     background-color: #fff9b5;;
-    height: 10px;
+    height: 3px;
     border-radius: 5%;
-    margin-top: 10px;
 `;
-const ParaC = styled.div `
-    width: 100px;
-    margin-left: 10px;
-    background-color: #fff9b5;;
-    height: 10px;
-    border-radius: 5%;
-    margin-top: 10px;
+
+const Footer = styled.div `
+    font-size: 8px;
+    color: #e53935;
 `;
- const P = styled.div `
-    color: white;
- `;
+
+const IconDiv = styled.div `
+    display: flex;
+    flex-direction: row-reverse;
+    margin-left: 35px;
+    margin-top: 18px;
+    color: #78909c;
+`;
+
 class WelcomePage extends Component {
     render() { 
         return (  
             <StylePage>
             <Navbar/>
-            <Container>
-                <P>#29b6f6</P>
-            </Container>
+            <Container/>
+        
             <Content>
-                <Icon />
-                <div>
-                <ParaA/>
-                <ParaB/>
-                <ParaC/>
+            <div>
+            <Couple />
+            <Footer>MovieKnight.2019</Footer>
+            </div>
+
+                <IconDiv>
+                <div style={{
+                    width: 35, 
+                    height: 35,
+                    }}>
+                    <Icon size={'100%'} icon={u1F3A5}/>
                 </div>
+        
+                <div style={{
+                    width: 35, 
+                    height: 35,
+                    }}>
+                    <Icon size={'100%'} icon={u1F4FA}/>
+                <ParaB/>
+                </div>
+                </IconDiv>
+
             </Content>
             </StylePage>
         );
