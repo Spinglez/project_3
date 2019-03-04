@@ -31,13 +31,24 @@ export class SurveyForm extends Component {
         this.setState(state => ({
           step: state.step - 1,
         }));
+        var prevSelections = responseSetArray[this.state.step-1];
+        console.log(this.state.step)
+        console.log(prevSelections);
+        console.log(responseSetArray)
+        this.setState({setSelectionStatus: prevSelections})
+
       };
 
     handleNext = () => {
         window.scrollTo(0, 0);
         const { step } = this.state
-        responseSetArray.push(this.state.setSelectionStatus);
-        console.log(responseSetArray);
+        if(responseSetArray[step]){
+            
+        }
+        else{
+            responseSetArray.push(this.state.setSelectionStatus);
+        }
+        console.log("responseSetArray after modification",responseSetArray);
         this.setState({responseSet: responseSetArray});
         this.setState({ step: step + 1 })
         this.setState({setSelectionStatus: []})
