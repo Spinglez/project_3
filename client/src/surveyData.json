@@ -14,7 +14,7 @@
     {
         "step": 2,
         "question": "What kind of heroes do you like?",
-        "answerOptions": ["Superheroes", "Gangsters", "Anime Characters with Lightning Bolts", "Unfit Heroes"],
+        "answerOptions": ["Superheroes", "Gangsters", "Anime Characters", "Unfit Heroes"],
         "image": ["./images/superman.png", "./images/gangster.png","./images/superhero.png", "./images/kid.png"]
     },
     {
@@ -32,13 +32,13 @@
     {
         "step": 5,
         "question": "What's your typical movie night?",
-        "answerOptions": ["Netflix and Chill","Movies in Theatre","Anything on Crunchyroll","TV shows are cool"],
+        "answerOptions": ["Netflix and Chill","Movies in Theatre","Online Stuff","TV shows are cool"],
         "image": ["./images/wink.png", "./images/cinema.png","./images/domain.png", "./images/television.png"]
     },
     {
         "step": 6,
         "question": "What kind of mood do you want to have after the movie?",
-        "answerOptions": ["Hehe","A New Hope","Left With Questions","General Satisfaction"],
+        "answerOptions": ["Hehe","A New Hope","Left With Questions","Satisfaction"],
         "image": ["./images/wink.png", "./images/children.png","./images/thinking.png", "./images/smiley-face.png"]
     }
 ]

@@ -104,13 +104,15 @@ export class SurveyForm extends Component {
                                 this.state.questionSet[this.state.step].answerOptions.map((answerOption, index) => {
                                     console.log(this.state.questionSet[this.state.step].answerOptions[index], this.state.questionSet[this.state.step].image[index])
                                     return (
-                                        <AntCard bordered={false} style={{ marginLeft: "5%" }}>
+                                        <Button>
+                                        <AntCard bordered={false} style={{ marginLeft: "5%", maxWidth: "200px" }}>
                                             <Image
                                                 style={{ maxWidth: "50px" }}
                                                 src={this.state.questionSet[this.state.step].image[index]}
                                                 title="Contemplative Reptile" />
                                         <div>{answerOption}</div>
                                         </AntCard>
+                                        </Button>
                                     
                                     )
                                 })
