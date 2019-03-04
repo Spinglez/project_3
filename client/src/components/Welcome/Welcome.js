@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Card, CardHeader, CardContent, Typography, Grid, MobileStepper, Button } from '@material-ui/core';
+import { Grid, MobileStepper, Button } from '@material-ui/core';
 import { NavLink } from 'react-router-dom'
 import Logo from '../Logo/Logo';
 import appDescription from '../../appDescription.json'
@@ -96,16 +96,7 @@ export class Welcome extends Component {
                 >
 
                 <WelcomPage/>
-               
-                    {/* <Card
-                    >
-                        <CardHeader></CardHeader>
-                        <CardContent>
-                            <Typography component="p">
-                               ADD IMAGE
-                            </Typography>
-                        </CardContent>
-                    </Card> */}
+                
                     <h1>{this.state.appInfo[this.state.activeStep].header}</h1>
                     <h2>{this.state.appInfo[this.state.activeStep].description1}</h2>
                     <p>{this.state.appInfo[this.state.activeStep].description2}</p>
