@@ -5,13 +5,34 @@ import Logo from '../Logo/Logo';
 import appDescription from '../../appDescription.json'
 
 import WelcomPage from '../../styles/WelcomeStyles';
+import styled, { ThemeProvider, injectGlobal} from 'styled-components';
 
-const styles = {
-    root: {
-        maxWidth: 400,
-        flexGrow: 1,
-    },
+const theme = {
+    primaryBlue: "#29b6f6",
+    secondaryRed: "#830000",
+    bgGreyBlue: "#263238",
+    offBlue: "#b3e5fc",
+    maxWidth: "960px",
 };
+
+const StyledApp = styled.div `
+    background-color: ${props => props.theme.primaryBlue};
+    flex-flow: column wrap;
+    padding: 2rem;
+`;
+
+// Everything inside the main container will have maxWidth: 960px 
+const Inner = styled.div `
+    margin: 0 auto;
+    max-width: ${props => props.theme.maxWidth};
+`;
+
+// const styles = {
+//     root: {
+//         maxWidth: 400,
+//         flexGrow: 1,
+//     },
+// };
 
 
 export class Welcome extends Component {
@@ -44,80 +65,94 @@ export class Welcome extends Component {
 
         // const { classes, theme } = this.props;
 
-        const styles = theme => ({
-            card: {
-                maxWidth: 400,
-            },
-            media: {
-                height: 0,
-                paddingTop: '56.25%', // 16:9
-            },
-            actions: {
-                display: 'flex',
-            },
-            expand: {
-                transform: 'rotate(0deg)',
-                marginLeft: 'auto',
-                transition: theme.transitions.create('transform', {
-                    duration: theme.transitions.duration.shortest,
-                }),
-            },
-            expandOpen: {
-                transform: 'rotate(180deg)',
-            }
-        });
+        // const styles = theme => ({
+        //     card: {
+        //         maxWidth: 400,
+        //     },
+        //     media: {
+        //         height: 0,
+        //         paddingTop: '56.25%', // 16:9
+        //     },
+        //     actions: {
+        //         display: 'flex',
+        //     },
+        //     expand: {
+        //         transform: 'rotate(0deg)',
+        //         marginLeft: 'auto',
+        //         transition: theme.transitions.create('transform', {
+        //             duration: theme.transitions.duration.shortest,
+        //         }),
+        //     },
+        //     expandOpen: {
+        //         transform: 'rotate(180deg)',
+        //     }
+        // });
 
         return (
-            <Fragment>
-                <Grid
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="center"
-                >
-                    <Logo />
-                </Grid>
-                <Grid
-                    justify="center"
-                    style={{ display: "flex" }}
-                >
-                    <MobileStepper
-                        variant="dots"
-                        steps={5}
-                        position="static"
-                        activeStep={this.state.activeStep}
-                    />
-                </Grid>
-                <Grid
-                    container
-                    direction="column"
-                    justify="center"
-                    alignItems="center"
-                >
+            <ThemeProvider theme={theme}>
+                <StyledApp>
+                    <Fragment>
+                        <Grid
+                            container
+                            direction="row"
+                            justify="center"
+                            alignItems="center"
+                        >
+                        <Logo />
+                        </Grid>
 
-                <WelcomPage/>
+                        <Inner>
+                        <Grid
+                            container
+                            direction="column"
+                            justify="center"
+                            alignItems="center"
+                        >
+                            {/* Thumnails image */}
+                        <WelcomPage/> 
+                            {/* Mobile Stepper */}
+                        <Grid
+                            justify="center"
+                            style={{ display: "flex" }}
+                        >
+                            <MobileStepper
+                            // I changed the color to transparent instead of white
+                                style={{ background: "transparent"}}
+                                variant="dots"
+                                steps={5}
+                                position="static"
+                                activeStep={this.state.activeStep}
+                            />
+                        </Grid>
+                            {/* Titles */}
+                            <h1>{this.state.appInfo[this.state.activeStep].header}</h1>
+                            <h2>{this.state.appInfo[this.state.activeStep].description1}</h2>
+                            <p>{this.state.appInfo[this.state.activeStep].description2}</p>
 
-                    <h1>{this.state.appInfo[this.state.activeStep].header}</h1>
-                    <h2>{this.state.appInfo[this.state.activeStep].description1}</h2>
-                    <p>{this.state.appInfo[this.state.activeStep].description2}</p>
-                    <Button size="small" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
-                        BACK
-                    </Button>
-                    { this.state.activeStep < 4 ?
-                    <Button size="small" onClick={this.handleNext}>
-                        NEXT
-                        </Button>
-                        :
-                        <NavLink to= "/register">
-                        <Button size="small" onClick={this.handleNext}>
-                        CREATE ACCOUNT
-                        </Button>
-                        </NavLink>
-                    }
-                </Grid>
-            </Fragment>
+                            {/* BACK - NEXT buttons */}
+                            <Button size="small" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
+                                BACK
+                            </Button>
+
+                            { this.state.activeStep < 4 ?
+                            <Button size="small" onClick={this.handleNext}>
+                                NEXT
+                            </Button>
+                                :
+                                <NavLink to= "/register">
+                                <Button size="small" onClick={this.handleNext}>
+                                CREATE ACCOUNT
+                                </Button>
+                                </NavLink>
+                            }
+                            
+                        </Grid>
+                        </Inner>    
+                    </Fragment>
+                </StyledApp>
+            </ThemeProvider>
         )
     }
 }
 
-export default Welcome
+export default Welcome;
