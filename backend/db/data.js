@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Users = new Schema(
+// User Schema Definition
+const UsersSchema = new Schema(
   {
     firstName: String,
     lastName: String,
-    uuid: {
+    token: {
       type: String,
       required: true
     },
@@ -22,8 +23,25 @@ const Users = new Schema(
     },
     userDescription: String,
     // image: String
+    savedMovies: [{type: Schema.Types.ObjectId, ref: 'SavedMovies'}]
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-module.exports = mongoose.model("Data", Users);
+
+// Saved movies associated with Users Schema
+const SavedMoviesSchema = new Schema(
+  {
+
+  }
+)
+
+// creating Models to be exported.
+const Users = mongoose.model("Users", UsersSchema)
+
+const SavedMovies = mongoose.model("SavedMovies", SavedMoviesSchema)
+
+module.exports = {
+  Users: Users,
+  SavedMovies: SavedMovies
+};
