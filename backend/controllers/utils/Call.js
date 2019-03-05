@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const Call = {
-  tmDB: query => {
+  tmDB : query => {
     let key = process.env.TMDBKEY;
 
     let qstring =
