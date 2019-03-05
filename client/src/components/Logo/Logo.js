@@ -1,12 +1,11 @@
 import React  from 'react';
-// import logo from '../Welcome/Logo_Movie.png';
-import logo from '../Welcome/reelLogo.png';
+import logo from '../Welcome/reelLogo.png'; //REEL logo
+// import logo from '../Welcome/Logo_Movie.png'; //MATCH logo
 
 
 const logoStyle = {
-  width: "40px",
-  height: "40px",
-
+  width: "35px",
+  height: "35px",
 }
 
 const StyleDiv = {

@@ -12,38 +12,11 @@
 }
 
 h1 {
-
-  color: #d50000;
+  color: $color-secondary;
   text-transform: uppercase;
 }
 
 h2 {
-  color: #fafafa;
+  color: $color-offwhite;
 }
 
-// I COMMENT THEM OUT SINCE WE DON"T NEED IT
-////////////////////////////////////////////////////////////////////////////////////
-// .App-header {
-  
-//   // background-color: #282c34;
-//   // min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: calc(10px + 2vmin);
-//   color: white;
-// }
-
-// .App-link {
-//   color: #61dafb;
-// }
-
-// @keyframes App-logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }

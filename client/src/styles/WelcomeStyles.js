@@ -15,7 +15,7 @@ import {u1F4FA} from 'react-icons-kit/noto_emoji_regular/u1F4FA'
 // Couple icon
 import {u1F491} from 'react-icons-kit/noto_emoji_regular/u1F491'
 const SideIconContainer = 
-    withBaseIcon({ size: 50, style: {color: '#e53935'}})
+    withBaseIcon({ size: 50, style: {color: '#b71c1c'}})
     export const Couple = () => <SideIconContainer icon={u1F491}/>
 
 const theme = {
@@ -28,10 +28,6 @@ const theme = {
     secondaryRed: "#e53935",
     lightRed: "#ffb2b0",
     offWhite: "#fafafa",
-    lightYellow: "#fff9b5",
-    lightOrange: "#ffe0b2",
-    yellow: "#f8f81f",
-    brightOrange: "#ff7300",
     brown: " #4e342e",
     lightBrown: "#a1887f"
 };
