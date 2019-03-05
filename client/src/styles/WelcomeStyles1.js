@@ -85,7 +85,7 @@ const IconDiv = styled.div `
     color: ${props => props.theme.brown};
 `;
 
-class WelcomePage extends Component {
+class WelcomePage1 extends Component {
     render() { 
         return (  
             <ThemeProvider theme={theme}>
@@ -122,4 +122,4 @@ class WelcomePage extends Component {
         );
     }
 }
-export default WelcomePage;
+export default WelcomePage1;
