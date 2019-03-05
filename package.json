@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Spinglez/project_3#readme",
   "dependencies": {
     "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "mongoose": "^5.4.16",
