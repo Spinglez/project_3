@@ -9,6 +9,8 @@ import styled, { ThemeProvider} from 'styled-components';
 
 const theme = {
     navyBlue: "#002744",
+    offWhite: "#fafafa",
+    lightGrey: "#78909c",
     maxWidth: "960px",
     boxShadow: "0 4px 4px 2px rgba(0,0,0,0.09)",
 };
@@ -16,6 +18,7 @@ const theme = {
 const StyledApp = styled.div `
     background-color: ${props => props.theme.navyBlue};
     flex-flow: column wrap;
+    height: 100vh;
     padding: 2rem;
 `;
 
@@ -24,6 +27,14 @@ const Inner = styled.div `
     margin: 0 auto;
     border-radius: 8px;
 `;
+
+const P = styled.p`
+    color: ${props => props.theme.offWhite};
+`;
+
+
+
+
 
 export class Welcome extends Component {
     state = {
@@ -88,15 +99,15 @@ export class Welcome extends Component {
                             {/* Titles */}
                             <h1>{this.state.appInfo[this.state.activeStep].header}</h1>
                             <h2>{this.state.appInfo[this.state.activeStep].description1}</h2>
-                            <p>{this.state.appInfo[this.state.activeStep].description2}</p>
+                            <P>{this.state.appInfo[this.state.activeStep].description2}</P>
 
                             {/* BACK - NEXT buttons */}
-                            <Button size="small" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
+                            <Button size="small" color="secondary" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
                                 BACK
                             </Button>
 
                             { this.state.activeStep < 4 ?
-                            <Button size="small" onClick={this.handleNext}>
+                            <Button size="small" color="primary" onClick={this.handleNext}>
                                 NEXT
                             </Button>
                                 :

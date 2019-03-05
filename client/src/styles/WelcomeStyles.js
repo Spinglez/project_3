@@ -21,10 +21,10 @@ const SideIconContainer =
 const theme = {
     offBlue: "#b3e5fc",
     primaryBlue: "#29b6f6",
-    bgBlue: "#01579b",
-    bgGreyBlue: "#37474f",
+    Blue: "#01579b",
+    GreyBlue: "#37474f",
     greyBlue: "#50707e",
-    bgLightGrey: "#78909c",
+    lightGrey: "#78909c",
     secondaryRed: "#e53935",
     lightRed: "#ffb2b0",
     offWhite: "#fafafa",
@@ -45,13 +45,13 @@ const StylePage = styled.div `
 `;
 const Navbar = styled.div `
     width: 100%;
-    background-color: ${props => props.theme.bgGreyBlue};
+    background-color: ${props => props.theme.GreyBlue};
     height: 25px;
     border-radius: 5px;
 `;
 
 const Container = styled.div `
-    background-color: ${props => props.theme.bgLightGrey};
+    background-color: ${props => props.theme.lightGrey};
     width: 170px;
     height: 100px;
     border-radius: 5%;
@@ -67,14 +67,14 @@ const Content = styled.div `
 
 const ParaB = styled.div `
     width: 70px;
-    background-color: ${props => props.theme.bgLightGrey};
+    background-color: ${props => props.theme.lightGrey};
     height: 2px;
     border-radius: 5%;
 `;
 
 const Footer = styled.div `
     font-size: 8px;
-    color: ${props => props.theme.bgLightGrey};
+    color: ${props => props.theme.lightGrey};
 `;
 
 const IconDiv = styled.div `
