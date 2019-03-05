@@ -15,18 +15,25 @@ import {u1F4FA} from 'react-icons-kit/noto_emoji_regular/u1F4FA'
 // Couple icon
 import {u1F491} from 'react-icons-kit/noto_emoji_regular/u1F491'
 const SideIconContainer = 
-    withBaseIcon({ size: 50, style: {color: '#f44336'}})
+    withBaseIcon({ size: 50, style: {color: '#e53935'}})
     export const Couple = () => <SideIconContainer icon={u1F491}/>
 
 const theme = {
     offBlue: "#b3e5fc",
     primaryBlue: "#29b6f6",
     bgBlue: "#01579b",
-    bgGreyBlue: "#263238",
+    bgGreyBlue: "#37474f",
+    greyBlue: "#50707e",
     bgLightGrey: "#78909c",
     secondaryRed: "#e53935",
+    lightRed: "#ffb2b0",
     offWhite: "#fafafa",
-    lightYellow: "#fff9b5"
+    lightYellow: "#fff9b5",
+    lightOrange: "#ffe0b2",
+    yellow: "#f8f81f",
+    brightOrange: "#ff7300",
+    brown: " #4e342e",
+    lightBrown: "#a1887f"
 };
 
 const StylePage = styled.div `
@@ -37,18 +44,18 @@ const StylePage = styled.div `
     margin: auto;
     border-radius: 5%;
     padding: 8px;
-    background-color: ${props => props.theme.bgGreyBlue};
+    background-color: ${props => props.theme.offWhite};
     color: orange;
 `;
 const Navbar = styled.div `
     width: 100%;
-    background-color: ${props => props.theme.bgLightGrey};
+    background-color: ${props => props.theme.bgGreyBlue};
     height: 25px;
     border-radius: 5px;
 `;
 
 const Container = styled.div `
-    background-color: ${props => props.theme.bgBlue};
+    background-color: ${props => props.theme.bgLightGrey};
     width: 170px;
     height: 100px;
     border-radius: 5%;
@@ -64,14 +71,14 @@ const Content = styled.div `
 
 const ParaB = styled.div `
     width: 70px;
-    background-color: ${props => props.theme.lightYellow};
-    height: 3px;
+    background-color: ${props => props.theme.bgLightGrey};
+    height: 2px;
     border-radius: 5%;
 `;
 
 const Footer = styled.div `
     font-size: 8px;
-    color: ${props => props.theme.secondaryRed};
+    color: ${props => props.theme.bgLightGrey};
 `;
 
 const IconDiv = styled.div `
@@ -79,7 +86,7 @@ const IconDiv = styled.div `
     flex-direction: row-reverse;
     margin-left: 35px;
     margin-top: 18px;
-    color: ${props => props.theme.offWhite};
+    color: ${props => props.theme.brown};
 `;
 
 class WelcomePage extends Component {

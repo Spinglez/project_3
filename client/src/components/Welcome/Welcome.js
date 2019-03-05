@@ -5,18 +5,26 @@ import Logo from '../Logo/Logo';
 import appDescription from '../../appDescription.json'
 
 import WelcomPage from '../../styles/WelcomeStyles';
-import styled, { ThemeProvider, injectGlobal} from 'styled-components';
+import styled, { ThemeProvider} from 'styled-components';
 
 const theme = {
-    primaryBlue: "#29b6f6",
-    secondaryRed: "#830000",
-    bgGreyBlue: "#263238",
     offBlue: "#b3e5fc",
+    primaryBlue: "#29b6f6",
+    bgBlue: "#01579b",
+    bgGreyBlue: "#263238",
+    navyBlue: "#002744",
+    bgLightGrey: "#78909c",
+    secondaryRed: "#e53935",
+    offWhite: "#fafafa",
+    lightYellow: "#fff9b5",
+    greyBlue: "#345666",
+    brown: " #4e342e",
     maxWidth: "960px",
+    boxShadow: "0 4px 4px 2px rgba(0,0,0,0.09)",
 };
 
 const StyledApp = styled.div `
-    background-color: ${props => props.theme.primaryBlue};
+    background-color: ${props => props.theme.navyBlue};
     flex-flow: column wrap;
     padding: 2rem;
 `;
@@ -25,6 +33,9 @@ const StyledApp = styled.div `
 const Inner = styled.div `
     margin: 0 auto;
     max-width: ${props => props.theme.maxWidth};
+    /* background-color: ${props => props.theme.offWhite}; */
+    border-radius: 8px;
+    /* box-shadow: ${props => props.theme.boxShadow}; */
 `;
 
 // const styles = {
@@ -92,16 +103,16 @@ export class Welcome extends Component {
             <ThemeProvider theme={theme}>
                 <StyledApp>
                     <Fragment>
-                        <Grid
+                        <Logo />
+                        <Inner>
+                        {/* <Grid
                             container
                             direction="row"
-                            justify="center"
-                            alignItems="center"
-                        >
-                        <Logo />
-                        </Grid>
+                            justify="flex-start"
+                            alignItems="flex-start"
+                        > 
+                        </Grid> */}
 
-                        <Inner>
                         <Grid
                             container
                             direction="column"
