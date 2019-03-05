@@ -14,10 +14,11 @@ export class SurveyForm extends Component {
         step: 0,
         questionSet: surveyData,
         responseSet: responseSetArray,
-        setSelectionStatus: []
+        setSelectionStatus: [],
+        active: "white"
     }
 
-    componentDidUpdate(){
+    componentDidUpdate(prevProps){
         if(this.state.setSelectionStatus.length === 0){
             this.setState({setSelectionStatus: this.populateSelectionStatus()});
         }
@@ -28,6 +29,7 @@ export class SurveyForm extends Component {
     }
 
     handleBack = () => {
+        console.log("populated array after handleback:", responseSetArray)
         this.setState(state => ({
           step: state.step - 1,
         }));
@@ -40,29 +42,40 @@ export class SurveyForm extends Component {
       };
 
     handleNext = () => {
+        console.log("populated array after handlenext:", responseSetArray)
         window.scrollTo(0, 0);
         const { step } = this.state
-        if(responseSetArray[step]){
-            
-        }
-        else{
+
+        if(!this.state.responseSet[step]){
+            // step response doesnt already exist and we need to push to the array
             responseSetArray.push(this.state.setSelectionStatus);
+            // clear the state for next question
+            this.setState({setSelectionStatus: []})
         }
-        console.log("responseSetArray after modification",responseSetArray);
+  
+        // if the next state response exists
+        if(this.state.responseSet[step+1]){
+            // set that current response state as the 
+            this.setState({setSelectionStatus:responseSetArray[step+1]})
+        }
+        if(!this.state.responseSet[step+1]){
+            this.setState({setSelectionStatus: []})
+        }
         this.setState({responseSet: responseSetArray});
         this.setState({ step: step + 1 })
-        this.setState({setSelectionStatus: []})
     }
 
     handleSelect = (optionIndex) => {
         if(this.state.setSelectionStatus[optionIndex]){
-            this.state.setSelectionStatus.splice(optionIndex,1,false)
+            var updatedSelect = this.state.setSelectionStatus;
+            updatedSelect[optionIndex] = false;
+            this.setState({setSelectionStatus: updatedSelect})
         }
         else{
-            this.state.setSelectionStatus.splice(optionIndex,1,true)
+            var updatedSelect = this.state.setSelectionStatus;
+            updatedSelect[optionIndex] = true;
+            this.setState({setSelectionStatus: updatedSelect})
         }
-        console.log(this.state.setSelectionStatus)
-        console.log("selected at index ", optionIndex)
     }
 
     onChange = (checkedValues) => {
