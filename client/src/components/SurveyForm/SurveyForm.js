@@ -2,9 +2,14 @@ import React, { Component, Fragment } from 'react'
 import { Card, CardHeader, CardContent, Typography, Grid, MobileStepper, Button, AppBar, Toolbar } from '@material-ui/core';
 
 import { withStyles } from '@material-ui/core/styles';
+import 'antd/dist/antd.css';
 import { Checkbox, Card as AntCard, Row, Col } from 'antd';
-import { Image } from 'react-bootstrap'
+
+
+// import { Image } from 'react-bootstrap'
 import surveyData from '../../surveyData.json'
+
+import Logo from '../Logo/Logo';
 
 import styled, { ThemeProvider} from 'styled-components';
 const themeColor = {
@@ -17,22 +22,29 @@ const themeColor = {
 };
 
 const StyledImg = styled.img`
-    background-color: greenyellow;
-    padding: 20px;
-    border-radius: 50%;
-    max-width: 70px;
+    padding: 10px;
+    max-width: 60px;
 `;
 
 const StyledAppBar = styled.div `
     background-color: ${props => props.theme.navyBlue};
 `;
 
+const StyledDiv = styled.div `
+    padding: 5px; 
+    display: flex; 
+    justify-content: center; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    flex-flow: row-wrap;
+    align-content: flex-end;
+`;
+
 const styles = theme => ({
     root: {
       flexGrow: 1,
-    },
-
-  });
+    }
+});
 
 
 // ---------------------------------------------------------------------------------------------
@@ -124,18 +136,18 @@ export class SurveyForm extends Component {
 
 // ---------------------------------------------------------------------------------------------------------
     render() {
-        const styles = {
-            root: {
-                flexGrow: 1,
-            },
-            grow: {
-                flexGrow: 1,
-            },
-            menuButton: {
-                marginLeft: -12,
-                marginRight: 20,
-            },
-        };
+        // const styles = {
+        //     root: {
+        //         flexGrow: 1,
+        //     },
+        //     grow: {
+        //         flexGrow: 1,
+        //     },
+        //     menuButton: {
+        //         marginLeft: -12,
+        //         marginRight: 20,
+        //     },
+        // };
 
         // const imageStyle = {
         //     card: {
@@ -155,7 +167,7 @@ export class SurveyForm extends Component {
                         <StyledAppBar position="static">
                             <Toolbar>
                                 <Typography variant="h6" color="inherit" className={styles.grow}>
-                                    APP NAME
+                                    <Logo/>
                                 </Typography>
                                 {/* <Button color="inherit">Login</Button> */}
                             </Toolbar>
@@ -192,12 +204,10 @@ export class SurveyForm extends Component {
                                 </Typography>
                             </CardContent>
                         </Card>
-                        </Grid>
-
-
+                    </Grid>
+                        {/* IMAGE CARD */}
                         {
-                      
-                            <div style={{ padding: '5px', display: "flex", justifyContent: "center"}}>
+                            <StyledDiv>
                                 {
                                     this.state.questionSet[this.state.step].answerOptions.map((answerOption, index) => {
                                         return (
@@ -211,33 +221,34 @@ export class SurveyForm extends Component {
                                                 backgroundColor: this.state.setSelectionStatus[index] ? "#78909c" : "white" }}
                                                 onClick={() => this.handleSelect(index)}
                                                 >
+                                               
                                                     <StyledImg
                                                         src={this.state.questionSet[this.state.step].image[index]}
                                                         title="Contemplative Reptile" />
-                                                
+
                                                 <div>{answerOption}</div>
                                                 </AntCard>
-                                            </Button>
-                                        
+
+                                            </Button> 
                                         )
                                     })
-                                }
-                            </div>
-                     
+                                }    
+                            </StyledDiv>   
                         }
+
                         <Grid
                         container
                         direction="column"
                         justify="center"
                         alignItems="center"
                     >
-                    <Button size="small" onClick={this.handleBack} disabled={this.state.step === 0}>
+                        <Button size="small" onClick={this.handleBack} disabled={this.state.step === 0}>
                             BACK
                         </Button>
                         <Button size="small" onClick={this.handleNext} disabled={this.state.step === 10}>
                             Next
-                            </Button>
-                    </Grid>
+                        </Button>
+                        </Grid>
                     
                 </Fragment>
             </ThemeProvider>
