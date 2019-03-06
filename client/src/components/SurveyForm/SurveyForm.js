@@ -1,11 +1,74 @@
 import React, { Component, Fragment } from 'react'
-import { Card, CardHeader, CardContent, Typography, Grid, MobileStepper, Button, AppBar, Toolbar } from '@material-ui/core';
-import { Checkbox, Card as AntCard, Row, Col } from 'antd';
-import { Image } from 'react-bootstrap'
-import surveyData from '../../surveyData.json'
-import axios from 'axios';
+import { CardHeader, Typography, Grid, MobileStepper, Button, Toolbar } from '@material-ui/core';
 
-const { Meta } = Card;
+import { withStyles } from '@material-ui/core/styles';
+import 'antd/dist/antd.css';
+import {  Card as AntCard } from 'antd';
+
+import SwipeableMovieStepper from '../../styles/SurveyCarousel';
+import Logo from '../Logo/Logo';
+import styled, { ThemeProvider} from 'styled-components';
+
+import surveyData from '../../surveyData.json'
+
+const themeColor = {
+    navyBlue: "#002744",
+    offWhite: "#fafafa",
+    lightGrey: "#78909c",
+    lightBlue: "#b3e5fc",
+    maxWidth: "960px",
+    boxShadow: "9px 13px 40px -3px rgba(0,0,0,0.51);",
+};
+
+const StyledImg = styled.img`
+    background-color: ${props => props.theme.lightBlue};
+    padding: 8px;
+    max-width: 60px;
+    border-radius: 50%;
+`;
+
+const StyledAppBar = styled.div `
+    background-color: ${props => props.theme.navyBlue};
+`;
+
+const Inner = styled.div`
+    max-width: ${props => props.theme.maxWidth};
+    margin: 0 auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+`;
+
+const StyledCard = styled.div `
+    box-shadow: ${props => props.theme.boxShadow};
+    margin-top: 5px;
+`;
+
+const Typo = styled.p`
+    color: ${props => props.theme.lightBlue}; 
+    background: ${props => props.theme.lightGrey}; 
+    padding: 10px; 
+    border-radius: 5px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+`;
+
+const StyledDiv = styled.div `
+    display: flex; 
+    justify-content: center; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    flex-flow: row-wrap;
+    align-content: flex-end;
+`;
+
+const styles = theme => ({
+    root: {
+      flexGrow: 1,
+    }
+});
+
+// ---------------------------------------------------------------------------------------------
+
 var responseSetArray = [];
 
 export class SurveyForm extends Component {
@@ -91,135 +154,106 @@ export class SurveyForm extends Component {
         return boolArray;
     }
 
-    handleSubmit = () => {
-        this.setState({responseSet: responseSetArray});
-        axios.post('/api/Users',
-        {
-            firstName: "Matt",
-            lastName: "Wong",
-            movieSurvey: this.state.responseSet
-        })
-        .then((response, error) => {
-            if(error) throw error;
-            console.log(response.data)
-        })
-    }
-
-
+// ---------------------------------------------------------------------------------------------------------
     render() {
-        const styles = {
-            root: {
-                flexGrow: 1,
-            },
-            grow: {
-                flexGrow: 1,
-            },
-            menuButton: {
-                marginLeft: -12,
-                marginRight: 20,
-            },
-        };
-
-        const imageStyle = {
-            card: {
-                maxWidth: 345,
-            },
-            media: {
-                height: 140,
-            },
-        };
-
         const { classes } = this.props;
 
         return (
-            <Fragment>
-                <div className={styles.root}>
-                    <AppBar position="static">
-                        <Toolbar>
-                            <Typography variant="h6" color="inherit" className={styles.grow}>
-                                APP NAME
-          </Typography>
-                            {/* <Button color="inherit">Login</Button> */}
-                        </Toolbar>
-                    </AppBar>
-                </div>
-                <Grid
-                    justify="center"
-                    style={{ display: "flex" }}
-                >
-                    <MobileStepper
-                        variant="dots"
-                        steps={7}
-                        position="static"
-                        activeStep={this.state.step}
-                    />
-                </Grid>
-                <Grid
-                    container
-                    direction="column"
-                    justify="center"
-                    alignItems="center"
-                >
-                    <Card
-                    >
-                        <CardHeader></CardHeader>
-                        <CardContent>
-                            <Typography component="p">
-                                {this.state.questionSet[this.state.step].question}
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                    </Grid>
-                    {
-                        <div style={{ padding: '5px', display: "flex", justifyContent: "center"}}>
-                            {
-                                this.state.questionSet[this.state.step].answerOptions.map((answerOption, index) => {
-                                    return (
-                                        <Button>
-                                        <AntCard 
-                                        data-id ={index} 
-                                        bordered={false} 
-                                        style={{ marginLeft: "5%", maxWidth: "200px", 
-                                        backgroundColor: this.state.setSelectionStatus[index] ? "green" : "white" }}
-                                        onClick={() => this.handleSelect(index)}
-                                        >
-                                            <Image
-                                                style={{ maxWidth: "50px" }}
-                                                src={this.state.questionSet[this.state.step].image[index]}
-                                                title="Contemplative Reptile" />
-                                        <div>{answerOption}</div>
-                                        </AntCard>
-                                        </Button>
-                                    
-                                    )
-                                })
-                            }
-                        </div>
-                    }
+            <ThemeProvider theme={themeColor}>
+                <Fragment>
+                    <div className={styles.root}>
+                        <StyledAppBar position="static">
+                            <Toolbar>
+                                <Typography variant="h6" color="inherit" className={styles.grow}>
+                                    <Logo/>
+                                </Typography>
+                                {/* <Button color="inherit">Login</Button> */}
+                            </Toolbar>
+                        </StyledAppBar>
+                    </div>
+                        
+                    <Inner> {/* Max-width: 960px */}
+
+                    {/* Questions */} 
                     <Grid
-                    container
-                    direction="column"
-                    justify="center"
-                    alignItems="center"
-                >
-                <Button size="small" onClick={this.handleBack} disabled={this.state.step === 0}>
-                        BACK
-                    </Button>
-                    {
-                        this.state.step != 6 ?
-                    <Button size="small" onClick={this.handleNext}>
-                        NEXT
-                        </Button>
-                        :
-                    <Button size="small" onClick={this.handleSubmit}>
-                        GO TO PROFILE
-                    </Button>
-                    }
-                </Grid>
-                
-            </Fragment>
+                        container
+                        direction="column"
+                        justify="center"
+                        alignItems="center"
+                    >
+
+                        <StyledCard><SwipeableMovieStepper/></StyledCard>  {/* Movie Carousel */}
+
+                            <CardHeader></CardHeader>
+                            <Typo component="p" >
+                                    {this.state.questionSet[this.state.step].question}
+                            </Typo>
+                    </Grid>
+
+                       {/* Mobile Stepper */}
+                       <Grid
+                        justify="center"
+                        style={{ display: "flex" }}
+                    >
+                        <MobileStepper
+                            style={{ background: "transparent" }}
+                            variant="dots"
+                            steps={7}
+                            position="static"
+                            activeStep={this.state.step}
+                        />
+                    </Grid>
+                        {/* IMAGE CARD */}
+                        {
+                            <StyledDiv>
+                                {
+                                    this.state.questionSet[this.state.step].answerOptions.map((answerOption, index) => {
+                                        return (
+                                            <Button>
+                                           
+                                                <AntCard 
+                                                className={classes.paper}
+                                                data-id ={index} 
+                                                bordered={false} 
+                                                padding={2}
+                                                style={{ marginLeft: "2%", maxWidth: "200px", 
+                                                backgroundColor: this.state.setSelectionStatus[index] ? "#78909c" : "white" }}
+                                                onClick={() => this.handleSelect(index)}
+                                                >
+                                               
+                                                    <StyledImg
+                                                        src={this.state.questionSet[this.state.step].image[index]}
+                                                        title="Contemplative Reptile" />
+
+                                                <div>{answerOption}</div>
+                                                </AntCard>
+
+                                            </Button> 
+                                        )
+                                    })
+                                }    
+                            </StyledDiv>   
+                        }
+
+                        <Grid
+                        container
+                        display="flex"
+                        justify="flex-end"
+                        >
+                            <Button size="medium" onClick={this.handleBack} disabled={this.state.step === 0}>
+                                BACK
+                            </Button>
+                            <Button size="medium" onClick={this.handleNext} disabled={this.state.step === 10}>
+                                Next
+                            </Button>
+                        </Grid>
+
+                        </Inner>
+                </Fragment>
+            </ThemeProvider>
         )
     }
 }
 
-export default SurveyForm;
+export default withStyles(styles)(SurveyForm);
+// export default SurveyForm;

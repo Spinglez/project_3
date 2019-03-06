@@ -13,10 +13,10 @@ const StyleDiv = {
   margin: "10px 10px"
 }
 
-const typo = {
-  fontSize: "30px",
-  fontFamily: "'Righteous', sans-serif",
-}
+// const typo = {
+//   fontSize: "30px",
+//   fontFamily: "'Righteous', sans-serif",
+// }
 
 class Logo extends Component {
     render(){
@@ -26,12 +26,12 @@ class Logo extends Component {
         style={{
           fontSize:"30px", 
           fontFamily: "Righteous', sans-serif",
-          color: this.props.activeStep != 3 ? "#fafafa" : "black"
+          color: this.props.activeStep !== 3 ? "#fafafa" : "#002744"
           }}>M</span><img style={logoStyle} src={logo} alt="Logo" /><span
         style={{
           fontSize:"30px", 
           fontFamily: "Righteous', sans-serif",
-          color: this.props.activeStep != 3 ? "#fafafa" : "black"
+          color: this.props.activeStep !== 3 ? "#fafafa" : "#002744"
           }}>VIE</span>
       </div>
     )
