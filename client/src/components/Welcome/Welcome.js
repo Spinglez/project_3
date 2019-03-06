@@ -6,7 +6,11 @@ import Logo from '../Logo/Logo';
 import appDescription from '../../appDescription.json'
 
 // import WelcomePage1 from '../../styles/WelcomeStyles1';
-import CustomCard2 from '../../styles/WelcomeStyles2';
+// import CustomCard2 from '../../styles/WelcomeStyles2';
+import Customcard3 from '../../styles/WelcomeStyles3';
+
+
+
 import styled, { ThemeProvider} from 'styled-components';
 
 const theme = {
@@ -92,7 +96,9 @@ export class Welcome extends Component {
                                 alignItems="center"
                             >
                             {/* <WelcomePage1 activeStep = {this.state.activeStep}/>  */}
-                            <CustomCard2/>
+                            {/* <CustomCard2/> */}
+                            <Customcard3/>
+
                             <Grid
                                 justify="center"
                                 style={{ display: "flex" }}
