@@ -18,7 +18,6 @@ const theme = {
 };
 
 const StyledApp = styled.div `
-    background-color: ${props => props.theme.navyBlue};
     flex-flow: column wrap;
     height: 100vh;
     padding: 2rem;
@@ -33,21 +32,15 @@ const Inner = styled.div `
 
 // Styling for Titles, Description
 const H1 = styled.h1`
-    color: ${props => props.theme.darkRed};
     text-transform: uppercase;
     font-family: 'Righteous', sans-serif;
     font-size: 2rem;
 `;
 
 const H2 = styled.h2`
-    color: ${props => props.theme.offWhite};
     letter-spacing: 3px;    
     font-family: 'Cabin Sketch', cursive;
     font-size: 1.4rem;
-`;
-
-const P = styled.p`
-    color: ${props => props.theme.offWhite};
 `;
 
 const styles = {
@@ -87,28 +80,22 @@ export class Welcome extends Component {
         const { classes } = this.props;
         return (
             <ThemeProvider theme={theme}>
-                <StyledApp>
+                <StyledApp style={{backgroundColor: this.state.appInfo[this.state.activeStep].backgroundColor}}>
                     <Fragment>
                         <Inner>
-                            <Logo />
-
+                            <Logo activeStep={this.state.activeStep} />
                             <Grid
                                 container
                                 direction="column"
                                 justify="center"
                                 alignItems="center"
                             >
-
-                                {/* Thumnails image */}
-                            <WelcomePage1/> 
-
-                                {/* Mobile Stepper */}
+                            <WelcomePage1 activeStep = {this.state.activeStep}/> 
                             <Grid
                                 justify="center"
                                 style={{ display: "flex" }}
                             >
                                 <MobileStepper
-                                // I changed the color to transparent instead of white
                                     style={{ background: "transparent" }}
                                     variant="dots"
                                     steps={5}
@@ -117,17 +104,12 @@ export class Welcome extends Component {
                                     activeStep={this.state.activeStep}
                                 />
                             </Grid>
-
-                                {/* Titles */}
-                                <H1>{this.state.appInfo[this.state.activeStep].header}</H1>
-                                <H2>{this.state.appInfo[this.state.activeStep].description1}</H2>
-                                <P>{this.state.appInfo[this.state.activeStep].description2}</P>
-
-                                {/* BACK - NEXT buttons */}
+                                <H1 style={{color: this.state.appInfo[this.state.activeStep].headerColor}}>{this.state.appInfo[this.state.activeStep].header}</H1>
+                                <H2 style={{color: this.state.appInfo[this.state.activeStep].description1Color}}>{this.state.appInfo[this.state.activeStep].description1}</H2>
+                                <p style={{color: this.state.appInfo[this.state.activeStep].description2Color, fontSize: "20px"}}>{this.state.appInfo[this.state.activeStep].description2}</p>
                                 <Button size="medium" color="secondary" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
                                     BACK
                                 </Button>
-
                                 { this.state.activeStep < 4 ?
                                 <Button size="medium" color="primary" onClick={this.handleNext}>
                                     NEXT
@@ -139,7 +121,6 @@ export class Welcome extends Component {
                                     </Button>
                                     </NavLink>
                                 }
-                                
                             </Grid>
                         </Inner>    
                     </Fragment>
