@@ -6,26 +6,26 @@ const UsersSchema = new Schema(
   {
     firstName: String,
     lastName: String,
-    token: {
-      type: String,
-      required: true
-    },
-    email: {
-      type: String,
-      required: true
-    },
-    updated: {
-      type: {Date, Default: Date.now}
-    },
+    // token: {
+    //   type: String,
+    //   required: true
+    // },
+    // email: {
+    //   type: String,
+    //   // required: true
+    // },
+    // updated: {
+    //   type: {Date, Default: Date.now}
+    // },
     movieSurvey: {
       type:[],
       required: true
     },
-    userDescription: String,
+    // userDescription: String,
     // image: String
-    savedMovies: [{type: Schema.Types.ObjectId, ref: 'SavedMovies'}]
+    // savedMovies: [{type: Schema.Types.ObjectId, ref: 'SavedMovies'}]
   },
-  { timestamps: true },
+  // { timestamps: true },
 );
 
 

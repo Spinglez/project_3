@@ -33,20 +33,20 @@ module.exports = app => {
 
     console.log(req.body);
 
-    const { token, firstName, lastName, email, movieSurvey, userDescription } = req.body;
+    // const { token, firstName, lastName, email, movieSurvey, userDescription } = req.body;
 
-    if ((!token && token !== 0) || !movieSurvey || !email) {
-      return res.json({
-        success: false,
-        error: "INVALID INPUTS"
-      });
-    }
-    data.firstName = firstName;
-    data.lastName = lastName;
-    data.email = email;
-    data.movieSurvey = movieSurvey;
-    data.userDescription = userDescription;
-    data.token = token;
+    // if ((!token && token !== 0) || !movieSurvey || !email) {
+    //   return res.json({
+    //     success: false,
+    //     error: "INVALID INPUTS"
+    //   });
+    // }
+    data.firstName = req.body.firstName;
+    data.lastName = req.body.lastName;
+    // data.email = email;
+    data.movieSurvey = req.body.movieSurvey;
+    // data.userDescription = userDescription;
+    // data.token = token;
     data.save(err => {
       if (err) throw err;
       return res.json();
