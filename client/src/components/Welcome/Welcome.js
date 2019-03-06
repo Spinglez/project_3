@@ -5,7 +5,8 @@ import { NavLink } from 'react-router-dom'
 import Logo from '../Logo/Logo';
 import appDescription from '../../appDescription.json'
 
-import WelcomePage1 from '../../styles/WelcomeStyles1';
+// import WelcomePage1 from '../../styles/WelcomeStyles1';
+import CustomCard2 from '../../styles/WelcomeStyles2';
 import styled, { ThemeProvider} from 'styled-components';
 
 const theme = {
@@ -90,7 +91,8 @@ export class Welcome extends Component {
                                 justify="center"
                                 alignItems="center"
                             >
-                            <WelcomePage1 activeStep = {this.state.activeStep}/> 
+                            {/* <WelcomePage1 activeStep = {this.state.activeStep}/>  */}
+                            <CustomCard2/>
                             <Grid
                                 justify="center"
                                 style={{ display: "flex" }}
