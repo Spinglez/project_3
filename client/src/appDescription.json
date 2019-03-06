@@ -7,17 +7,17 @@
         "backgroundColor": "#002744",
         "headerColor": "#b71c1c",
         "description1Color": "#fafafa",
-        "description2Color": "#fafafa"
+        "description2Color": "#607d8b"
     },
     {
         "step": 2,
         "header": "Movie Match",
         "description1": "We pick your movie based on you and your date's preferences.",
         "description2": "The painful planning process is finally over.",
-        "backgroundColor": "#78909c",
-        "headerColor": "#b71c1c",
+        "backgroundColor": "#607d8b",
+        "headerColor": "#002744",
         "description1Color": "#fafafa",
-        "description2Color": "#fafafa"
+        "description2Color": "#64b5f6"
     },
     {
         "step": 3,
@@ -25,9 +25,9 @@
         "description1": "We help you figure out the best location to watch your movie.",
         "description2": "Inside or Outside? Hulu or Netflix?",
         "backgroundColor": "#b71c1c",
-        "headerColor": "#fafafa",
+        "headerColor": "#002744",
         "description1Color": "#fafafa",
-        "description2Color": "#fafafa"
+        "description2Color": "#607d8b"
     },
     {
         "step": 4,
@@ -36,8 +36,8 @@
         "description2": "Find the right movie and save it for later.",
         "backgroundColor": "#fafafa",
         "headerColor": "#b71c1c",
-        "description1Color": "#b71c1c",
-        "description2Color": "#b71c1c"
+        "description1Color": "#607d8b",
+        "description2Color": "#002744"
     },
     {
         "step": 5,
@@ -45,8 +45,8 @@
         "description1": "Plan your movie date with MovieKnight?",
         "description2": "Let's do it.",
         "backgroundColor": "#64b5f6",
-        "headerColor": "#b71c1c",
+        "headerColor": "#002744",
         "description1Color": "#fafafa",
-        "description2Color": "#fafafa"
+        "description2Color": "#b71c1c"
     }
 ]
