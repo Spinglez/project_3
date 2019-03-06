@@ -5,7 +5,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Icon } from 'react-icons-kit'
 
 import {location2} from 'react-icons-kit/icomoon/location2'
-import {ic_location_on} from 'react-icons-kit/md/ic_location_on'
+
 import {u1F6B4} from 'react-icons-kit/noto_emoji_regular/u1F6B4'
 
 
@@ -47,7 +47,7 @@ const Footer = styled.div `
     justify-content: center;
 `;
 
-class WelcomePage1 extends Component {
+class CustomCard3 extends Component {
     render() { 
         return (  
             <ThemeProvider theme={theme}>
@@ -80,4 +80,4 @@ class WelcomePage1 extends Component {
         );
     }
 }
-export default WelcomePage1;
+export default CustomCard3;

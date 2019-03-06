@@ -7,7 +7,8 @@ import appDescription from '../../appDescription.json'
 
 // import WelcomePage1 from '../../styles/WelcomeStyles1';
 // import CustomCard2 from '../../styles/WelcomeStyles2';
-import Customcard3 from '../../styles/WelcomeStyles3';
+// import Customcard3 from '../../styles/WelcomeStyles3';
+import CustomCard4 from '../../styles/WelcomeStyles4';
 
 
 
@@ -97,7 +98,8 @@ export class Welcome extends Component {
                             >
                             {/* <WelcomePage1 activeStep = {this.state.activeStep}/>  */}
                             {/* <CustomCard2/> */}
-                            <Customcard3/>
+                            {/* <Customcard3/> */}
+                            <CustomCard4/>
 
                             <Grid
                                 justify="center"
