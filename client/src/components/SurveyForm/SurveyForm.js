@@ -3,7 +3,7 @@ import { Card, CardHeader, CardContent, Typography, Grid, MobileStepper, Button,
 import { Checkbox, Card as AntCard, Row, Col } from 'antd';
 import { Image } from 'react-bootstrap'
 import surveyData from '../../surveyData.json'
-
+import axios from 'axios';
 
 const { Meta } = Card;
 var responseSetArray = [];
@@ -89,6 +89,20 @@ export class SurveyForm extends Component {
             boolArray.push(false);
         }
         return boolArray;
+    }
+
+    handleSubmit = () => {
+        this.setState({responseSet: responseSetArray});
+        axios.post('/api/Users',
+        {
+            firstName: "Matt",
+            lastName: "Wong",
+            movieSurvey: this.state.responseSet
+        })
+        .then((response, error) => {
+            if(error) throw error;
+            console.log(response.data)
+        })
     }
 
 
@@ -191,9 +205,16 @@ export class SurveyForm extends Component {
                 <Button size="small" onClick={this.handleBack} disabled={this.state.step === 0}>
                         BACK
                     </Button>
-                    <Button size="small" onClick={this.handleNext} disabled={this.state.step === 10}>
-                        Next
+                    {
+                        this.state.step != 6 ?
+                    <Button size="small" onClick={this.handleNext}>
+                        NEXT
                         </Button>
+                        :
+                    <Button size="small" onClick={this.handleSubmit}>
+                        GO TO PROFILE
+                    </Button>
+                    }
                 </Grid>
                 
             </Fragment>

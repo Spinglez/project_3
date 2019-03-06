@@ -1,6 +1,5 @@
-import React  from 'react';
+import React,  { Component }  from 'react';
 import logo from '../Welcome/reelLogo.png'; //REEL logo
-// import logo from '../Welcome/Logo_Movie.png'; //MATCH logo
 
 
 const logoStyle = {
@@ -15,17 +14,28 @@ const StyleDiv = {
 }
 
 const typo = {
-  color: "#fafafa",
   fontSize: "30px",
   fontFamily: "'Righteous', sans-serif",
 }
 
-const Logo = () => {
+class Logo extends Component {
+    render(){
     return (
       <div style={StyleDiv}>
-        <span style={typo}>M</span><img style={logoStyle} src={logo} alt="Logo" /><span style={typo}>VIE</span>
+        <span 
+        style={{
+          fontSize:"30px", 
+          fontFamily: "Righteous', sans-serif",
+          color: this.props.activeStep != 3 ? "#fafafa" : "black"
+          }}>M</span><img style={logoStyle} src={logo} alt="Logo" /><span
+        style={{
+          fontSize:"30px", 
+          fontFamily: "Righteous', sans-serif",
+          color: this.props.activeStep != 3 ? "#fafafa" : "black"
+          }}>VIE</span>
       </div>
     )
+  }
 }
 
 export default Logo;
