@@ -1,21 +1,21 @@
 import React, { Component, Fragment } from 'react'
-import { Card, CardHeader, CardContent, Typography, Grid, MobileStepper, Button, AppBar, Toolbar } from '@material-ui/core';
+import { Card, CardHeader, Typography, Grid, MobileStepper, Button, Toolbar } from '@material-ui/core';
 
 import { withStyles } from '@material-ui/core/styles';
 import 'antd/dist/antd.css';
-import { Checkbox, Card as AntCard, Row, Col } from 'antd';
+import {  Card as AntCard } from 'antd';
 
 import SwipeableMovieStepper from '../../styles/SurveyCarousel';
-// import { Image } from 'react-bootstrap'
-import surveyData from '../../surveyData.json'
 import Logo from '../Logo/Logo';
 import styled, { ThemeProvider} from 'styled-components';
+
+import surveyData from '../../surveyData.json'
 
 const themeColor = {
     navyBlue: "#002744",
     offWhite: "#fafafa",
     lightGrey: "#78909c",
-    darkRed: "#b71c1c",
+    lightBlue: "#b3e5fc",
     maxWidth: "960px",
     boxShadow: "9px 13px 40px -3px rgba(0,0,0,0.51);",
 };
@@ -23,7 +23,7 @@ const themeColor = {
 const StyledImg = styled.img`
     padding: 10px;
     max-width: 60px;
-    background-color: #b3e5fc;
+    background-color: ${props => props.theme.lightBlue};
     border-radius: 50%;
 `;
 
@@ -58,9 +58,8 @@ const styles = theme => ({
     }
 });
 
-
 // ---------------------------------------------------------------------------------------------
-const { Meta } = Card;
+
 var responseSetArray = [];
 
 export class SurveyForm extends Component {
@@ -148,28 +147,6 @@ export class SurveyForm extends Component {
 
 // ---------------------------------------------------------------------------------------------------------
     render() {
-        // const styles = {
-        //     root: {
-        //         flexGrow: 1,
-        //     },
-        //     grow: {
-        //         flexGrow: 1,
-        //     },
-        //     menuButton: {
-        //         marginLeft: -12,
-        //         marginRight: 20,
-        //     },
-        // };
-
-        // const imageStyle = {
-        //     card: {
-        //         maxWidth: 345,
-        //     },
-        //     media: {
-        //         height: 140,
-        //     },
-        // };
-
         const { classes } = this.props;
 
         return (
@@ -185,28 +162,25 @@ export class SurveyForm extends Component {
                             </Toolbar>
                         </StyledAppBar>
                     </div>
+                        
+                    <Inner> {/* Max-width: 960px */}
 
-                    <Inner>
-                 
-
-                    {/* Questions */}
+                    {/* Questions */} 
                     <Grid
                         container
                         direction="column"
                         justify="center"
                         alignItems="center"
                     >
-                        <StyledCard><SwipeableMovieStepper/></StyledCard>
-                        {/* <Card>*/}
-                        
+
+                        <StyledCard><SwipeableMovieStepper/></StyledCard>  {/* Movie Carousel */}
+
                             <CardHeader></CardHeader>
-                            {/* <CardContent> */}
-                                <Typography component="p">
-                                    {this.state.questionSet[this.state.step].question}
-                                </Typography>
-                            {/* </CardContent> */}
-                        {/* </Card> */}
+                            <Typography component="p">
+                                {this.state.questionSet[this.state.step].question}
+                            </Typography>
                     </Grid>
+
                        {/* Mobile Stepper */}
                        <Grid
                         justify="center"

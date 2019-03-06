@@ -18,9 +18,9 @@ const movieSteps = [
         'https://thefilmgeekfiles.files.wordpress.com/2013/02/collage-copy.jpg',
     },
   {
-    label: 'Horrors',
+    label: 'Thriller',
     imgPath:
-      'http://cdn.shopify.com/s/files/1/1191/7384/products/BEST_HORROR_MOVIES_OF_ALL_TIME_POSTER_COLLAGE_WALL_ART_600x.png?v=1519583532',
+      'https://shanicesandersonasmedia.files.wordpress.com/2012/01/untitled1.jpg',
   },
   {
     label: 'Romance',
@@ -43,10 +43,76 @@ const movieSteps = [
       'https://m.media-amazon.com/images/M/MV5BNzYwZTljYWQtN2NjMS00ZmZlLWIzYWUtZmJmZjE1NGU1OWMyXkEyXkFqcGdeQXVyNjUzNDk2Mzk@._V1_SX1777_CR0,0,1777,999_AL_.jpg',
   },
   {
+    label: 'Drama',
+    imgPath:
+      'https://cdn.inquisitr.com/wp-content/uploads/2016/12/Missing-Nine-Poster.jpg',
+ },
+  {
     label: 'Sience Fiction',
     imgPath:
       'https://wondersinthedark.files.wordpress.com/2015/10/science-fiction.jpg',
-  }
+  },
+  {
+    label: 'Mystery',
+    imgPath:
+      'http://www.coffeeandcigarettes.co.uk/wp-content/uploads/2017/09/Brimestone.jpg',
+  },
+  {
+    label: 'Hollywood',
+    imgPath:
+      'https://cdn.thearthunters.com/wp-content/uploads/2011/11/z2011111306.jpg',
+  },
+  {
+    label: 'Horrors',
+    imgPath:
+      'https://i0.wp.com/stephenfollows.com/wp-content/uploads/2017/10/Poster-trope-1-Large-face.png?resize=900%2C382&ssl=1',
+  },
+  {
+    label: 'Women',
+    imgPath:
+      'http://1.bp.blogspot.com/_FdZturK4Db4/S5w6fSUhfoI/AAAAAAAAATk/mZ5dyEXwGVI/s640/BitchSlapThree.jpg',
+  },
+  {
+    label: 'Comedy',
+    imgPath:
+      'http://www.wharleywords.co.uk/wp-content/uploads/2013/10/its-a-lot-film-theatre-comedy-poster-images-key-art-michael-wharley-london.jpg',
+  },
+  {
+    label: 'Mystery',
+    imgPath:
+      'https://alexamalletta2mediastudies.files.wordpress.com/2015/07/mystery.png',
+  },
+  {
+    label: 'Anime',
+    imgPath:
+      'https://ae01.alicdn.com/kf/HTB1IvbbKFXXXXaOXXXXq6xXFXXXw/Naruto-Front-cover-Poster-wallpaper-HD-print-on-silk-Wall-Art-Huge-Wide-Anime-Movie-Posters.jpg_640x640.jpg',
+  },
+  {
+    label: 'Comedy',
+    imgPath:
+      'https://image.slidesharecdn.com/analysisofafilmposter-171214153732/95/analysis-of-romantic-comedy-film-posters-2-638.jpg?cb=1513265881',
+  },
+  {
+    label: 'Super Heroes',
+    imgPath:
+      'https://data.whicdn.com/images/32558009/large.jpg',
+  },
+  {
+    label: 'Lazer',
+    imgPath:
+      'http://venusdvd.net/wp-content/uploads/2016/08/Lazer-Team-2015-DVD-Cover-STK_1.jpg',
+  },
+  {
+    label: 'Thriller',
+    imgPath:
+      'http://1.bp.blogspot.com/-b2MaQzEfiZc/UtT_0InXivI/AAAAAAAAAD8/3VQIi0BFDYo/s1600/thriller+film+poster+collage.jpg',
+  },
+  {
+    label: 'Drama',
+    imgPath:
+      'https://1.bp.blogspot.com/-d4C-Z1QsVcQ/WxiEb831_6I/AAAAAAAAN_Q/dj7hCYsdRdsAvGhPCd2EJuAQNoNXBCingCKgBGAs/s0/Euphoria%2Bbd%2Bcover.jpg',
+  },
+ 
 ];
 
 const Title = styled.p`
