@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Card, CardHeader, Typography, Grid, MobileStepper, Button, Toolbar } from '@material-ui/core';
+import { CardHeader, Typography, Grid, MobileStepper, Button, Toolbar } from '@material-ui/core';
 
 import { withStyles } from '@material-ui/core/styles';
 import 'antd/dist/antd.css';
@@ -21,9 +21,9 @@ const themeColor = {
 };
 
 const StyledImg = styled.img`
-    padding: 10px;
-    max-width: 60px;
     background-color: ${props => props.theme.lightBlue};
+    padding: 8px;
+    max-width: 60px;
     border-radius: 50%;
 `;
 
@@ -32,18 +32,27 @@ const StyledAppBar = styled.div `
 `;
 
 const Inner = styled.div`
+    max-width: ${props => props.theme.maxWidth};
     margin: 0 auto;
     border-radius: 8px;
-    max-width: ${props => props.theme.maxWidth}
-    `;
+    margin-bottom: 10px;
+`;
 
 const StyledCard = styled.div `
     box-shadow: ${props => props.theme.boxShadow};
     margin-top: 5px;
 `;
 
+const Typo = styled.p`
+    color: ${props => props.theme.lightBlue}; 
+    background: ${props => props.theme.lightGrey}; 
+    padding: 10px; 
+    border-radius: 5px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+`;
+
 const StyledDiv = styled.div `
-    padding: 5px; 
     display: flex; 
     justify-content: center; 
     flex-direction: row; 
@@ -176,9 +185,9 @@ export class SurveyForm extends Component {
                         <StyledCard><SwipeableMovieStepper/></StyledCard>  {/* Movie Carousel */}
 
                             <CardHeader></CardHeader>
-                            <Typography component="p">
-                                {this.state.questionSet[this.state.step].question}
-                            </Typography>
+                            <Typo component="p" >
+                                    {this.state.questionSet[this.state.step].question}
+                            </Typo>
                     </Grid>
 
                        {/* Mobile Stepper */}
@@ -206,7 +215,7 @@ export class SurveyForm extends Component {
                                                 className={classes.paper}
                                                 data-id ={index} 
                                                 bordered={false} 
-                                                padding={5}
+                                                padding={2}
                                                 style={{ marginLeft: "2%", maxWidth: "200px", 
                                                 backgroundColor: this.state.setSelectionStatus[index] ? "#78909c" : "white" }}
                                                 onClick={() => this.handleSelect(index)}
@@ -228,17 +237,17 @@ export class SurveyForm extends Component {
 
                         <Grid
                         container
-                        direction="column"
-                        justify="center"
-                        alignItems="center"
-                    >
-                        <Button size="small" onClick={this.handleBack} disabled={this.state.step === 0}>
-                            BACK
-                        </Button>
-                        <Button size="small" onClick={this.handleNext} disabled={this.state.step === 10}>
-                            Next
-                        </Button>
+                        display="flex"
+                        justify="flex-end"
+                        >
+                            <Button size="medium" onClick={this.handleBack} disabled={this.state.step === 0}>
+                                BACK
+                            </Button>
+                            <Button size="medium" onClick={this.handleNext} disabled={this.state.step === 10}>
+                                Next
+                            </Button>
                         </Grid>
+
                         </Inner>
                 </Fragment>
             </ThemeProvider>
