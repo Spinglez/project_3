@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -143,7 +143,7 @@ const styles = theme => ({
   },
 });
 
-class SwipeableMovieStepper extends React.Component {
+class SurveyCarousel extends Component{
   state = {
     activeStep: 0,
   };
@@ -193,9 +193,9 @@ class SwipeableMovieStepper extends React.Component {
   }
 }
 
-SwipeableMovieStepper.propTypes = {
+SurveyCarousel.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(SwipeableMovieStepper);
+export default withStyles(styles, { withTheme: true })(SurveyCarousel);
