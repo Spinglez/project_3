@@ -1,19 +1,27 @@
 const axios = require("axios");
+const imdb = require("imdb-prime");
 
 // Returns amazon Prime video availability
-const primeCall = {
-  async movieById (movieId) {
+let movieIdInput = 'tt0105793'
+// const primeCall = {
+  async function movieById (movieIdInput) {
     // imdb id for movie passed into imdb.title
-    let movieById = await imdb.title(movieId)
-    console.log("movieById", movieById);
-    return axios.get(movieById)
-    },
-  async movieByTitle (movieTitle) {
+    let movieId = await imdb.title(movieIdInput)
+    // console.log("movieId", movieId);
+    // return axios.get(movieById)
+    return movieId
+    }
+  movieById(movieIdInput)
+
+// Returns movie data - including imdb movie ID  
+let movieTitleInput = 'Titanic' 
+  async function movieByTitle (movieTitle) {
     let movieByTitle = await imdb.search(movieTitle)
     console.log("movieByTitle", movieByTitle)
     return axios.get(movieByTitle);
   } 
-}
+  movieByTitle(movieTitleInput);
+  
 
 const Call = {
   tmDB : query => {
@@ -36,8 +44,7 @@ const Call = {
   }
 };
 
-module.exports = {
-  Call: Call,
-  primeCall: primeCall 
-}
+module.exports = Call;
+module.exports.movieById = movieById;
+module.exports.movieByTitle = movieByTitle;
 

@@ -1,6 +1,7 @@
 const db = require("../../db/Data");
 const Call = require('../utils/Call');
-const primeCall = require('../utils/Call');
+const movieById = require('../utils/Call');
+const movieByTitle = require('../utils/Call');
 
 module.exports = app => {
 
@@ -64,6 +65,7 @@ module.exports = app => {
 
   app.get('/api/call:call', (req,res) =>{
     // let query = req.params.call
+    // // let query = 'action';
     // Call.tmDB(query).then(response => {
     //   return res.json(response.data);
     // })
@@ -71,26 +73,31 @@ module.exports = app => {
     //   console.error(err);
     // })
 
-    // // primeCall.movieById function accepts an imdb movie ID 
-    // let movieId = 'tt0105793'
-    // console.log(
-    //   primeCall.movieById(movieId).then(response => {
-    //     return res.json(response.data);
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   })
-    // );
+    // let query = 'Titanic';
+    // Call.omDB(query).then(response => {
+    //   return res.json(response.data);
+    // })
+    // .catch(err => {
+    //   console.error(err);
+    // })
 
-    // primeCall.movieByTitle function accepts a string
-    let movieTitle = `'Wayne's World'`;
-    console.log(
-      primeCall.movieByTitle(movieTitle).then(response => {
-        return res.json(response.data);
-      })
-      .catch(err => {
-        console.error(err);
-      })
-    );
+    // movieById function accepts an imdb movie ID 
+    movieById().then(response => {
+      console.log(response.data);
+      // return res.json(response.data);
+    })
+    .catch(err => {
+      console.error(err);
+    })
+
+    // movieByTitle function accepts a string
+    movieByTitle().then(response => {
+      console.log(response.data);
+      // return res.json(response.data);
+    })
+    .catch(err => {
+      console.error(err);
+    })
+    
   })
 }
