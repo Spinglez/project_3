@@ -43,6 +43,13 @@ const H2 = styled.h2`
     font-size: 1.4rem;
 `;
 
+const P = styled.p `
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+`;
+
 const styles = {
     root: {
       maxWidth: 900,
@@ -125,7 +132,7 @@ export class Welcome extends Component {
                             </Grid>
                                 <H1 style={{color: this.state.appInfo[this.state.activeStep].headerColor}}>{this.state.appInfo[this.state.activeStep].header}</H1>
                                 <H2 style={{color: this.state.appInfo[this.state.activeStep].description1Color}}>{this.state.appInfo[this.state.activeStep].description1}</H2>
-                                <p style={{color: this.state.appInfo[this.state.activeStep].description2Color, fontSize: "20px"}}>{this.state.appInfo[this.state.activeStep].description2}</p>
+                                <P style={{color: this.state.appInfo[this.state.activeStep].description2Color, fontSize: "20px"}}>{this.state.appInfo[this.state.activeStep].description2}</P>
                                 
                                 <Button size="medium" color="secondary" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
                                     BACK
