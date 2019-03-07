@@ -2,6 +2,7 @@ import React from 'react'
 import { Toolbar } from '@material-ui/core';
 import Logo from '../Logo/Logo';
 import styled from 'styled-components';
+
 export default function Header() {
 
     const StyledAppBar = styled.div `
