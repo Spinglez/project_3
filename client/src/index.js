@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Auth from './components/CreateAccount/Auth'
 import * as serviceWorker from './serviceWorker';
+
+const auth = new Auth();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
