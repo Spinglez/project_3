@@ -3,10 +3,9 @@ import { CardHeader, Grid, MobileStepper, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import 'antd/dist/antd.css';
 import {  Card as AntCard } from 'antd';
-import { SurveyCarousel } from '../../styledComponents/index';
 import styled, { ThemeProvider} from 'styled-components';
-import surveyData from '../../surveyData.json'
-import Header from '../Header/Header';
+import surveyData from '../../data/surveyData.json'
+import { Header, SurveyCarousel} from '../../components/index'
 
 const themeColor = {
     navyBlue: "#002744",
@@ -59,8 +58,6 @@ const styles = theme => ({
       flexGrow: 1,
     }
 });
-
-// ---------------------------------------------------------------------------------------------
 
 var responseSetArray = [];
 
@@ -147,7 +144,6 @@ export class SurveyForm extends Component {
         return boolArray;
     }
 
-// ---------------------------------------------------------------------------------------------------------
     render() {
         const { classes } = this.props;
 
@@ -164,6 +160,7 @@ export class SurveyForm extends Component {
                         justify="center"
                         alignItems="center"
                     >
+                    <Fragment>
 
                         <StyledCard><SurveyCarousel/></StyledCard>  {/* Movie Carousel */}
 
@@ -171,6 +168,7 @@ export class SurveyForm extends Component {
                             <Typo component="p" >
                                     {this.state.questionSet[this.state.step].question}
                             </Typo>
+                    </Fragment>
                     </Grid>
 
                        {/* Mobile Stepper */}
@@ -178,6 +176,7 @@ export class SurveyForm extends Component {
                         justify="center"
                         style={{ display: "flex" }}
                     >
+                    <Fragment>
                         <MobileStepper
                             style={{ background: "transparent" }}
                             variant="dots"
@@ -185,6 +184,7 @@ export class SurveyForm extends Component {
                             position="static"
                             activeStep={this.state.step}
                         />
+                    </Fragment>
                     </Grid>
                         {/* IMAGE CARD */}
                         {
@@ -192,9 +192,11 @@ export class SurveyForm extends Component {
                                 {
                                     this.state.questionSet[this.state.step].answerOptions.map((answerOption, index) => {
                                         return (
-                                            <Button>
-                                           
-                                                <AntCard 
+                                            <Button
+                                            key={index + "-1"}
+                                            >
+                                                <AntCard
+                                                key={index + "-2"}
                                                 className={classes.paper}
                                                 data-id ={index} 
                                                 bordered={false} 
@@ -203,14 +205,13 @@ export class SurveyForm extends Component {
                                                 backgroundColor: this.state.setSelectionStatus[index] ? "#78909c" : "white" }}
                                                 onClick={() => this.handleSelect(index)}
                                                 >
-                                               
                                                     <StyledImg
+                                                        key={index + "-3"}
                                                         src={this.state.questionSet[this.state.step].image[index]}
                                                         title="Contemplative Reptile" />
 
-                                                <div>{answerOption}</div>
+                                                <div key={index + "-4"}>{answerOption}</div>
                                                 </AntCard>
-
                                             </Button> 
                                         )
                                     })
