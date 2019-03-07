@@ -128,18 +128,18 @@ export class SurveyForm extends Component {
         this.setState({ step: step + 1 })
     }
 
-    handleSelect = (optionIndex) => {
-        if(this.state.setSelectionStatus[optionIndex]){
-            var updatedSelect = this.state.setSelectionStatus;
-            updatedSelect[optionIndex] = false;
-            this.setState({setSelectionStatus: updatedSelect})
-        }
-        else{
-            var updatedSelect = this.state.setSelectionStatus;
-            updatedSelect[optionIndex] = true;
-            this.setState({setSelectionStatus: updatedSelect})
-        }
-    }
+    // handleSelect = (optionIndex) => {
+    //     if(this.state.setSelectionStatus[optionIndex]){
+    //         var updatedSelect = this.state.setSelectionStatus;
+    //         updatedSelect[optionIndex] = false;
+    //         this.setState({setSelectionStatus: updatedSelect})
+    //     }
+    //     else{
+    //         var updatedSelect = this.state.setSelectionStatus;
+    //         updatedSelect[optionIndex] = true;
+    //         this.setState({setSelectionStatus: updatedSelect})
+    //     }
+    // }
 
     onChange = (checkedValues) => {
         console.log('checked = ', checkedValues);

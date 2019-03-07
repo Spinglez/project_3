@@ -12,6 +12,7 @@ const theme = {
     lightGrey: "#78909c",
     greyBlueDark: "#37474f",
     yellow: "#f7bb38",
+    
 };
 
 const StylePage = styled.div `

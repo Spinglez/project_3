@@ -19,33 +19,25 @@ const SideIconContainer =
     export const Couple = () => <SideIconContainer icon={u1F491}/>
 
 const theme = {
-    offBlue: "#b3e5fc",
-    primaryBlue: "#29b6f6",
-    Blue: "#01579b",
-    GreyBlue: "#37474f",
-    greyBlue: "#50707e",
+    greyBlueDark: "#37474f",
     lightGrey: "#78909c",
-    secondaryRed: "#e53935",
-    lightRed: "#ffb2b0",
     offWhite: "#fafafa",
-    brown: " #4e342e",
-    lightBrown: "#a1887f"
+    brown: "#58352e",
 };
 
 const StylePage = styled.div `
     width: 250px;
     height: 240px;
     box-shadow: 0 2px 8px #b2b2b2;
-    background-color: blueviolet;
     margin: auto;
     border-radius: 5%;
     padding: 8px;
     background-color: ${props => props.theme.offWhite};
-    color: orange;
 `;
+
 const Navbar = styled.div `
     width: 100%;
-    background-color: ${props => props.theme.GreyBlue};
+    background-color: ${props => props.theme.greyBlueDark};
     height: 25px;
     border-radius: 5px;
 `;
@@ -85,7 +77,7 @@ const IconDiv = styled.div `
     color: ${props => props.theme.brown};
 `;
 
-class WelcomePage1 extends Component {
+class CustomCard1 extends Component {
     render() { 
         return (  
             <ThemeProvider theme={theme}>
@@ -122,4 +114,4 @@ class WelcomePage1 extends Component {
         );
     }
 }
-export default WelcomePage1;
+export default CustomCard1;

@@ -4,8 +4,13 @@ import styled, { ThemeProvider } from 'styled-components';
 
 import { Icon } from 'react-icons-kit'
 
+// Location icon
 import {location2} from 'react-icons-kit/icomoon/location2'
 
+// Car
+import {u1F697} from 'react-icons-kit/noto_emoji_regular/u1F697'
+
+// Bike
 import {u1F6B4} from 'react-icons-kit/noto_emoji_regular/u1F6B4'
 
 
@@ -69,7 +74,7 @@ class CustomCard3 extends Component {
                                 height: 55,
                                 color: "#37474f"
                                 }}>
-                                <Icon size={'100%'} icon={u1F6B4}/>
+                                <Icon size={'100%'} icon={u1F697}/>
                             </div>
                     </Container>
         
