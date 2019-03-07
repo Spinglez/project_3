@@ -35,6 +35,24 @@ const H1 = styled.h1`
     text-transform: uppercase;
     font-family: 'Righteous', sans-serif;
     font-size: 2rem;
+    -webkit-animation: tracking-in-expand-fwd-top 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	        animation: tracking-in-expand-fwd-top 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+            @keyframes tracking-in-expand-fwd-top {
+                0% {
+                    letter-spacing: -0.5em;
+                    -webkit-transform: translateZ(-700px) translateY(-500px);
+                            transform: translateZ(-700px) translateY(-500px);
+                    opacity: 0;
+                }
+                40% {
+                    opacity: 0.6;
+                }
+                100% {
+                    -webkit-transform: translateZ(0) translateY(0);
+                            transform: translateZ(0) translateY(0);
+                    opacity: 1;
+                }
+}
 `;
 
 const H2 = styled.h2`

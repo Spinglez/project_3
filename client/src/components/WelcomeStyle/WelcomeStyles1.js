@@ -3,16 +3,13 @@ import styled, { ThemeProvider } from 'styled-components';
 
 
 import { Icon } from 'react-icons-kit'
-import { withBaseIcon } from 'react-icons-kit'
 // Camera
 import {u1F3A5} from 'react-icons-kit/noto_emoji_regular/u1F3A5'
 // Tivi
 import {u1F4FA} from 'react-icons-kit/noto_emoji_regular/u1F4FA'
 // Couple icon
 import {u1F491} from 'react-icons-kit/noto_emoji_regular/u1F491'
-const SideIconContainer = 
-    withBaseIcon({ size: 50, style: {color: '#b71c1c'}})
-    export const Couple = () => <SideIconContainer icon={u1F491}/>
+
 
 
 const theme = {
@@ -72,7 +69,40 @@ const IconDiv = styled.div `
     margin-left: 35px;
     margin-top: 18px;
     color: ${props => props.theme.brown};
+
+    -webkit-animation: roll-in-right 0.7s ease-out both;
+	        animation: roll-in-right 0.7s ease-out both;
+    @keyframes roll-in-right {
+        0% {
+            -webkit-transform: translateX(800px) rotate(540deg);
+                    transform: translateX(800px) rotate(540deg);
+            opacity: 0;
+        }
+        100% {
+            -webkit-transform: translateX(0) rotate(0deg);
+                    transform: translateX(0) rotate(0deg);
+            opacity: 1;
+        }
+}
 `;
+
+const RollInLeft = styled.div`
+    -webkit-animation: roll-in-left 0.7s ease-out both;
+	animation: roll-in-left 0.7s ease-out both;
+    @keyframes roll-in-left {
+        0% {
+            -webkit-transform: translateX(-800px) rotate(-540deg);
+                    transform: translateX(-800px) rotate(-540deg);
+            opacity: 0;
+        }
+        100% {
+            -webkit-transform: translateX(0) rotate(0deg);
+                    transform: translateX(0) rotate(0deg);
+            opacity: 1;
+        }
+    }
+`;
+
 
 class WelcomeStyle extends Component {
     render() { 
@@ -82,30 +112,36 @@ class WelcomeStyle extends Component {
                     <Navbar/>
                     <Container/>
             
-                <Content>
-                    <div>
-                        <Couple />
-                        <Footer>MovieKnight.2019</Footer>
-                    </div>
+                    <Content>
+                            <RollInLeft>
+                                    <div style={{
+                                        width: 55, 
+                                        height: 55,
+                                        color: "#b71c1c"
+                                        }}>
+                                        <Icon size={'100%'} icon={u1F491}/>
+                                    </div>
+                                <Footer>MovieKnight.2019</Footer>
+                            </RollInLeft>
 
-                        <IconDiv>
-                            <div style={{
-                                width: 35, 
-                                height: 35,
-                                }}>
-                                <Icon size={'100%'} icon={u1F3A5}/>
-                            </div>
-                    
-                            <div style={{
-                                width: 35, 
-                                height: 35,
-                                }}>
-                                <Icon size={'100%'} icon={u1F4FA}/>
-                                <ParaB/>
-                            </div>
-                        </IconDiv>
+                            <IconDiv>
+                                <div style={{
+                                    width: 35, 
+                                    height: 35,
+                                    }}>
+                                    <Icon size={'100%'} icon={u1F3A5}/>
+                                </div>
+                        
+                                <div style={{
+                                    width: 35, 
+                                    height: 35,
+                                    }}>
+                                    <Icon size={'100%'} icon={u1F4FA}/>
+                                    <ParaB/>
+                                </div>
+                            </IconDiv>
 
-                </Content>
+                    </Content>
                 </StylePage>
             </ThemeProvider>
         );
