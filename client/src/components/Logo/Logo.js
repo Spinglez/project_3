@@ -1,11 +1,41 @@
-import React  from 'react'
+import React,  { Component }  from 'react';
+import logo from '../Welcome/reelLogo.png'; //REEL logo
 
-const Logo = () => {
-    return (
-      <div>
-        ADD LOGO HERE
-      </div>
-    )
+
+const logoStyle = {
+  width: "35px",
+  height: "35px",
 }
 
-export default Logo
+const StyleDiv = {
+  display: "flex",
+  flexDirecrion: "row",
+  margin: "10px 10px"
+}
+
+// const typo = {
+//   fontSize: "30px",
+//   fontFamily: "'Righteous', sans-serif",
+// }
+
+class Logo extends Component {
+    render(){
+    return (
+      <div style={StyleDiv}>
+        <span 
+        style={{
+          fontSize:"30px", 
+          fontFamily: "Righteous', sans-serif",
+          color: this.props.activeStep !== 3 ? "#fafafa" : "#002744"
+          }}>M</span><img style={logoStyle} src={logo} alt="Logo" /><span
+        style={{
+          fontSize:"30px", 
+          fontFamily: "Righteous', sans-serif",
+          color: this.props.activeStep !== 3 ? "#fafafa" : "#002744"
+          }}>VIE</span>
+      </div>
+    )
+  }
+}
+
+export default Logo;

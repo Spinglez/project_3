@@ -1,32 +1,52 @@
 [
     {
         "step": 1,
-        "header": "Welcome to App Name!",
+        "header": "Welcome to MovieKnight!",
         "description1": "Your planned movie night awaits.",
-        "description2": "Click next to continue"
+        "description2": "Click next to continue",
+        "backgroundColor": "#002744",
+        "headerColor": "#b71c1c",
+        "description1Color": "#fafafa",
+        "description2Color": "#607d8b"
     },
     {
         "step": 2,
         "header": "Movie Match",
         "description1": "We pick your movie based on you and your date's preferences.",
-        "description2": "The painful planning process is finally over."
+        "description2": "The painful planning process is finally over.",
+        "backgroundColor": "#607d8b",
+        "headerColor": "#002744",
+        "description1Color": "#fafafa",
+        "description2Color": "#64b5f6"
     },
     {
         "step": 3,
         "header": "Take Action on Where",
         "description1": "We help you figure out the best location to watch your movie.",
-        "description2": "Inside or Outside? Hulu or Netflix?"
+        "description2": "Inside or Outside? Hulu or Netflix?",
+        "backgroundColor": "#b71c1c",
+        "headerColor": "#002744",
+        "description1Color": "#fafafa",
+        "description2Color": "#607d8b"
     },
     {
         "step": 4,
         "header": "Save Movies for Later",
         "description1": "Want to plan ahead for the weekend?",
-        "description2": "Find the right movie and save it for later."
+        "description2": "Find the right movie and save it for later.",
+        "backgroundColor": "#fafafa",
+        "headerColor": "#b71c1c",
+        "description1Color": "#607d8b",
+        "description2Color": "#002744"
     },
     {
         "step": 5,
         "header": "Are You Ready To:",
-        "description1": "Plan your movie date with App Name?",
-        "description2": "Let's do it."
+        "description1": "Plan your movie date with MovieKnight?",
+        "description2": "Let's do it.",
+        "backgroundColor": "#64b5f6",
+        "headerColor": "#002744",
+        "description1Color": "#fafafa",
+        "description2Color": "#b71c1c"
     }
 ]
