@@ -2,10 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { Grid, MobileStepper, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom'
-import Logo from '../Logo/Logo';
-import appDescription from '../../appDescription.json'
-
-import { WelcomeStyle1, WelcomeStyle2, WelcomeStyle3, WelcomeStyle4, WelcomeStyle5 }  from '../../styledComponents/index';
+import appDescription from '../../data/appDescription.json'
+import { Logo, WelcomeStyle1, WelcomeStyle2, WelcomeStyle3, WelcomeStyle4, WelcomeStyle5 }  from '../../components/index';
 import styled, { ThemeProvider} from 'styled-components';
 
 

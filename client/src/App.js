@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter , Route, Switch} from "react-router-dom";
-import { Welcome, SurveyForm, ErrorPage, CreateAccount, Profile, Results } from './components/index';
+import { Welcome, SurveyForm, ErrorPage, CreateAccount, Profile, Results } from './containers/index';
 
 import './App.scss';
 
