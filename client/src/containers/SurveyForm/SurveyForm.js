@@ -1,15 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { CardHeader, Typography, Grid, MobileStepper, Button, Toolbar } from '@material-ui/core';
-
+import { CardHeader, Grid, MobileStepper, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import 'antd/dist/antd.css';
 import {  Card as AntCard } from 'antd';
-
-import SwipeableMovieStepper from '../../styles/SurveyCarousel';
-import Logo from '../Logo/Logo';
 import styled, { ThemeProvider} from 'styled-components';
-
-import surveyData from '../../surveyData.json'
+import surveyData from '../../data/surveyData.json'
+import { Header, SurveyCarousel} from '../../components/index'
 
 const themeColor = {
     navyBlue: "#002744",
@@ -25,10 +21,6 @@ const StyledImg = styled.img`
     padding: 8px;
     max-width: 60px;
     border-radius: 50%;
-`;
-
-const StyledAppBar = styled.div `
-    background-color: ${props => props.theme.navyBlue};
 `;
 
 const Inner = styled.div`
@@ -66,8 +58,6 @@ const styles = theme => ({
       flexGrow: 1,
     }
 });
-
-// ---------------------------------------------------------------------------------------------
 
 var responseSetArray = [];
 
@@ -154,24 +144,13 @@ export class SurveyForm extends Component {
         return boolArray;
     }
 
-// ---------------------------------------------------------------------------------------------------------
     render() {
         const { classes } = this.props;
 
         return (
             <ThemeProvider theme={themeColor}>
                 <Fragment>
-                    <div className={styles.root}>
-                        <StyledAppBar position="static">
-                            <Toolbar>
-                                <Typography variant="h6" color="inherit" className={styles.grow}>
-                                    <Logo/>
-                                </Typography>
-                                {/* <Button color="inherit">Login</Button> */}
-                            </Toolbar>
-                        </StyledAppBar>
-                    </div>
-                        
+                    <Header />
                     <Inner> {/* Max-width: 960px */}
 
                     {/* Questions */} 
@@ -181,13 +160,15 @@ export class SurveyForm extends Component {
                         justify="center"
                         alignItems="center"
                     >
+                    <Fragment>
 
-                        <StyledCard><SwipeableMovieStepper/></StyledCard>  {/* Movie Carousel */}
+                        <StyledCard><SurveyCarousel/></StyledCard>  {/* Movie Carousel */}
 
                             <CardHeader></CardHeader>
                             <Typo component="p" >
                                     {this.state.questionSet[this.state.step].question}
                             </Typo>
+                    </Fragment>
                     </Grid>
 
                        {/* Mobile Stepper */}
@@ -195,6 +176,7 @@ export class SurveyForm extends Component {
                         justify="center"
                         style={{ display: "flex" }}
                     >
+                    <Fragment>
                         <MobileStepper
                             style={{ background: "transparent" }}
                             variant="dots"
@@ -202,6 +184,7 @@ export class SurveyForm extends Component {
                             position="static"
                             activeStep={this.state.step}
                         />
+                    </Fragment>
                     </Grid>
                         {/* IMAGE CARD */}
                         {
@@ -209,9 +192,11 @@ export class SurveyForm extends Component {
                                 {
                                     this.state.questionSet[this.state.step].answerOptions.map((answerOption, index) => {
                                         return (
-                                            <Button>
-                                           
-                                                <AntCard 
+                                            <Button
+                                            key={index + "-1"}
+                                            >
+                                                <AntCard
+                                                key={index + "-2"}
                                                 className={classes.paper}
                                                 data-id ={index} 
                                                 bordered={false} 
@@ -220,14 +205,13 @@ export class SurveyForm extends Component {
                                                 backgroundColor: this.state.setSelectionStatus[index] ? "#78909c" : "white" }}
                                                 onClick={() => this.handleSelect(index)}
                                                 >
-                                               
                                                     <StyledImg
+                                                        key={index + "-3"}
                                                         src={this.state.questionSet[this.state.step].image[index]}
                                                         title="Contemplative Reptile" />
 
-                                                <div>{answerOption}</div>
+                                                <div key={index + "-4"}>{answerOption}</div>
                                                 </AntCard>
-
                                             </Button> 
                                         )
                                     })

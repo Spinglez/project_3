@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -18,17 +18,12 @@ const movieSteps = [
         'https://thefilmgeekfiles.files.wordpress.com/2013/02/collage-copy.jpg',
     },
   {
-    label: 'Thriller',
-    imgPath:
-      'https://shanicesandersonasmedia.files.wordpress.com/2012/01/untitled1.jpg',
-  },
-  {
     label: 'Romance',
     imgPath:
       'https://fontshop-prod-responsive-images.s3.amazonaws.com/uploads/content_image/attachment/432173/mini_magick20160715-9607-ywmy9b.jpg',
   },
   {
-    label: 'Musical',
+    label: 'Musicals',
     imgPath:
       'https://www.billboard.com/files/styles/article_main_image/public/media/soundtracks-650-430.jpg',
   },
@@ -38,17 +33,17 @@ const movieSteps = [
       'https://www.reellifewithjane.com/wp-content/uploads/2015/04/July-2015-Movies-Collage.jpg',
   },
   {
-    label: 'Classic',
+    label: 'Classics',
     imgPath:
       'https://m.media-amazon.com/images/M/MV5BNzYwZTljYWQtN2NjMS00ZmZlLWIzYWUtZmJmZjE1NGU1OWMyXkEyXkFqcGdeQXVyNjUzNDk2Mzk@._V1_SX1777_CR0,0,1777,999_AL_.jpg',
   },
   {
-    label: 'Drama',
+    label: 'Dramas',
     imgPath:
       'https://cdn.inquisitr.com/wp-content/uploads/2016/12/Missing-Nine-Poster.jpg',
  },
   {
-    label: 'Sience Fiction',
+    label: 'Science Fiction',
     imgPath:
       'https://wondersinthedark.files.wordpress.com/2015/10/science-fiction.jpg',
   },
@@ -63,7 +58,7 @@ const movieSteps = [
       'https://cdn.thearthunters.com/wp-content/uploads/2011/11/z2011111306.jpg',
   },
   {
-    label: 'Horrors',
+    label: 'Horror',
     imgPath:
       'https://i0.wp.com/stephenfollows.com/wp-content/uploads/2017/10/Poster-trope-1-Large-face.png?resize=900%2C382&ssl=1',
   },
@@ -71,16 +66,6 @@ const movieSteps = [
     label: 'Women',
     imgPath:
       'http://1.bp.blogspot.com/_FdZturK4Db4/S5w6fSUhfoI/AAAAAAAAATk/mZ5dyEXwGVI/s640/BitchSlapThree.jpg',
-  },
-  {
-    label: 'Comedy',
-    imgPath:
-      'http://www.wharleywords.co.uk/wp-content/uploads/2013/10/its-a-lot-film-theatre-comedy-poster-images-key-art-michael-wharley-london.jpg',
-  },
-  {
-    label: 'Mystery',
-    imgPath:
-      'https://alexamalletta2mediastudies.files.wordpress.com/2015/07/mystery.png',
   },
   {
     label: 'Anime',
@@ -98,21 +83,15 @@ const movieSteps = [
       'https://data.whicdn.com/images/32558009/large.jpg',
   },
   {
-    label: 'Lazer',
+    label: 'Lasers',
     imgPath:
       'http://venusdvd.net/wp-content/uploads/2016/08/Lazer-Team-2015-DVD-Cover-STK_1.jpg',
   },
   {
-    label: 'Thriller',
+    label: 'Thrillers',
     imgPath:
       'http://1.bp.blogspot.com/-b2MaQzEfiZc/UtT_0InXivI/AAAAAAAAAD8/3VQIi0BFDYo/s1600/thriller+film+poster+collage.jpg',
   },
-  {
-    label: 'Drama',
-    imgPath:
-      'https://1.bp.blogspot.com/-d4C-Z1QsVcQ/WxiEb831_6I/AAAAAAAAN_Q/dj7hCYsdRdsAvGhPCd2EJuAQNoNXBCingCKgBGAs/s0/Euphoria%2Bbd%2Bcover.jpg',
-  },
- 
 ];
 
 const Title = styled.p`
@@ -143,7 +122,7 @@ const styles = theme => ({
   },
 });
 
-class SwipeableMovieStepper extends React.Component {
+class SurveyCarousel extends Component{
   state = {
     activeStep: 0,
   };
@@ -193,9 +172,9 @@ class SwipeableMovieStepper extends React.Component {
   }
 }
 
-SwipeableMovieStepper.propTypes = {
+SurveyCarousel.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(SwipeableMovieStepper);
+export default withStyles(styles, { withTheme: true })(SurveyCarousel);

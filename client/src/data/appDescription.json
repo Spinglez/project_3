@@ -35,16 +35,16 @@
         "description1": "Want to plan ahead for the weekend?",
         "description2": "Find the right movie and save it for later.",
         "backgroundColor": "#fafafa",
-        "headerColor": "#b71c1c",
-        "description1Color": "#607d8b",
-        "description2Color": "#002744"
+        "headerColor": "#002744",
+        "description1Color": "#b71c1c",
+        "description2Color": "#607d8b"
     },
     {
         "step": 5,
         "header": "Are You Ready To:",
         "description1": "Plan your movie date with MovieKnight?",
         "description2": "Let's do it.",
-        "backgroundColor": "#64b5f6",
+        "backgroundColor": "#79e0ff",
         "headerColor": "#002744",
         "description1Color": "#fafafa",
         "description2Color": "#b71c1c"

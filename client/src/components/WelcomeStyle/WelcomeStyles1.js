@@ -4,48 +4,37 @@ import styled, { ThemeProvider } from 'styled-components';
 
 import { Icon } from 'react-icons-kit'
 import { withBaseIcon } from 'react-icons-kit'
-
 // Camera
 import {u1F3A5} from 'react-icons-kit/noto_emoji_regular/u1F3A5'
-
 // Tivi
 import {u1F4FA} from 'react-icons-kit/noto_emoji_regular/u1F4FA'
-
-
 // Couple icon
 import {u1F491} from 'react-icons-kit/noto_emoji_regular/u1F491'
 const SideIconContainer = 
     withBaseIcon({ size: 50, style: {color: '#b71c1c'}})
     export const Couple = () => <SideIconContainer icon={u1F491}/>
 
+
 const theme = {
-    offBlue: "#b3e5fc",
-    primaryBlue: "#29b6f6",
-    Blue: "#01579b",
-    GreyBlue: "#37474f",
-    greyBlue: "#50707e",
+    greyBlueDark: "#37474f",
     lightGrey: "#78909c",
-    secondaryRed: "#e53935",
-    lightRed: "#ffb2b0",
     offWhite: "#fafafa",
-    brown: " #4e342e",
-    lightBrown: "#a1887f"
+    brown: "#58352e",
 };
 
 const StylePage = styled.div `
     width: 250px;
     height: 240px;
     box-shadow: 0 2px 8px #b2b2b2;
-    background-color: blueviolet;
     margin: auto;
     border-radius: 5%;
     padding: 8px;
     background-color: ${props => props.theme.offWhite};
-    color: orange;
 `;
+
 const Navbar = styled.div `
     width: 100%;
-    background-color: ${props => props.theme.GreyBlue};
+    background-color: ${props => props.theme.greyBlueDark};
     height: 25px;
     border-radius: 5px;
 `;
@@ -85,7 +74,7 @@ const IconDiv = styled.div `
     color: ${props => props.theme.brown};
 `;
 
-class WelcomePage1 extends Component {
+class WelcomeStyle extends Component {
     render() { 
         return (  
             <ThemeProvider theme={theme}>
@@ -122,4 +111,4 @@ class WelcomePage1 extends Component {
         );
     }
 }
-export default WelcomePage1;
+export default WelcomeStyle;
