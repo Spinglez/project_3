@@ -1,5 +1,6 @@
 const db = require("../../db/Data");
 const Call = require('../utils/Call');
+import matchPromise from "../dataProcessors/Promises"
 
 module.exports = app => {
 
@@ -56,9 +57,13 @@ module.exports = app => {
   // End user <API>Routes</API>
   // Start Data Processing Routes
 
+  app.get('/api/test:', (req,res) => {
+    matchPromise(req.params.email)
+  })
+
   app.get('/api/match', (req,res) => {
-      let { user1Arr, user2Arr } = req.body;
-      dataProc.Match(user1Arr, user2Arr)
+      let { email1, email2 } = req.body;
+      dataProc.Match(email1, email2)
   })
 
   app.get('/api/call:call', (req,res) =>{

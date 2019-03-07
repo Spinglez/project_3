@@ -31,4 +31,5 @@ app.use(logger("dev"));
 
 require("./controllers/apiRoutes/apiRoutes")(app)
 
+
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
