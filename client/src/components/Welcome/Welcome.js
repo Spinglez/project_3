@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import Logo from '../Logo/Logo';
 import appDescription from '../../appDescription.json'
 
-import { WelcomeStyle }  from '../../styledComponents/index';
+import { WelcomeStyle1, WelcomeStyle2, WelcomeStyle3, WelcomeStyle4, WelcomeStyle5 }  from '../../styledComponents/index';
 import styled, { ThemeProvider} from 'styled-components';
 
 const theme = {
@@ -43,6 +43,13 @@ const H2 = styled.h2`
     font-size: 1.4rem;
 `;
 
+const P = styled.p `
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+`;
+
 const styles = {
     root: {
       maxWidth: 900,
@@ -75,7 +82,6 @@ export class Welcome extends Component {
         }));
     };
 
-
     render() {
         const { classes } = this.props;
         return (
@@ -90,7 +96,27 @@ export class Welcome extends Component {
                                 justify="center"
                                 alignItems="center"
                             >
-                            <WelcomeStyle activeStep = {this.state.activeStep}/> 
+                            {
+                                this.state.activeStep === 0 && 
+                                <WelcomeStyle1 activeStep = {this.state.activeStep}/>
+                            }
+                            {
+                                this.state.activeStep === 1 && 
+                                <WelcomeStyle2 activeStep = {this.state.activeStep}/>
+                            }
+                            {
+                                this.state.activeStep === 2 && 
+                                <WelcomeStyle3 activeStep = {this.state.activeStep}/>
+                            }
+                            {
+                                this.state.activeStep === 3 && 
+                                <WelcomeStyle4 activeStep = {this.state.activeStep}/>
+                            }
+                            {
+                                this.state.activeStep === 4 && 
+                                <WelcomeStyle5 activeStep = {this.state.activeStep}/>
+                            }
+                           
                             <Grid
                                 justify="center"
                                 style={{ display: "flex" }}
@@ -106,10 +132,12 @@ export class Welcome extends Component {
                             </Grid>
                                 <H1 style={{color: this.state.appInfo[this.state.activeStep].headerColor}}>{this.state.appInfo[this.state.activeStep].header}</H1>
                                 <H2 style={{color: this.state.appInfo[this.state.activeStep].description1Color}}>{this.state.appInfo[this.state.activeStep].description1}</H2>
-                                <p style={{color: this.state.appInfo[this.state.activeStep].description2Color, fontSize: "20px"}}>{this.state.appInfo[this.state.activeStep].description2}</p>
+                                <P style={{color: this.state.appInfo[this.state.activeStep].description2Color, fontSize: "20px"}}>{this.state.appInfo[this.state.activeStep].description2}</P>
+                                
                                 <Button size="medium" color="secondary" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
                                     BACK
                                 </Button>
+                                
                                 { this.state.activeStep < 4 ?
                                 <Button size="medium" color="primary" onClick={this.handleNext}>
                                     NEXT
