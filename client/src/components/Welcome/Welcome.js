@@ -8,6 +8,8 @@ import appDescription from '../../appDescription.json'
 import { WelcomeStyle1, WelcomeStyle2, WelcomeStyle3, WelcomeStyle4, WelcomeStyle5 }  from '../../styledComponents/index';
 import styled, { ThemeProvider} from 'styled-components';
 
+
+
 const theme = {
     navyBlue: "#002744",
     offWhite: "#fafafa",
@@ -88,9 +90,10 @@ export class Welcome extends Component {
             <ThemeProvider theme={theme}>
                 <StyledApp style={{backgroundColor: this.state.appInfo[this.state.activeStep].backgroundColor}}>
                     <Fragment>
+             
                         <Inner>
                             <Logo activeStep={this.state.activeStep} />
-                            <Grid
+                            <Grid 
                                 container
                                 direction="column"
                                 justify="center"
