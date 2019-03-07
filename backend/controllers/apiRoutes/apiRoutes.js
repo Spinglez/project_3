@@ -54,13 +54,36 @@ module.exports = app => {
       return res.json();
     });
   })
+  // how would the API path look like if we're referencing the UsersSchema to SavedMovies?
+  app.get('/api/Users/SavedMovies', (req, res) =>{
+    let data = new db.SavedMovies();
+
+    console.log(req.body);
+
+    const { moviePoster, movieTitle } = req.body;
+
+    if ((movieTitle && moviePoster)) 
+      {
+        return res.json({
+          success: false,
+          error: "MOVIE TITLE OR POSTER MISSING"
+        })
+      }
+
+      data.moviePoster = moviePoster;
+      data.movieTitle = movieTitle;
+      data.save(err => {
+        if (err) throw err;
+        return res.json();
+      });
+  })
 
   // End user <API>Routes</API>
   // Start Data Processing Routes
 
   app.get('/api/match', (req,res) => {
-      let { user1Arr, user2Arr } = req.body;
-      dataProc.Match(user1Arr, user2Arr)
+    let { user1Arr, user2Arr } = req.body;
+    dataProc.Match(user1Arr, user2Arr)
   })
 
   app.get('/api/call:call', (req,res) =>{

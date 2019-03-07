@@ -32,17 +32,8 @@ const UsersSchema = new Schema(
 // Saved movies associated with Users Schema
 const SavedMoviesSchema = new Schema(
   {
-    // TENATIVE
-
-    // movie image poster URL
-    moviePoster: {
-      type: String,
-      required: true
-    },
-    movieTitle: { 
-      type: String,
-      required: true
-    },
+    moviePoster: { type: Schema.Types.ObjectId, ref: 'UsersSchema' },
+    movieTitle: { type: Schema.Types.ObjectId, ref: 'UsersSchema' },
   }
 )
 
