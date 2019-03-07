@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Spinglez/project_3#readme",
   "dependencies": {
     "auth0-js": "^9.10.0",
+    "axios": "^0.18.0",
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
