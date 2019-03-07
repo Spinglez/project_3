@@ -63,12 +63,34 @@ module.exports = app => {
   })
 
   app.get('/api/call:call', (req,res) =>{
-    let query = req.params.call
-    Call.tmDB(query).then(response => {
-      return res.json(response.data);
-    })
-    .catch(err => {
-      console.error(err);
-    })
+    // let query = req.params.call
+    // Call.tmDB(query).then(response => {
+    //   return res.json(response.data);
+    // })
+    // .catch(err => {
+    //   console.error(err);
+    // })
+
+    // // primeCall.movieById function accepts an imdb movie ID 
+    // let movieId = 'tt0105793'
+    // console.log(
+    //   primeCall.movieById(movieId).then(response => {
+    //     return res.json(response.data);
+    //   })
+    //   .catch(err => {
+    //     console.error(err);
+    //   })
+    // );
+
+    // primeCall.movieByTitle function accepts a string
+    let movieTitle = `'Wayne's World'`;
+    console.log(
+      primeCall.movieByTitle(movieTitle).then(response => {
+        return res.json(response.data);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+    );
   })
 }

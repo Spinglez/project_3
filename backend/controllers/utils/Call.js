@@ -1,5 +1,20 @@
 const axios = require("axios");
 
+// Returns amazon Prime video availability
+const primeCall = {
+  async movieById (movieId) {
+    // imdb id for movie passed into imdb.title
+    let movieById = await imdb.title(movieId)
+    console.log("movieById", movieById);
+    return axios.get(movieById)
+    },
+  async movieByTitle (movieTitle) {
+    let movieByTitle = await imdb.search(movieTitle)
+    console.log("movieByTitle", movieByTitle)
+    return axios.get(movieByTitle);
+  } 
+}
+
 const Call = {
   tmDB : query => {
     let key = process.env.TMDBKEY;
@@ -21,4 +36,8 @@ const Call = {
   }
 };
 
-module.exports = Call;
+module.exports = {
+  Call: Call,
+  primeCall: primeCall 
+}
+
