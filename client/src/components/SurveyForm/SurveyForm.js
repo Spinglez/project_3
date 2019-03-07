@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import 'antd/dist/antd.css';
 import {  Card as AntCard } from 'antd';
 
-import SwipeableMovieStepper from '../../styles/SurveyCarousel';
+import { SurveyCarousel } from '../../styledComponents/index';
 import Logo from '../Logo/Logo';
 import styled, { ThemeProvider} from 'styled-components';
 
@@ -182,7 +182,7 @@ export class SurveyForm extends Component {
                         alignItems="center"
                     >
 
-                        <StyledCard><SwipeableMovieStepper/></StyledCard>  {/* Movie Carousel */}
+                        <StyledCard><SurveyCarousel/></StyledCard>  {/* Movie Carousel */}
 
                             <CardHeader></CardHeader>
                             <Typo component="p" >
