@@ -4,19 +4,16 @@ import styled, { ThemeProvider } from 'styled-components';
 
 import { Icon } from 'react-icons-kit'
 import { withBaseIcon } from 'react-icons-kit'
-
 // Camera
 import {u1F3A5} from 'react-icons-kit/noto_emoji_regular/u1F3A5'
-
 // Tivi
 import {u1F4FA} from 'react-icons-kit/noto_emoji_regular/u1F4FA'
-
-
 // Couple icon
 import {u1F491} from 'react-icons-kit/noto_emoji_regular/u1F491'
 const SideIconContainer = 
     withBaseIcon({ size: 50, style: {color: '#b71c1c'}})
     export const Couple = () => <SideIconContainer icon={u1F491}/>
+
 
 const theme = {
     greyBlueDark: "#37474f",
@@ -77,7 +74,7 @@ const IconDiv = styled.div `
     color: ${props => props.theme.brown};
 `;
 
-class CustomCard1 extends Component {
+class WelcomeStyle extends Component {
     render() { 
         return (  
             <ThemeProvider theme={theme}>
@@ -114,4 +111,4 @@ class CustomCard1 extends Component {
         );
     }
 }
-export default CustomCard1;
+export default WelcomeStyle;
