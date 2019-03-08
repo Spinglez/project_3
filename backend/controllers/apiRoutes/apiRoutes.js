@@ -1,7 +1,7 @@
 const db = require("../../db/Data");
 const Call = require('../utils/Call');
 const movieById = require('../utils/Call');
-const movieByTitle = require('../utils/Call');
+// const movieByTitle = require('../utils/Call');
 
 module.exports = app => {
 
@@ -35,34 +35,35 @@ module.exports = app => {
 
     console.log(req.body);
 
-    // const { token, firstName, lastName, email, movieSurvey, userDescription } = req.body;
+    const { token, firstName, lastName, email, movieSurvey, userDescription } = req.body;
 
-    // if ((!token && token !== 0) || !movieSurvey || !email) {
-    //   return res.json({
-    //     success: false,
-    //     error: "INVALID INPUTS"
-    //   });
-    // }
+    if ((!token && token !== 0) || !movieSurvey || !email) {
+      return res.json({
+        success: false,
+        error: "INVALID INPUTS"
+      });
+    }
     data.firstName = req.body.firstName;
     data.lastName = req.body.lastName;
-    // data.email = email;
+    data.email = email;
     data.movieSurvey = req.body.movieSurvey;
-    // data.userDescription = userDescription;
-    // data.token = token;
+    data.userDescription = userDescription;
+    data.token = token;
     data.save(err => {
       if (err) throw err;
       return res.json();
     });
   })
-  // how would the API path look like if we're referencing the UsersSchema to SavedMovies?
-  app.get('/api/Users/SavedMovies', (req, res) =>{
+  
+  app.post('/api/Users/SavedMovies', (req, res) =>{
     let data = new db.SavedMovies();
 
     console.log(req.body);
 
-    const { moviePoster, movieTitle } = req.body;
+    const { moviePoster, movieTitle, users } = req.body;
+    console.log(movieTitle);
 
-    if ((movieTitle && moviePoster)) 
+    if (!movieTitle || !moviePoster || !users) 
       {
         return res.json({
           success: false,
@@ -72,9 +73,10 @@ module.exports = app => {
 
       data.moviePoster = moviePoster;
       data.movieTitle = movieTitle;
+      data.users = users;
       data.save(err => {
         if (err) throw err;
-        return res.json();
+        return res.json({success: true});
       });
   })
 
@@ -113,14 +115,14 @@ module.exports = app => {
       console.error(err);
     })
 
-    // movieByTitle function accepts a string
-    movieByTitle().then(response => {
-      console.log(response.data);
-      // return res.json(response.data);
-    })
-    .catch(err => {
-      console.error(err);
-    })
+    // // movieByTitle function accepts a string
+    // movieByTitle().then(response => {
+    //   console.log(response.data);
+    //   // return res.json(response.data);
+    // })
+    // .catch(err => {
+    //   console.error(err);
+    // })
     
   })
 }

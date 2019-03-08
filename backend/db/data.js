@@ -6,34 +6,43 @@ const UsersSchema = new Schema(
   {
     firstName: String,
     lastName: String,
-    // token: {
-    //   type: String,
-    //   required: true
-    // },
-    // email: {
-    //   type: String,
-    //   // required: true
-    // },
-    // updated: {
-    //   type: {Date, Default: Date.now}
-    // },
+    token: {
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
+      // required: true
+    },
+    updated: {
+      type: { Date, Default: Date.now }
+    },
     movieSurvey: {
       type:[],
       required: true
     },
-    // userDescription: String,
-    // image: String
-    // savedMovies: [{type: Schema.Types.ObjectId, ref: 'SavedMovies'}]
+    userDescription: String,
+    image: String,
+    savedMovies: [{ type: Schema.Types.ObjectId, ref: 'SavedMovies' }]
   },
-  // { timestamps: true },
+  { timestamps: true },
 );
 
 
 // Saved movies associated with Users Schema
 const SavedMoviesSchema = new Schema(
   {
-    moviePoster: { type: Schema.Types.ObjectId, ref: 'UsersSchema' },
-    movieTitle: { type: Schema.Types.ObjectId, ref: 'UsersSchema' },
+    // url pointing to hosted movie poster image
+    moviePoster: { 
+      type: String,
+      required: true
+    },
+    // movie title string
+    movieTitle: { 
+      type: String,
+      required: true
+    },
+    users: { type: Schema.Types.ObjectId, ref: 'Users' }
   }
 )
 
