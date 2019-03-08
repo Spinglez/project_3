@@ -15,7 +15,7 @@ const UsersSchema = new Schema(
       // required: true
     },
     updated: {
-      type: { Date, Default: Date.now }
+      type: {Date, Default: Date.now}
     },
     movieSurvey: {
       type:[],
@@ -23,7 +23,7 @@ const UsersSchema = new Schema(
     },
     userDescription: String,
     image: String,
-    savedMovies: [{ type: Schema.Types.ObjectId, ref: 'SavedMovies' }]
+    savedMovies: [{type: Schema.Types.ObjectId, ref: 'SavedMovies'}]
   },
   { timestamps: true },
 );
