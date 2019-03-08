@@ -43,19 +43,19 @@ const StyledCard = styled.div `
 `;
 
 const Typo = styled.p`
-    color: ${props => props.theme.lightBlue}; 
-    background: ${props => props.theme.lightGrey}; 
-    padding: 10px; 
+    color: ${props => props.theme.lightBlue};
+    background: ${props => props.theme.lightGrey};
+    padding: 10px;
     border-radius: 5px;
     font-family: 'Oswald', sans-serif;
     font-size: 1.2rem;
 `;
 
 const StyledDiv = styled.div `
-    display: flex; 
-    justify-content: center; 
-    flex-direction: row; 
-    flex-wrap: wrap; 
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
     flex-flow: row-wrap;
     align-content: flex-end;
 `;
@@ -112,10 +112,10 @@ export class SurveyForm extends Component {
             // clear the state for next question
             this.setState({setSelectionStatus: []})
         }
-  
+
         // if the next state response exists
         if(this.state.responseSet[step+1]){
-            // set that current response state as the 
+            // set that current response state as the
             this.setState({setSelectionStatus:responseSetArray[step+1]})
         }
         if(!this.state.responseSet[step+1]){
@@ -126,13 +126,14 @@ export class SurveyForm extends Component {
     }
 
     handleSelect = (optionIndex) => {
+      let updatedSelect;
         if(this.state.setSelectionStatus[optionIndex]){
-            var updatedSelect = this.state.setSelectionStatus;
+            updatedSelect = this.state.setSelectionStatus;
             updatedSelect[optionIndex] = false;
             this.setState({setSelectionStatus: updatedSelect})
         }
         else{
-            var updatedSelect = this.state.setSelectionStatus;
+            updatedSelect = this.state.setSelectionStatus;
             updatedSelect[optionIndex] = true;
             this.setState({setSelectionStatus: updatedSelect})
         }
@@ -160,7 +161,7 @@ export class SurveyForm extends Component {
                     <Header />
                     <Inner> {/* Max-width: 960px */}
 
-                    {/* Questions */} 
+                    {/* Questions */}
                     <Grid
                         container
                         direction="column"
@@ -205,10 +206,10 @@ export class SurveyForm extends Component {
                                                 <AntCard
                                                 key={index + "-2"}
                                                 className={classes.paper}
-                                                data-id ={index} 
-                                                bordered={false} 
+                                                data-id ={index}
+                                                bordered={false}
                                                 padding={2}
-                                                style={{ marginLeft: "2%", maxWidth: "200px", 
+                                                style={{ marginLeft: "2%", maxWidth: "200px",
                                                 backgroundColor: this.state.setSelectionStatus[index] ? "#78909c" : "white" }}
                                                 onClick={() => this.handleSelect(index)}
                                                 >
@@ -219,11 +220,11 @@ export class SurveyForm extends Component {
 
                                                 <div key={index + "-4"}>{answerOption}</div>
                                                 </AntCard>
-                                            </Button> 
+                                            </Button>
                                         )
                                     })
-                                }    
-                            </StyledDiv>   
+                                }
+                            </StyledDiv>
                         }
 
                         <Grid
