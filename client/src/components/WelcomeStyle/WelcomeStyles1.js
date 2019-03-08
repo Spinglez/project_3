@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-
-
+// ICONs
 import { Icon } from 'react-icons-kit'
 // Camera
 import {u1F3A5} from 'react-icons-kit/noto_emoji_regular/u1F3A5'
@@ -9,8 +8,6 @@ import {u1F3A5} from 'react-icons-kit/noto_emoji_regular/u1F3A5'
 import {u1F4FA} from 'react-icons-kit/noto_emoji_regular/u1F4FA'
 // Couple icon
 import {u1F491} from 'react-icons-kit/noto_emoji_regular/u1F491'
-
-
 
 const theme = {
     greyBlueDark: "#37474f",

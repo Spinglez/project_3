@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+
+// ICONs
 import { Icon } from 'react-icons-kit'
 // Location icon
 import {location2} from 'react-icons-kit/icomoon/location2'
 // Car
 import {u1F697} from 'react-icons-kit/noto_emoji_regular/u1F697'
-
 
 const theme = {
     navyBlue:"#002744",

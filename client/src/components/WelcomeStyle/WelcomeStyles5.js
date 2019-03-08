@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Icon } from 'react-icons-kit'
 
+// ICONs
+import { Icon } from 'react-icons-kit'
 // ticket
 import {u1F3AB} from 'react-icons-kit/noto_emoji_regular/u1F3AB'
-
 // play
 import {play3} from 'react-icons-kit/icomoon/play3'
-
 // people
 import {u1F465} from 'react-icons-kit/noto_emoji_regular/u1F465'
 
@@ -67,6 +66,7 @@ class CustomCard5 extends Component {
                         <Icon size={'100%'} icon={u1F465}/>
                     </div>
                     </Cont>
+                    
                     <Cont>
                     <div 
                         style={{

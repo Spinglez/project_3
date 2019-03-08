@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-
-
 import { Icon } from 'react-icons-kit'
-
 // Calendar icon
 import {u1F4C5} from 'react-icons-kit/noto_emoji_regular/u1F4C5'
-
 
 const theme = {
     navyBlue:"#002744",
@@ -25,7 +21,6 @@ const StylePage = styled.div `
     background-color: ${props => props.theme.darkRed};
     color: orange;
 `;
-
 
 const Container = styled.div `
     background-color: ${props => props.theme.navyBlue};
@@ -63,7 +58,6 @@ class CustomCard4 extends Component {
                             </div>
                     </Container>
         
- 
                 </StylePage>
             </ThemeProvider>
         );

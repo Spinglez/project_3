@@ -13,15 +13,7 @@ const themeColor = {
     lightGrey: "#78909c",
     lightBlue: "#b3e5fc",
     maxWidth: "960px",
-    boxShadow: "9px 13px 40px -3px rgba(0,0,0,0.51);",
 };
-
-const StyledImg = styled.img`
-    background-color: ${props => props.theme.lightBlue};
-    padding: 8px;
-    max-width: 60px;
-    border-radius: 50%;
-`;
 
 const Inner = styled.div`
     max-width: ${props => props.theme.maxWidth};
@@ -30,9 +22,24 @@ const Inner = styled.div`
     margin-bottom: 10px;
 `;
 
+const StyledImg = styled.img`
+    background-color: ${props => props.theme.lightBlue};
+    padding: 8px;
+    max-width: 60px;
+    border-radius: 50%;
+`;
+
 const StyledCard = styled.div `
-    box-shadow: ${props => props.theme.boxShadow};
     margin-top: 5px;
+    top:50%;
+    bottom:0;
+    left:10px;
+    right:10px;
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    box-shadow:0 0 20px rgba(0,0,0,0.8);
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
 `;
 
 const Typo = styled.p`
