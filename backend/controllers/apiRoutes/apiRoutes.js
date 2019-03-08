@@ -67,7 +67,7 @@ module.exports = app => {
       {
         return res.json({
           success: false,
-          error: "MOVIE TITLE OR POSTER MISSING"
+          error: "MOVIE TITLE, POSTER, OR USER ID MISSING"
         })
       }
 
