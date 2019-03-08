@@ -61,9 +61,10 @@ module.exports = app => {
   //   matchPromise(req.params.email)
   // })
 
-  app.get('/api/match', (req,res) => {
+  app.post('/api/match', (req,res) => {
       let { email1, email2 } = req.body;
-      dataProc.Match(email1, email2)
+      // dataProc.Match(email1, email2)
+      console.log(email1,email2);
   })
 
   app.get('/api/call:call', (req,res) =>{
