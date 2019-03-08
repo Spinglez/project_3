@@ -1,6 +1,8 @@
 const db = require("../../db/Data");
 const Call = require('../utils/Call');
-// import matchPromise from "../dataProcessors/Promises"
+const movieById = require('../utils/Call');
+const movieByTitle = require('../utils/Call');
+import matchPromise from '../dataProcessors/Promises'
 
 module.exports = app => {
 
@@ -69,11 +71,39 @@ module.exports = app => {
 
   app.get('/api/call:call', (req,res) =>{
     let query = req.params.call
+    // let query = 'action';
     Call.tmDB(query).then(response => {
       return res.json(response.data);
     })
     .catch(err => {
       console.error(err);
     })
+
+    // let query = 'Titanic';
+    Call.omDB(query).then(response => {
+      return res.json(response.data);
+    })
+    .catch(err => {
+      console.error(err);
+    })
+
+    // movieById function accepts an imdb movie ID
+    movieById().then(response => {
+      console.log(response.data);
+      // return res.json(response.data);
+    })
+    .catch(err => {
+      console.error(err);
+    })
+
+    // movieByTitle function accepts a string
+    movieByTitle().then(response => {
+      console.log(response.data);
+      // return res.json(response.data);
+    })
+    .catch(err => {
+      console.error(err);
+    })
+
   })
 }
