@@ -2,7 +2,6 @@ const db = require("../../db/Data");
 const Call = require('../utils/Call');
 const movieById = require('../utils/Call');
 const movieByTitle = require('../utils/Call');
-const matchPromise = require('../dataProcessors/Promises');
 
 module.exports = app => {
 
@@ -27,7 +26,7 @@ module.exports = app => {
     console.log(id, userDescription);
       db.Users.findByIdAndUpdate(id, { userDescription: userDescription }, (err,data) =>{
           if (err) throw err;
-          return res.json();
+          return res.json({success: true});
     })
   })
 
@@ -65,17 +64,16 @@ module.exports = app => {
 
   app.post('/api/match', (req,res) => {
       let { email1, email2 } = req.body;
-      // dataProc.Match(email1, email2);
-      let data  = [];
+      const data  = [];
       let myPromise =
         new Promise((resolve, reject)=>{
           try {
             db.Users.findOne(
-              {email: email1}).select('movieSurvey').exec((err, res) => {
+              {email: email1}).select('movieSurvey').lean().exec((err, res) => {
                 if (err) return res.json({success: false, error: err});
                 data.push(res);
                 db.Users.findOne(
-                  {email:email2}).select('movieSurvey').exec((err, response) =>{
+                  {email:email2}).select('movieSurvey').lean().exec((err, response) =>{
                     if (err) return res.json({succes: false, error: err})
                     data.push(response)
                     resolve(data)
@@ -83,7 +81,7 @@ module.exports = app => {
                   // console.log(data);
               })
           } catch (error) {
-            reject(e);
+            reject(error);
           }
         })
 
