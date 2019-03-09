@@ -71,53 +71,28 @@ module.exports = app => {
         new Promise((resolve, reject)=>{
           try {
             db.Users.findOne(
-              {email: email1}).select('movieSurvey').exec((err, response) => {
+              {email: email1}).select('movieSurvey').exec((err, res) => {
                 if (err) return res.json({success: false, error: err});
-                console.log('completed # 1');
-                // console.log(response);
-                data.push(response);
+                data.push(res);
                 db.Users.findOne(
                   {email:email2}).select('movieSurvey').exec((err, response) =>{
                     if (err) return res.json({succes: false, error: err})
-                    console.log('completed # 2');
-                    // console.log(response);
                     data.push(response)
+                    resolve(data)
                   })
-                  console.log(data);
-                  resolve(data)
+                  // console.log(data);
               })
-          } catch (e) {
-            console.log(e);
+          } catch (error) {
+            reject(e);
           }
         })
 
-
-      // let callMyPromise = async () =>{
-      //   let result = await (myPromise().then(res =>{
-      //     console.log(res);
-      //     return res
-      //   }))
-      //   return result
-      // }
+        // IN here is where we will run the data processing functions that are imported
       myPromise.then(result =>{
-        // console.log(result);
-        res.json({success: true, data: result})
+        console.log(result);
+        // use result[0] and result[1] to pass through the array of arrays return the data through res.json
+        res.json({success: true})
       });
-
-      //   .then(
-      //   db.Users.findOne(
-      //     ({email: email2})).select('movieSurvey').exec((err, response) => {
-      //       if (err) return res.json({success: false, error: err});
-      //       data.push(response);
-      //     })
-      //   )
-      //   .then( ()=> {
-      //   console.log(data);
-      //   return res.json({success: true, data: data })
-      //   })
-      //   .catch( err => {
-      //     if (err) return res.json({success: false, error: err})
-      // })
 
   })
 
