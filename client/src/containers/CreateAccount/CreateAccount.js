@@ -1,40 +1,48 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Auth from '../../components/Auth/Auth'
 
+const auth = new Auth();
 
 class CreateAccount extends Component {
-  login() {
-    this.props.auth.login();
+
+  constructor(props) {
+    super(props);
+
+    auth.loginCallback = this.loggedIn.bind(this);
+    auth.logoutCallback = this.loggedOut.bind(this);
+
+    this.state = { loggedIn: false };
   }
+
+  loggedIn() {
+    this.setState({ loggedIn: true });
+  }
+
+  loggedOut() {
+    this.setState({ loggedIn: false });
+  }
+
   render() {
-    const { isAuthenticated } = this.props.auth;
     return (
       <div>
-        {
-          isAuthenticated() && (
-              <h4>
-                You are logged in! You can now view your{' '}
-                <Link to="profile">profile area</Link>
-                .
-              </h4>
-            )
-        }
-        {
-          !isAuthenticated() && (
-              <h4>
-                You are not logged in! Please{' '}
-                <a
-                  style={{ cursor: 'pointer' }}
-                  onClick={this.login.bind(this)}
-                >
-                  Log In
-                </a>
-                {' '}to continue.
-              </h4>
-            )
-        }
+        <h1>This is a profile page</h1>
+        {this.state.loggedIn ? (
+          <div>
+          <h2> You are logged in!</h2>
+          <button onClick={() => auth.logout()} className="log-button">
+            Log Out
+          </button>
+          </div>
+        ) : (
+          <div>
+            <h2> Please log in.</h2>
+            <button onClick={() => auth.login()} className="log-button">
+              Log In
+          </button>
+          </div>
+        )}
       </div>
-    );
+    )
   }
 }
 

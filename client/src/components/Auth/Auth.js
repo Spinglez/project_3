@@ -1,7 +1,8 @@
 import { config } from "./config";
 import * as Auth0 from "auth0-js";
+import { Component } from "react";
 
-class Auth {
+class Auth extends Component {
   auth0 = new Auth0.WebAuth({
     domain: config.domain,
     clientID: config.clientId,
@@ -65,6 +66,6 @@ class Auth {
   }
 }
 
-const auth = new Auth();
+// const Auth = new Auth();
 
-export default auth;
+export default Auth;

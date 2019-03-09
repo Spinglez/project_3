@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Auth from './Auth/Auth';
+import Auth from '../../components/Auth/Auth';
 
 export class Callback extends Component {
     
