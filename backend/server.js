@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const API_PORT = 3001;
 const app = express();
-const router = express.Router();
+// const router = express.Router();
 
 const dbRoute = 'mongodb://spinglez:'+ process.env.MONGODBKEY +'@ds153314.mlab.com:53314/moviesuser' || "mongodb://localhost/movieknight";
 
