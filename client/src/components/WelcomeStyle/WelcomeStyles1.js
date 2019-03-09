@@ -65,39 +65,28 @@ const IconDiv = styled.div `
     flex-direction: row-reverse;
     margin-left: 35px;
     margin-top: 18px;
-    color: ${props => props.theme.brown};
-
-    -webkit-animation: roll-in-right 0.7s ease-out both;
-	        animation: roll-in-right 0.7s ease-out both;
-    @keyframes roll-in-right {
-        0% {
-            -webkit-transform: translateX(800px) rotate(540deg);
-                    transform: translateX(800px) rotate(540deg);
-            opacity: 0;
-        }
-        100% {
-            -webkit-transform: translateX(0) rotate(0deg);
-                    transform: translateX(0) rotate(0deg);
-            opacity: 1;
-        }
-}
+    color: ${props => props.theme.brown}; 
 `;
 
-const RollInLeft = styled.div`
-    -webkit-animation: roll-in-left 0.7s ease-out both;
-	animation: roll-in-left 0.7s ease-out both;
-    @keyframes roll-in-left {
-        0% {
-            -webkit-transform: translateX(-800px) rotate(-540deg);
-                    transform: translateX(-800px) rotate(-540deg);
-            opacity: 0;
-        }
-        100% {
-            -webkit-transform: translateX(0) rotate(0deg);
-                    transform: translateX(0) rotate(0deg);
-            opacity: 1;
-        }
-    }
+const PuffInCenter = styled.div`
+    -webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+                animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+        @keyframes puff-in-center {
+            0% {
+                -webkit-transform: scale(2);
+                        transform: scale(2);
+                -webkit-filter: blur(2px);
+                        filter: blur(2px);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: scale(1);
+                        transform: scale(1);
+                -webkit-filter: blur(0px);
+                        filter: blur(0px);
+                opacity: 1;
+            }
+         }
 `;
 
 
@@ -110,7 +99,7 @@ class WelcomeStyle extends Component {
                     <Container/>
             
                     <Content>
-                            <RollInLeft>
+                            <PuffInCenter>
                                     <div style={{
                                         width: 55, 
                                         height: 55,
@@ -119,7 +108,7 @@ class WelcomeStyle extends Component {
                                         <Icon size={'100%'} icon={u1F491}/>
                                     </div>
                                 <Footer>MovieKnight.2019</Footer>
-                            </RollInLeft>
+                            </PuffInCenter>
 
                             <IconDiv>
                                 <div style={{

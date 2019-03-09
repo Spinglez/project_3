@@ -2,9 +2,13 @@ import React from 'react'
 import Error from '../../components/Error/ErrorStyle';
 import Header from '../../components/Header/Header';
 
-import { Button } from 'antd';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+
 import { Icon } from 'react-icons-kit'
-import {u1F3E0} from 'react-icons-kit/noto_emoji_regular/u1F3E0'
+// the User
+import {user} from 'react-icons-kit/icomoon/user'
+
 
 const pStyled = {
   color: "#002744",
@@ -26,13 +30,19 @@ const ErrorPage = () => {
 
         <div style={divStyled}>
           <p style={pStyled} >Oops. The page you are looking for got lost</p>
-          <Button title="Click here to go back home" type="primary" size="large"><div style={{
-                                width: 30, 
-                                height: 30,
-                                color: "#fafafa"
-                                }}>
-                                <Icon size={'100%'} icon={u1F3E0}/>
-                            </div></Button>
+          
+          <Tooltip title="Return to Profile page">
+            <IconButton aria-label="Profile">
+              <div style={{
+                  width: 45, 
+                  height: 45,
+                  color: "#b3e5fc"
+              }}>
+                  <Icon size={'100%'} icon={user}/>
+              </div>
+            </IconButton>
+          </Tooltip>
+
         </div>
 
       </div>
