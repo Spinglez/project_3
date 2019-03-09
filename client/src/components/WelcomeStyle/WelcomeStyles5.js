@@ -36,6 +36,12 @@ const Cont = styled.div `
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+
+    @media only screen and (max-width: 576px){
+        width: 220px;
+        height: 90px;
+        padding: 5px;
+    }
 `;
 
 class CustomCard5 extends Component {

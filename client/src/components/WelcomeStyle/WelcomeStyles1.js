@@ -24,6 +24,12 @@ const StylePage = styled.div `
     border-radius: 5%;
     padding: 8px;
     background-color: ${props => props.theme.offWhite};
+
+    @media only screen and (max-width: 576px){
+        width: 220px;
+        height: 220px;
+        margin: 0 auto;
+    }
 `;
 
 const Navbar = styled.div `
@@ -48,7 +54,7 @@ const Content = styled.div `
     justify-content: center;
 `;
 
-const ParaB = styled.div `
+const BottomLine = styled.div `
     width: 70px;
     background-color: ${props => props.theme.lightGrey};
     height: 2px;
@@ -87,6 +93,7 @@ const PuffInCenter = styled.div`
                 opacity: 1;
             }
          }
+         
 `;
 
 
@@ -101,8 +108,8 @@ class WelcomeStyle extends Component {
                     <Content>
                             <PuffInCenter>
                                     <div style={{
-                                        width: 55, 
-                                        height: 55,
+                                        width: 50, 
+                                        height: 50,
                                         color: "#b71c1c"
                                         }}>
                                         <Icon size={'100%'} icon={u1F491}/>
@@ -123,7 +130,7 @@ class WelcomeStyle extends Component {
                                     height: 35,
                                     }}>
                                     <Icon size={'100%'} icon={u1F4FA}/>
-                                    <ParaB/>
+                                    <BottomLine/>
                                 </div>
                             </IconDiv>
 

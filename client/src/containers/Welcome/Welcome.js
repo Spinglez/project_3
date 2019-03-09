@@ -29,7 +29,7 @@ const Inner = styled.div `
     border-radius: 8px;
     max-width: ${props => props.theme.maxWidth};
 
-    @media only screen and (max-width: 668px){
+    @media only screen and (max-width: 768px){
         padding: 0 10px;
         text-align: center;
     }
@@ -60,7 +60,7 @@ const H1 = styled.h1`
                 }
 }
     /* For small screen */
-    @media only screen and (max-width: 668px){
+    @media only screen and (max-width: 768px){
         font-size: 1.5rem;
     }
 `;
@@ -84,7 +84,7 @@ const P = styled.p `
 
     /* For small screen */
     @media only screen and (max-width: 668px){
-        font-size: .7rem;
+        font-size: .6rem;
     }
 `;
 

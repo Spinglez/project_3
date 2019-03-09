@@ -21,10 +21,16 @@ const StylePage = styled.div `
     width: 250px;
     height: 240px;
     box-shadow: 0 2px 8px #b2b2b2;
-    margin: auto;
+    margin: 0 auto;
     border-radius: 5%;
     padding: 8px;
     background-color: ${props => props.theme.navyBlue};
+
+    @media only screen and (max-width: 576px){
+        width: 220px;
+        height: 220px;
+        margin: 0 auto;
+    }
 `;
 
 // ---------------------------------------------------------------
