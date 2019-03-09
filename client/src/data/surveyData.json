@@ -2,14 +2,14 @@
     {
         "step": 0,
         "question": "Pick any of the following genres you enjoy.",
-        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Musical","Mystery","Romance","Thriller"],
-        "image": ["./images/happy.png", "./images/interview.png", "./images/masks.png", "./images/harry-potter.png", "./images/saw.png","./images/karaoke.png", "./images/search.png", "./images/like.png", "./images/special-effects.png"]
+        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Musical","Mystery","Romance","Thriller", "Action"],
+        "image": ["./images/happy.png", "./images/interview.png", "./images/masks.png", "./images/harry-potter.png", "./images/saw.png","./images/karaoke.png", "./images/search.png", "./images/like.png", "./images/special-effects.png","./images/special-effects.png"]
     },
     {
         "step": 1,
         "question": "Pick any of the following genres you don't sit well with.",
-        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Music","Mystery","Romance","Thriller"],
-        "image": ["./images/happy.png", "./images/interview.png", "./images/masks.png", "./images/harry-potter.png", "./images/saw.png", "./images/karaoke.png", "./images/search.png", "./images/like.png", "./images/special-effects.png"]
+        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Music","Mystery","Romance","Thriller","Action"],
+        "image": ["./images/happy.png", "./images/interview.png", "./images/masks.png", "./images/harry-potter.png", "./images/saw.png", "./images/karaoke.png", "./images/search.png", "./images/like.png", "./images/special-effects.png","./images/special-effects.png"]
     },
     {
         "step": 2,
