@@ -12,7 +12,7 @@ const UsersSchema = new Schema(
     },
     email: {
       type: String,
-      required: true
+      // required: true
     },
     updated: {
       type: {Date, Default: Date.now}
@@ -22,7 +22,7 @@ const UsersSchema = new Schema(
       required: true
     },
     userDescription: String,
-    // image: String
+    image: String,
     savedMovies: [{type: Schema.Types.ObjectId, ref: 'SavedMovies'}]
   },
   { timestamps: true },

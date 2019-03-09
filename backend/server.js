@@ -9,7 +9,7 @@ const API_PORT = 3001;
 const app = express();
 const router = express.Router();
 
-const dbRoute = 'mongodb://spinglez:'+ process.env.MONGODBKEY +'@ds153314.mlab.com:53314/moviesuser';
+const dbRoute = 'mongodb://spinglez:'+ process.env.MONGODBKEY +'@ds153314.mlab.com:53314/moviesuser' || "mongodb://localhost/movieknight";
 
 mongoose.connect(
   dbRoute,
@@ -30,5 +30,6 @@ app.use(logger("dev"));
 
 
 require("./controllers/apiRoutes/apiRoutes")(app)
+
 
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));

@@ -1,5 +1,6 @@
 const db = require("../../db/Data");
 const Call = require('../utils/Call');
+// import matchPromise from "../dataProcessors/Promises"
 
 module.exports = app => {
 
@@ -33,20 +34,20 @@ module.exports = app => {
 
     console.log(req.body);
 
-    const { token, firstName, lastName, email, movieSurvey, userDescription } = req.body;
+    // const { token, firstName, lastName, email, movieSurvey, userDescription } = req.body;
 
-    if ((!token && token !== 0) || !movieSurvey || !email) {
-      return res.json({
-        success: false,
-        error: "INVALID INPUTS"
-      });
-    }
-    data.firstName = firstName;
-    data.lastName = lastName;
-    data.email = email;
-    data.movieSurvey = movieSurvey;
-    data.userDescription = userDescription;
-    data.token = token;
+    // if ((!token && token !== 0) || !movieSurvey || !email) {
+    //   return res.json({
+    //     success: false,
+    //     error: "INVALID INPUTS"
+    //   });
+    // }
+    data.firstName = req.body.firstName;
+    data.lastName = req.body.lastName;
+    // data.email = email;
+    data.movieSurvey = req.body.movieSurvey;
+    // data.userDescription = userDescription;
+    // data.token = token;
     data.save(err => {
       if (err) throw err;
       return res.json();
@@ -56,9 +57,14 @@ module.exports = app => {
   // End user <API>Routes</API>
   // Start Data Processing Routes
 
-  app.get('/api/match', (req,res) => {
-      let { user1Arr, user2Arr } = req.body;
-      dataProc.Match(user1Arr, user2Arr)
+  // app.get('/api/test:', (req,res) => {
+  //   matchPromise(req.params.email)
+  // })
+
+  app.post('/api/match', (req,res) => {
+      let { email1, email2 } = req.body;
+      // dataProc.Match(email1, email2)
+      console.log(email1,email2);
   })
 
   app.get('/api/call:call', (req,res) =>{

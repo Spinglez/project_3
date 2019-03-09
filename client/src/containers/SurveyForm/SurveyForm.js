@@ -1,15 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { CardHeader, Typography, Grid, MobileStepper, Button, Toolbar } from '@material-ui/core';
-
+import { CardHeader, Grid, MobileStepper, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import 'antd/dist/antd.css';
 import {  Card as AntCard } from 'antd';
-
-import { SurveyCarousel } from '../../styledComponents/index';
-import Logo from '../Logo/Logo';
 import styled, { ThemeProvider} from 'styled-components';
-
-import surveyData from '../../surveyData.json'
+import surveyData from '../../data/surveyData.json'
+import { Header, SurveyCarousel} from '../../components/index'
 
 const themeColor = {
     navyBlue: "#002744",
@@ -27,10 +23,6 @@ const StyledImg = styled.img`
     border-radius: 50%;
 `;
 
-const StyledAppBar = styled.div `
-    background-color: ${props => props.theme.navyBlue};
-`;
-
 const Inner = styled.div`
     max-width: ${props => props.theme.maxWidth};
     margin: 0 auto;
@@ -44,19 +36,19 @@ const StyledCard = styled.div `
 `;
 
 const Typo = styled.p`
-    color: ${props => props.theme.lightBlue}; 
-    background: ${props => props.theme.lightGrey}; 
-    padding: 10px; 
+    color: ${props => props.theme.lightBlue};
+    background: ${props => props.theme.lightGrey};
+    padding: 10px;
     border-radius: 5px;
     font-family: 'Oswald', sans-serif;
     font-size: 1.2rem;
 `;
 
 const StyledDiv = styled.div `
-    display: flex; 
-    justify-content: center; 
-    flex-direction: row; 
-    flex-wrap: wrap; 
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
     flex-flow: row-wrap;
     align-content: flex-end;
 `;
@@ -66,8 +58,6 @@ const styles = theme => ({
       flexGrow: 1,
     }
 });
-
-// ---------------------------------------------------------------------------------------------
 
 var responseSetArray = [];
 
@@ -115,10 +105,10 @@ export class SurveyForm extends Component {
             // clear the state for next question
             this.setState({setSelectionStatus: []})
         }
-  
+
         // if the next state response exists
         if(this.state.responseSet[step+1]){
-            // set that current response state as the 
+            // set that current response state as the
             this.setState({setSelectionStatus:responseSetArray[step+1]})
         }
         if(!this.state.responseSet[step+1]){
@@ -129,13 +119,14 @@ export class SurveyForm extends Component {
     }
 
     handleSelect = (optionIndex) => {
+      let updatedSelect;
         if(this.state.setSelectionStatus[optionIndex]){
-            var updatedSelect = this.state.setSelectionStatus;
+            updatedSelect = this.state.setSelectionStatus;
             updatedSelect[optionIndex] = false;
             this.setState({setSelectionStatus: updatedSelect})
         }
         else{
-            var updatedSelect = this.state.setSelectionStatus;
+            updatedSelect = this.state.setSelectionStatus;
             updatedSelect[optionIndex] = true;
             this.setState({setSelectionStatus: updatedSelect})
         }
@@ -154,33 +145,23 @@ export class SurveyForm extends Component {
         return boolArray;
     }
 
-// ---------------------------------------------------------------------------------------------------------
     render() {
         const { classes } = this.props;
 
         return (
             <ThemeProvider theme={themeColor}>
                 <Fragment>
-                    <div className={styles.root}>
-                        <StyledAppBar position="static">
-                            <Toolbar>
-                                <Typography variant="h6" color="inherit" className={styles.grow}>
-                                    <Logo/>
-                                </Typography>
-                                {/* <Button color="inherit">Login</Button> */}
-                            </Toolbar>
-                        </StyledAppBar>
-                    </div>
-                        
+                    <Header />
                     <Inner> {/* Max-width: 960px */}
 
-                    {/* Questions */} 
+                    {/* Questions */}
                     <Grid
                         container
                         direction="column"
                         justify="center"
                         alignItems="center"
                     >
+                    <Fragment>
 
                         <StyledCard><SurveyCarousel/></StyledCard>  {/* Movie Carousel */}
 
@@ -188,6 +169,7 @@ export class SurveyForm extends Component {
                             <Typo component="p" >
                                     {this.state.questionSet[this.state.step].question}
                             </Typo>
+                    </Fragment>
                     </Grid>
 
                        {/* Mobile Stepper */}
@@ -195,6 +177,7 @@ export class SurveyForm extends Component {
                         justify="center"
                         style={{ display: "flex" }}
                     >
+                    <Fragment>
                         <MobileStepper
                             style={{ background: "transparent" }}
                             variant="dots"
@@ -202,6 +185,7 @@ export class SurveyForm extends Component {
                             position="static"
                             activeStep={this.state.step}
                         />
+                    </Fragment>
                     </Grid>
                         {/* IMAGE CARD */}
                         {
@@ -209,30 +193,31 @@ export class SurveyForm extends Component {
                                 {
                                     this.state.questionSet[this.state.step].answerOptions.map((answerOption, index) => {
                                         return (
-                                            <Button>
-                                           
-                                                <AntCard 
+                                            <Button
+                                            key={index + "-1"}
+                                            >
+                                                <AntCard
+                                                key={index + "-2"}
                                                 className={classes.paper}
-                                                data-id ={index} 
-                                                bordered={false} 
+                                                data-id ={index}
+                                                bordered={false}
                                                 padding={2}
-                                                style={{ marginLeft: "2%", maxWidth: "200px", 
+                                                style={{ marginLeft: "2%", maxWidth: "200px",
                                                 backgroundColor: this.state.setSelectionStatus[index] ? "#78909c" : "white" }}
                                                 onClick={() => this.handleSelect(index)}
                                                 >
-                                               
                                                     <StyledImg
+                                                        key={index + "-3"}
                                                         src={this.state.questionSet[this.state.step].image[index]}
                                                         title="Contemplative Reptile" />
 
-                                                <div>{answerOption}</div>
+                                                <div key={index + "-4"}>{answerOption}</div>
                                                 </AntCard>
-
-                                            </Button> 
+                                            </Button>
                                         )
                                     })
-                                }    
-                            </StyledDiv>   
+                                }
+                            </StyledDiv>
                         }
 
                         <Grid
