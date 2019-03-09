@@ -59,7 +59,8 @@ module.exports = app => {
 
     console.log(req.body);
 
-    const { moviePoster, movieTitle, users } = req.body;
+    const { moviePoster, movieTitle } = req.body;
+    const users = req.body['users._id'] 
     console.log(movieTitle);
 
     if (!movieTitle || !moviePoster || !users) 
