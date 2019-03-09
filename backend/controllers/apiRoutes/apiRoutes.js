@@ -2,7 +2,7 @@ const db = require("../../db/Data");
 const Call = require('../utils/Call');
 const movieById = require('../utils/Call');
 const movieByTitle = require('../utils/Call');
-import matchPromise from '../dataProcessors/Promises'
+const matchPromise = require('../dataProcessors/Promises');
 
 module.exports = app => {
 
@@ -36,20 +36,20 @@ module.exports = app => {
 
     console.log(req.body);
 
-    // const { token, firstName, lastName, email, movieSurvey, userDescription } = req.body;
+    const { token, firstName, lastName, email, movieSurvey, userDescription } = req.body;
 
-    // if ((!token && token !== 0) || !movieSurvey || !email) {
-    //   return res.json({
-    //     success: false,
-    //     error: "INVALID INPUTS"
-    //   });
-    // }
+    if ((!token && token !== 0) || !movieSurvey || !email) {
+      return res.json({
+        success: false,
+        error: "INVALID INPUTS"
+      });
+    }
     data.firstName = req.body.firstName;
     data.lastName = req.body.lastName;
-    // data.email = email;
+    data.email = email;
     data.movieSurvey = req.body.movieSurvey;
-    // data.userDescription = userDescription;
-    // data.token = token;
+    data.userDescription = userDescription;
+    data.token = token;
     data.save(err => {
       if (err) throw err;
       return res.json();
@@ -65,8 +65,60 @@ module.exports = app => {
 
   app.post('/api/match', (req,res) => {
       let { email1, email2 } = req.body;
-      // dataProc.Match(email1, email2)
-      console.log(email1,email2);
+      // dataProc.Match(email1, email2);
+      let data  = [];
+      let myPromise =
+        new Promise((resolve, reject)=>{
+          try {
+            db.Users.findOne(
+              {email: email1}).select('movieSurvey').exec((err, response) => {
+                if (err) return res.json({success: false, error: err});
+                console.log('completed # 1');
+                // console.log(response);
+                data.push(response);
+                db.Users.findOne(
+                  {email:email2}).select('movieSurvey').exec((err, response) =>{
+                    if (err) return res.json({succes: false, error: err})
+                    console.log('completed # 2');
+                    // console.log(response);
+                    data.push(response)
+                  })
+                  console.log(data);
+                  resolve(data)
+              })
+          } catch (e) {
+            console.log(e);
+          }
+        })
+
+
+      // let callMyPromise = async () =>{
+      //   let result = await (myPromise().then(res =>{
+      //     console.log(res);
+      //     return res
+      //   }))
+      //   return result
+      // }
+      myPromise.then(result =>{
+        // console.log(result);
+        res.json({success: true, data: result})
+      });
+
+      //   .then(
+      //   db.Users.findOne(
+      //     ({email: email2})).select('movieSurvey').exec((err, response) => {
+      //       if (err) return res.json({success: false, error: err});
+      //       data.push(response);
+      //     })
+      //   )
+      //   .then( ()=> {
+      //   console.log(data);
+      //   return res.json({success: true, data: data })
+      //   })
+      //   .catch( err => {
+      //     if (err) return res.json({success: false, error: err})
+      // })
+
   })
 
   app.get('/api/call:call', (req,res) =>{
