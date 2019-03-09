@@ -57,10 +57,11 @@ module.exports = app => {
   app.post('/api/Users/SavedMovies', (req, res) =>{
     let data = new db.SavedMovies();
 
-    console.log(req.body);
+    console.log("req.body", req.body);
 
     const { moviePoster, movieTitle } = req.body;
     const users = req.body['users._id'] 
+
     console.log(movieTitle);
 
     if (!movieTitle || !moviePoster || !users) 
@@ -75,10 +76,14 @@ module.exports = app => {
       data.movieTitle = movieTitle;
       data.users = users;
       data.save(err => {
+        console.log("data", data)
         if (err) throw err;
-        return res.json({success: true});
-      });
-  })
+        return res.json({ success: true });
+      })
+      db.Users
+        .findOne({ users: users._id })
+        .populate( "SavedMovies" )
+    })
 
   // End user <API>Routes</API>
   // Start Data Processing Routes

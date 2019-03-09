@@ -23,7 +23,7 @@ const UsersSchema = new Schema(
     },
     userDescription: String,
     image: String,
-    savedMovies: [{type: Schema.Types.ObjectId, ref: 'SavedMovies'}]
+    savedMovies: [{type: Schema.Types.ObjectId, ref: "SavedMovies"}]
   },
   { timestamps: true },
 );
@@ -42,7 +42,10 @@ const SavedMoviesSchema = new Schema(
       type: String,
       required: true
     },
-    users: { type: Schema.Types.ObjectId, ref: 'Users' }
+    users: [{ 
+      type: Schema.Types.ObjectId, 
+      ref: "Users" 
+    }]
   }
 )
 
