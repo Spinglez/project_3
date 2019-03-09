@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch} from "react-router-dom";
-import { Welcome, SurveyForm, ErrorPage, CreateAccount, Auth, Callback, Profile, Results } from './components/index';
+import { Welcome, SurveyForm, ErrorPage, CreateAccount, Auth, Callback, Profile, Results } from './containers/index';
 import './App.scss';
 
 const auth = new Auth();
