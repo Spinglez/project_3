@@ -5,22 +5,29 @@ import Header from '../../components/Header/Header';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 
+import styled from 'styled-components';
 import { Icon } from 'react-icons-kit'
 // the User
 import {user} from 'react-icons-kit/icomoon/user'
 
+const P = styled.p`
+  color: #002744;
+  font-size: 2rem;
+  font-family: 'Righteous', sans-serif;
 
-const pStyled = {
-  color: "#002744",
-  fontSize: "2rem",
-  fontFamily: "'Righteous', sans-serif"
-}
+    /* For small screen */
+    @media only screen and (max-width: 668px){
+        font-size: 1.4rem;
+        padding: 0 10px;
+        text-align: center;
+    }
+`;
 
-const divStyled = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center"
-}
+const DivStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const ErrorPage = () => {
     return (
@@ -28,8 +35,8 @@ const ErrorPage = () => {
         <Header/>
         <Error/>
 
-        <div style={divStyled}>
-          <p style={pStyled} >Oops. The page you are looking for got lost</p>
+        <DivStyled>
+          <P>Oops. The page you are looking for got lost</P>
           
           <Tooltip title="Return to Profile page">
             <IconButton aria-label="Profile">
@@ -43,7 +50,7 @@ const ErrorPage = () => {
             </IconButton>
           </Tooltip>
 
-        </div>
+        </DivStyled>
 
       </div>
     )

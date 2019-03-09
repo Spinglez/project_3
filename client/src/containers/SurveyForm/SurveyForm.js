@@ -20,13 +20,28 @@ const Inner = styled.div`
     margin: 0 auto;
     border-radius: 8px;
     margin-bottom: 10px;
+
+    @media only screen and (max-width: 668px){
+        max-width: 768px;
+        padding: 15px; 
+    }
 `;
 
 const StyledImg = styled.img`
     background-color: ${props => props.theme.lightBlue};
     padding: 8px;
-    max-width: 60px;
+    width: 60px;
     border-radius: 50%;
+
+    @media only screen and (max-width: 768px){
+        width: 50px;
+        padding: 5px;
+    }
+
+    @media only screen and (max-width: 576px){
+        width: 75px;
+        padding: 8px;
+    }
 `;
 
 const StyledCard = styled.div `
@@ -209,7 +224,7 @@ export class SurveyForm extends Component {
                                                 data-id ={index}
                                                 bordered={false}
                                                 padding={2}
-                                                style={{ marginLeft: "2%", maxWidth: "200px",
+                                                style={{ marginLeft: "2%", width: "180px", 
                                                 backgroundColor: this.state.setSelectionStatus[index] ? "#78909c" : "white" }}
                                                 onClick={() => this.handleSelect(index)}
                                                 >

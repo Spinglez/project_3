@@ -27,7 +27,13 @@ const StyledApp = styled.div `
 const Inner = styled.div `
     margin: 0 auto;
     border-radius: 8px;
-    max-width: ${props => props.theme.maxWidth}
+    max-width: ${props => props.theme.maxWidth};
+
+    @media only screen and (max-width: 668px){
+        padding: 0 10px;
+        text-align: center;
+    }
+
 `;
 
 // Styling for Titles, Description
@@ -53,12 +59,21 @@ const H1 = styled.h1`
                     opacity: 1;
                 }
 }
+    /* For small screen */
+    @media only screen and (max-width: 668px){
+        font-size: 1.5rem;
+    }
 `;
 
 const H2 = styled.h2`
     letter-spacing: 3px;    
     font-family: 'Cabin Sketch', cursive;
     font-size: 1.4rem;
+
+    /* For small screen */
+    @media only screen and (max-width: 668px){
+        font-size: .9rem;
+    }
 `;
 
 const P = styled.p `
@@ -66,6 +81,11 @@ const P = styled.p `
     font-size: 1.2rem;
     font-weight: bold;
     letter-spacing: 2px;
+
+    /* For small screen */
+    @media only screen and (max-width: 668px){
+        font-size: .7rem;
+    }
 `;
 
 const styles = {
@@ -149,6 +169,7 @@ export class Welcome extends Component {
                                     activeStep={this.state.activeStep}
                                 />
                             </Grid>
+
                                 <H1 style={{color: this.state.appInfo[this.state.activeStep].headerColor}}>{this.state.appInfo[this.state.activeStep].header}</H1>
                                 <H2 style={{color: this.state.appInfo[this.state.activeStep].description1Color}}>{this.state.appInfo[this.state.activeStep].description1}</H2>
                                 <P style={{color: this.state.appInfo[this.state.activeStep].description2Color, fontSize: "20px"}}>{this.state.appInfo[this.state.activeStep].description2}</P>

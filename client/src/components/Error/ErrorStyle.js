@@ -38,7 +38,7 @@ const P = styled.div`
     font-weight: bold;
     text-align: center;
     color: ${props => props.theme.offBlue};
-    font-family: 'Righteous', sans-serif
+    font-family: 'Righteous', sans-serif;
 `;
 
 class CustomCard4 extends Component {
