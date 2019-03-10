@@ -1,6 +1,7 @@
 const db = require("../../db/Data");
 const Call = require('../utils/Call');
-// import matchPromise from "../dataProcessors/Promises"
+const movieById = require('../utils/Call');
+const movieByTitle = require('../utils/Call');
 
 module.exports = app => {
 
@@ -25,7 +26,7 @@ module.exports = app => {
     console.log(id, userDescription);
       db.Users.findByIdAndUpdate(id, { userDescription: userDescription }, (err,data) =>{
           if (err) throw err;
-          return res.json();
+          return res.json({success: true});
     })
   })
 
@@ -94,8 +95,34 @@ module.exports = app => {
 
   app.post('/api/match', (req,res) => {
       let { email1, email2 } = req.body;
-      // dataProc.Match(email1, email2)
-      console.log(email1,email2);
+      const data  = [];
+      let myPromise =
+        new Promise((resolve, reject)=>{
+          try {
+            db.Users.findOne(
+              {email: email1}).select('movieSurvey').lean().exec((err, res) => {
+                if (err) return res.json({success: false, error: err});
+                data.push(res);
+                db.Users.findOne(
+                  {email:email2}).select('movieSurvey').lean().exec((err, response) =>{
+                    if (err) return res.json({succes: false, error: err})
+                    data.push(response)
+                    resolve(data)
+                  })
+                  // console.log(data);
+              })
+          } catch (error) {
+            reject(error);
+          }
+        })
+
+        // IN here is where we will run the data processing functions that are imported
+      myPromise.then(result =>{
+        console.log(result);
+        // use result[0] and result[1] to pass through the array of arrays return the data through res.json
+        res.json({success: true})
+      });
+
   })
 
   app.get('/api/call:call', (req,res) =>{
@@ -116,7 +143,7 @@ module.exports = app => {
       console.error(err);
     })
 
-    // movieById function accepts an imdb movie ID 
+    // movieById function accepts an imdb movie ID
     movieById().then(response => {
       console.log(response.data);
       // return res.json(response.data);
@@ -125,14 +152,14 @@ module.exports = app => {
       console.error(err);
     })
 
-    // // movieByTitle function accepts a string
-    // movieByTitle().then(response => {
-    //   console.log(response.data);
-    //   // return res.json(response.data);
-    // })
-    // .catch(err => {
-    //   console.error(err);
-    // })
-    
+    // movieByTitle function accepts a string
+    movieByTitle().then(response => {
+      console.log(response.data);
+      // return res.json(response.data);
+    })
+    .catch(err => {
+      console.error(err);
+    })
+
   })
 }
