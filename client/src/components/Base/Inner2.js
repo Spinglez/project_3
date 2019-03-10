@@ -1,4 +1,4 @@
-import styled, { ThemeProvider, injectGlobal }  from 'styled-components';
+import styled from 'styled-components';
 
 
 // Everything inside the main container will have maxWidth: 960px 
@@ -8,8 +8,9 @@ const Inner = styled.div `
     max-width: 960px;
 
     @media only screen and (max-width: 768px){
-        padding: 0 10px;
-        text-align: center;
+        padding: 1rem;
+        margin: 5px 10px;
+        background-color: yellowgreen;
     }
 
 `;

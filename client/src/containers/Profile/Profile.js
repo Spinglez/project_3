@@ -4,12 +4,19 @@ import { profileAnalysis } from '../../utils/profileAnalysis';
 import { Header, RingLoader, WrappedEmailForm } from '../../components/index'
 import { Modal, Tabs } from 'antd';
 import { Avatar } from '@material-ui/core/';
-import Inner from '../../components/Base/BaseStyle';
+import { Row, Col } from 'antd';
+
 import surveyData from '../../data/surveyData.json'
 
+import Inner2 from '../../components/Base/Inner2';
+import ProfileStyled from '../Profile/ProfileStyle';
+
+import { Icon } from 'react-icons-kit'
+import {u1F480} from 'react-icons-kit/noto_emoji_regular/u1F480'
+import {ic_mood} from 'react-icons-kit/md/ic_mood'
+
+
 const TabPane = Tabs.TabPane;
-
-
 export class Profile extends Component {
 
   state = {
@@ -95,64 +102,116 @@ export class Profile extends Component {
             this.info()
           }
           <Tabs defaultActiveKey="1" onChange={this.callback}>
-          <TabPane tab={`${this.state.dbData.data.firstName}'s Profile`} key="1">
-          <Avatar />
-          <h1>{this.state.dbData.data.firstName}</h1>
-          <hr></hr>
-          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</p>
-          <p>Your Movie Persona</p>
-          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
-          <h1>Your Movie Attributes</h1>
-          <Fragment>
-          {
-            
-            surveyData.map((surveyObject,index) => {
-              return(
-              <p>{`You answered ${this.mapResponses(surveyObject, index)[1]} to ${this.mapResponses(surveyObject, index)[0]}`}</p>
-              )
-            })
-          }
-          </Fragment>
-          </TabPane>
-          <TabPane tab="Find Your Match" key="2">
-          <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
-          <WrappedEmailForm 
-            clearSubmit={this.clearSubmit} 
-            dbData={this.state.dbData} 
-            friendEmail={this.state.friendEmail} />
-            {this.state.submitStatus === true &&
-              <Fragment>
-                <p>We're looking for your matches, please wait!</p>
-                <RingLoader />
-               </Fragment>
-              }
-              
-          </TabPane>
+            <TabPane tab={`${this.state.dbData.data.firstName}'s Profile`} key="1">
 
-            <TabPane tab="Find Your Match" key="2">
-              <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
+              <ProfileStyled>
+                <Inner2>
+                  <div style={{ display: "flex" }}>
+                    <Avatar style={{ width: 60, height: 60}}>
+                      <div style={{
+                          width: 55, 
+                          height: 55,
+                          color: "#fafafa",
+                          alignSelf:"center"
+                          }}>
+                          <Icon size={'100%'} icon={ic_mood}/>
+                      </div>
+                    </Avatar>
+                    <h1>{this.state.dbData.data.firstName}</h1>
+                  </div>
 
-            <WrappedEmailForm 
-              clearSubmit={this.clearSubmit} 
-              dbData={this.state.dbData} 
-              friendEmail={this.state.friendEmail} />
-              {this.state.submitStatus === true &&
-                <Fragment>
-                  <p>We're looking for your matches, please wait!</p>
-                  <RingLoader />
-                </Fragment>
-                }
-                
+                  <hr/>
+                    <Row  gutter={48}>
+                        <Col xs={20} md={6} lg={5}>
+                            <div style={{
+                                width: 155, 
+                                height: 155,
+                                color: "#01579b",
+                                alignSelf:"center"
+                                }}>
+                                <Icon size={'100%'} icon={u1F480}/>
+                            </div>
+                        </Col>
+                                  
+                        <Col xs={20} md={12} lg={18}>
+                          <div>
+                            <h3>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</h3>
+                                {/* Percentage match */}
+                              <span style={{ textTransform: "uppercase"}}>Your Movie Persona</span> 
+                          </div>
+                          <br/>
+                          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
+                        </Col>
+                    </Row>
+
+                  <Fragment>
+                        <hr/>
+                        <h3>Your Movie Attributes</h3>
+                          { 
+                            surveyData.map((surveyObject,index) => {
+                              return(
+                              <h4> <em>You answered</em> <br/>{`${this.mapResponses(surveyObject, index)[1]} to ${this.mapResponses(surveyObject, index)[0]}`}</h4>
+                              )
+                            })
+                          }
+                  </Fragment>
+                </Inner2>
+              </ProfileStyled>
             </TabPane>
-            </Tabs>
 
+                {/* -------------------------------------------------EMAIL TAB---------------------------------------------------------- */}
+                <TabPane tab="Find Your Match" key="2">
+                  <ProfileStyled>
+                      <Inner2>
+                          <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
+
+                            <WrappedEmailForm 
+                              clearSubmit={this.clearSubmit} 
+                              dbData={this.state.dbData} 
+                              friendEmail={this.state.friendEmail} />
+
+                              {this.state.submitStatus === true &&
+                                <Fragment>
+                                  <p>We're looking for your matches, please wait!</p>
+                                  <RingLoader />
+                                </Fragment>
+                              }
+                            
+                      </Inner2>
+                  </ProfileStyled>
+                </TabPane>
+                
+{/* 
+              <TabPane tab="Find Your Match" key="2">
+                <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
+
+              <WrappedEmailForm 
+                clearSubmit={this.clearSubmit} 
+                dbData={this.state.dbData} 
+                friendEmail={this.state.friendEmail} />
+                {this.state.submitStatus === true &&
+                  <Fragment>
+                    <p>We're looking for your matches, please wait!</p>
+                    <RingLoader />
+                  </Fragment>
+                  }
+                  
+              </TabPane> */}
+              
+            </Tabs>
           </Fragment>
+          
         }
+        
         {
           this.state.update === false &&
           <Fragment>
-            <h1>Please wait while we load your profile page, thanks for your patience!</h1>
-            <RingLoader />
+            <Inner2>
+              <ProfileStyled>
+                <h3>Please wait while we load your profile page, thanks for your patience!</h3>
+                <RingLoader />
+              </ProfileStyled>
+            </Inner2>
           </Fragment>
         }
       </Fragment>
