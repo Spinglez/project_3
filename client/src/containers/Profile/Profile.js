@@ -4,8 +4,10 @@ import { profileAnalysis } from '../../utils/profileAnalysis';
 import { Header, RingLoader, WrappedEmailForm } from '../../components/index'
 import { Modal, Tabs } from 'antd';
 import { Avatar } from '@material-ui/core/';
+import Inner from '../../components/Base/BaseStyle';
 
 const TabPane = Tabs.TabPane;
+
 
 export class Profile extends Component {
 
@@ -76,34 +78,42 @@ export class Profile extends Component {
       <Fragment>
       {profileAnalysis.movieType([[5,6,1],[]])}
         <Header />
+
         {this.state.update === true &&
           <Fragment>
           {this.state.firstTime &&
             this.info()
           }
-          <Tabs defaultActiveKey="1" onChange={this.callback}>
-          <TabPane tab={`${this.state.dbData.data.firstName}'s Profile`} key="1">
-          <Avatar />
-          <h1>{this.state.dbData.data.firstName}</h1>
-          <hr></hr>
-          <h1>Your Movie Attributes</h1>
-          
-          </TabPane>
-          <TabPane tab="Find Your Match" key="2">
-          <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
-          <WrappedEmailForm 
-            clearSubmit={this.clearSubmit} 
-            dbData={this.state.dbData} 
-            friendEmail={this.state.friendEmail} />
-            {this.state.submitStatus === true &&
-              <Fragment>
-                <p>We're looking for your matches, please wait!</p>
-                <RingLoader />
-               </Fragment>
-              }
-              
-          </TabPane>
+            <Tabs defaultActiveKey="1" onChange={this.callback}>
+            <TabPane tab={`${this.state.dbData.data.firstName}'s Profile`} key="1">
             
+        <Inner>
+                <Avatar style={{ 
+                  width: "100px",
+                  height: "100px"}} />
+                  
+                <h1>{this.state.dbData.data.firstName}</h1>
+                <hr></hr>
+                <h1>Your Movie Attributes</h1>
+            
+        </Inner>
+            </TabPane>
+
+            <TabPane tab="Find Your Match" key="2">
+              <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
+
+            <WrappedEmailForm 
+              clearSubmit={this.clearSubmit} 
+              dbData={this.state.dbData} 
+              friendEmail={this.state.friendEmail} />
+              {this.state.submitStatus === true &&
+                <Fragment>
+                  <p>We're looking for your matches, please wait!</p>
+                  <RingLoader />
+                </Fragment>
+                }
+                
+            </TabPane>
             </Tabs>
 
           </Fragment>

@@ -6,6 +6,7 @@ import appDescription from '../../data/appDescription.json'
 import { Logo, WelcomeStyle1, WelcomeStyle2, WelcomeStyle3, WelcomeStyle4, WelcomeStyle5 }  from '../../components/index';
 import styled, { ThemeProvider} from 'styled-components';
 
+import Inner from '../../components/Base/BaseStyle';
 
 
 const theme = {
@@ -23,18 +24,7 @@ const StyledApp = styled.div `
     padding: 2rem;
 `;
 
-// Everything inside the main container will have maxWidth: 960px 
-const Inner = styled.div `
-    margin: 0 auto;
-    border-radius: 8px;
-    max-width: ${props => props.theme.maxWidth};
 
-    @media only screen and (max-width: 768px){
-        padding: 0 10px;
-        text-align: center;
-    }
-
-`;
 
 // Styling for Titles, Description
 const H1 = styled.h1`
