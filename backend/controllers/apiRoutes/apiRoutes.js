@@ -61,11 +61,11 @@ module.exports = app => {
     console.log("req.body", req.body);
 
     const { moviePoster, movieTitle } = req.body;
-    const users = req.body['users._id'] 
+    const usersId = req.body['users._id'] 
 
     console.log(movieTitle);
 
-    if (!movieTitle || !moviePoster || !users) 
+    if (!movieTitle || !moviePoster || !usersId) 
       {
         return res.json({
           success: false,
@@ -75,17 +75,20 @@ module.exports = app => {
 
       data.moviePoster = moviePoster;
       data.movieTitle = movieTitle;
-      data.users = users;
+      data.usersId = usersId;
+
       data.save(err => {
         console.log("data", data)
         if (err) throw err;
         return res.json({ success: true });
       })
-      
-      db.Users.findOne({ users: users }).populate( 'savedMovies' )
-      // .exec((err, res) => {
-      //   if (err) return res.json({ success: false });
-      // })
+
+      db.SavedMovies.findOne({ data: data }).populate( 'users' )
+      .exec((err, usersSavedMovies) => {
+        if (err) return res.json({ success: false })
+          console.log("saved Movies data", usersSavedMovies);
+          // return res.json();
+      })
     })
 
   // End user <API>Routes</API>
