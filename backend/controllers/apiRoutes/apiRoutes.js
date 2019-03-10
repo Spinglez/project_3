@@ -81,9 +81,11 @@ module.exports = app => {
         if (err) throw err;
         return res.json({ success: true });
       })
-      db.Users
-        .findOne({ users: users._id })
-        .populate( "SavedMovies" )
+      
+      db.Users.findOne({ users: users }).populate( 'savedMovies' )
+      // .exec((err, res) => {
+      //   if (err) return res.json({ success: false });
+      // })
     })
 
   // End user <API>Routes</API>
