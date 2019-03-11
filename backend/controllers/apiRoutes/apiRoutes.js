@@ -63,7 +63,7 @@ module.exports = app => {
     const { moviePoster, movieTitle } = req.body;
     const usersId = req.body['users._id'] 
 
-    console.log(movieTitle);
+    console.log('Movie Title', movieTitle);
 
     if (!movieTitle || !moviePoster || !usersId) 
       {
@@ -82,13 +82,19 @@ module.exports = app => {
         if (err) throw err;
         return res.json({ success: true });
       })
+      
+      function storeSavedMovies(usersId){
+        return db.Users.find({ _id: usersId }).populate('savedMovies').exec((err, usersUpdatedData) => {
+          console.log("Users Updated data", usersUpdatedData);
+        })
+      }
+      storeSavedMovies(usersId)
+      
+      // db.Users.find({}).populate('savedMovies').exec((err, usersUpdatedData) => {
+      //   console.log("Users Updated data", usersUpdatedData);
+      // })
 
-      db.SavedMovies.findOne({ data: data }).populate( 'users' )
-      .exec((err, usersSavedMovies) => {
-        if (err) return res.json({ success: false })
-          console.log("saved Movies data", usersSavedMovies);
-          // return res.json();
-      })
+
     })
 
   // End user <API>Routes</API>
