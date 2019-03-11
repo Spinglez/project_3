@@ -10,6 +10,7 @@
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
+    "react-avatar-edit": "^0.8.2",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.8.3",
     "react-icons-kit": "^1.2.1",

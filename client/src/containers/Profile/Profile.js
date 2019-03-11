@@ -10,6 +10,7 @@ import surveyData from '../../data/surveyData.json'
 
 import Inner2 from '../../components/Base/Inner2';
 import ProfileStyled from '../Profile/ProfileStyle';
+import Ava from '../../components/Avatar/Avatar';
 
 import { Icon } from 'react-icons-kit'
 import {u1F480} from 'react-icons-kit/noto_emoji_regular/u1F480'
@@ -107,7 +108,8 @@ export class Profile extends Component {
               <ProfileStyled>
                 <Inner2>
                   <div style={{ display: "flex" }}>
-                    <Avatar style={{ width: 60, height: 60}}>
+                    <Ava/>
+                    {/* <Avatar style={{ width: 60, height: 60}}>
                       <div style={{
                           width: 55, 
                           height: 55,
@@ -116,7 +118,7 @@ export class Profile extends Component {
                           }}>
                           <Icon size={'100%'} icon={ic_mood}/>
                       </div>
-                    </Avatar>
+                    </Avatar> */}
                     <h1>{this.state.dbData.data.firstName}</h1>
                   </div>
 
