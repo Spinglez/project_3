@@ -4,6 +4,7 @@ import { profileAnalysis } from '../../utils/profileAnalysis';
 import { Header, RingLoader, WrappedEmailForm } from '../../components/index'
 import { Modal, Tabs } from 'antd';
 import { Avatar } from '@material-ui/core/';
+import surveyData from '../../data/surveyData.json'
 
 const TabPane = Tabs.TabPane;
 
@@ -70,11 +71,20 @@ export class Profile extends Component {
     });
   }
 
+  mapResponses = (surveyObject, index) => {
+    let question = surveyObject.question;
+    let responseSet = []
+    for(let i = 0; i < this.state.dbData.data.movieSurvey[index].length; i++){
+      responseSet.push(surveyObject.answerOptions[this.state.dbData.data.movieSurvey[index][i]])
+    }
+    
+    return [question, responseSet]
+  }
+
 
   render() {
     return (
       <Fragment>
-      {profileAnalysis.movieType([[5,6,1],[]])}
         <Header />
         {this.state.update === true &&
           <Fragment>
@@ -86,8 +96,20 @@ export class Profile extends Component {
           <Avatar />
           <h1>{this.state.dbData.data.firstName}</h1>
           <hr></hr>
+          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</p>
+          <p>Your Movie Persona</p>
+          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
           <h1>Your Movie Attributes</h1>
-          
+          <Fragment>
+          {
+            
+            surveyData.map((surveyObject,index) => {
+              return(
+              <p>{`You answered ${this.mapResponses(surveyObject, index)[1]} to ${this.mapResponses(surveyObject, index)[0]}`}</p>
+              )
+            })
+          }
+          </Fragment>
           </TabPane>
           <TabPane tab="Find Your Match" key="2">
           <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
