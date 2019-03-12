@@ -1,6 +1,7 @@
 import { config } from "./config";
 import * as Auth0 from "auth0-js";
 import { Component } from "react";
+const jwtdecode = require('jwt-decode')
 
 class Auth extends Component {
   auth0 = new Auth0.WebAuth({
@@ -27,15 +28,16 @@ class Auth extends Component {
   localLogin(authResult) {
     localStorage.setItem(this.authFlag, true);
     this.idToken = authResult.idToken;
+    localStorage.setItem(this.idToken);
     this.userProfile = authResult.idTokenPayload;
+    localStorage.setItem(this.idTokenPayload);
     this.accessToken = authResult.accessToken;
     this.loginCallback({ loggedIn: true });
+
   }
 
   localLogout() {
-    localStorage.removeItem(this.authFlag);
-    this.userProfile = null;
-    this.logoutCallback({ loggedIn: false });
+    localStorage.clear();
   }
 
   getAccessToken() {
@@ -64,6 +66,27 @@ class Auth extends Component {
       clientID: config.clientId
     });
   }
+
+  
+  handleAuthentication() {
+    this.handleAuthentication = this.handleAuthentication.bind(this);
+    this.auth0.parseHash((err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        localStorage.setItem("access_token", authResult.accessToken);
+        localStorage.setItem('id_token', authResult.idToken);
+        let expiresAt = JSON.stringify((authResult.expiresIn) * 1000 + new Date().getTime());
+        localStorage.setItem('expires_at', expiresAt);
+        localStorage.setItem('isLoggedIn', 'true');
+        const user = jwtdecode(authResult.idToken);
+        localStorage.setItem('user_email', user.email);
+        localStorage.setItem('user_picture', user.picture);
+            } else if (err) {
+        console.log(err);
+        alert(`Error: ${err.error}. Check the console for further details.`);
+      }
+    });
+  }
+
 }
 
 // const Auth = new Auth();

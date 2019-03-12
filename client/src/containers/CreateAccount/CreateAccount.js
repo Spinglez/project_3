@@ -1,34 +1,40 @@
 import React, { Component } from 'react';
-import Auth from '../../components/Auth/Auth'
+import { Link } from 'react-router-dom'
+import { Auth } from '../../components/index'
 
 const auth = new Auth();
 
 class CreateAccount extends Component {
 
-  constructor(props) {
-    super(props);
+//   constructor(props) {
+//     super(props);
 
-    auth.loginCallback = this.loggedIn.bind(this);
-    auth.logoutCallback = this.loggedOut.bind(this);
+//     auth.loginCallback = this.loggedIn.bind(this);
+//     auth.logoutCallback = this.loggedOut.bind(this);
 
-    this.state = { loggedIn: false };
-  }
+//     this.state = { loggedIn: false };
+//   }
 
-  loggedIn() {
-    this.setState({ loggedIn: true });
-  }
+//   loggedIn() {
+//     this.setState({ loggedIn: true });
+//   }
 
-  loggedOut() {
-    this.setState({ loggedIn: false });
-  }
+//   loggedOut() {
+//     this.setState({ loggedIn: false });
+//   }
 
   render() {
     return (
       <div>
-        <h1>This is a profile page</h1>
-        {this.state.loggedIn ? (
+        <h1>Welcome to Movie Night!</h1>
+        {auth.isAuthenticated() ? (
           <div>
           <h2> You are logged in!</h2>
+
+          <button onClick={<Link to={'/survey'} />} className="survey-button">
+          Take the survey to get matches!
+          </button>
+
           <button onClick={() => auth.logout()} className="log-button">
             Log Out
           </button>
