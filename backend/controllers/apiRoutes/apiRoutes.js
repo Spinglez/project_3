@@ -2,6 +2,7 @@ const db = require("../../db/Data");
 const Call = require('../utils/Call');
 const movieById = require('../utils/Call');
 const movieByTitle = require('../utils/Call');
+const matchAnalysis = require('../dataProc/returnMatch');
 
 module.exports = app => {
 
@@ -88,6 +89,8 @@ module.exports = app => {
         // IN here is where we will run the data processing functions that are imported
       myPromise.then(result =>{
         console.log(result);
+        let myresult = matchAnalysis.matchIdentifier(result[0].movieSurvey,result[1].movieSurvey);
+        console.log(matchAnalysis.queryBuilder(myresult))
         // use result[0] and result[1] to pass through the array of arrays return the data through res.json
         res.json({success: true})
       });
