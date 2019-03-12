@@ -6,7 +6,12 @@ const Profile = styled.div`
   margin: 0 auto;
   padding: 10px;
   font-size: 1rem;
-
+  .icon {
+    width: 155px; 
+    height: 155px;
+    color: #01579b;
+    align-self:center;
+  }
   h1{
     color: #b3e5fc;
     font-family: 'Righteous', sans-serif;
@@ -24,6 +29,9 @@ const Profile = styled.div`
   }
   h4, span{
     color:rgba(0, 0, 0, 0.5);;
+  }
+  span{
+    text-transform: uppercase;
   }
   p {
     margin-top: 0;

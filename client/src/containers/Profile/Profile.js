@@ -10,11 +10,24 @@ import surveyData from '../../data/surveyData.json'
 
 import Inner2 from '../../components/Base/Inner2';
 import ProfileStyled from '../Profile/ProfileStyle';
-import Ava from '../../components/Avatar/Avatar';
+// import Ava from '../../components/Avatar/Avatar';
 
 import { Icon } from 'react-icons-kit'
-import {u1F480} from 'react-icons-kit/noto_emoji_regular/u1F480'
+// Profile Example
 import {ic_mood} from 'react-icons-kit/md/ic_mood'
+// Lover of Darkness
+import {u1F480} from 'react-icons-kit/noto_emoji_regular/u1F480'
+// Studious Viewer
+import {u1F4F0} from 'react-icons-kit/noto_emoji_regular/u1F4F0'
+// Action Seeker
+import {u1F52B} from 'react-icons-kit/noto_emoji_regular/u1F52B'
+// Futuristic
+import {empire} from 'react-icons-kit/fa/empire'
+// Entertainee
+import {u1F601} from 'react-icons-kit/noto_emoji_regular/u1F601'
+// Hopeless Romantic
+import {u1F48F} from 'react-icons-kit/noto_emoji_regular/u1F48F'
+
 
 
 const TabPane = Tabs.TabPane;
@@ -27,7 +40,7 @@ export class Profile extends Component {
     submitStatus: false,
     update: false,
     currentSection: "profile",
-    firstTime: true
+    firstTime: true,
   }
 
   componentDidMount() {
@@ -107,9 +120,9 @@ export class Profile extends Component {
 
               <ProfileStyled>
                 <Inner2>
-                  <div style={{ display: "flex" }}>
-                    <Ava/>
-                    {/* <Avatar style={{ width: 60, height: 60}}>
+                  <div style={{ display: "flex", justifyContent: "space-evenly"}}>
+                    {/* <Ava/> */}
+                    <Avatar style={{ width: 60, height: 60}}>
                       <div style={{
                           width: 55, 
                           height: 55,
@@ -118,28 +131,62 @@ export class Profile extends Component {
                           }}>
                           <Icon size={'100%'} icon={ic_mood}/>
                       </div>
-                    </Avatar> */}
+                    </Avatar>
                     <h1>{this.state.dbData.data.firstName}</h1>
                   </div>
 
                   <hr/>
-                    <Row  gutter={48}>
+                    <Row gutter={48}>
                         <Col xs={20} md={6} lg={5}>
-                            <div style={{
-                                width: 155, 
-                                height: 155,
-                                color: "#01579b",
-                                alignSelf:"center"
-                                }}>
+                            
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Lover of Darkness" &&
+                              <div className="icon">
                                 <Icon size={'100%'} icon={u1F480}/>
-                            </div>
+                              </div>
+                            }
+
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Studious Viewer" &&
+                              <div className="icon">
+                                <Icon size={'100%'} icon={u1F4F0}/>
+                              </div>
+                            }
+
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Action Seeker" &&
+                              <div className="icon">
+                                <Icon size={'100%'} icon={u1F52B}/>
+                              </div>
+                            }
+
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Futuristic" &&
+                              <div className="icon">
+                                <Icon size={'100%'} icon={empire}/>
+                              </div>
+                            }
+
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Entertainee" &&
+                              <div className="icon">
+                                <Icon size={'100%'} icon={u1F601}/>
+                              </div>
+                            }
+
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Hopeless Romantic" &&
+                              <div className="icon">
+                                <Icon size={'100%'} icon={u1F48F}/>
+                              </div>
+                            }
+                            
                         </Col>
                                   
                         <Col xs={20} md={12} lg={18}>
                           <div>
                             <h3>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</h3>
-                                {/* Percentage match */}
-                              <span style={{ textTransform: "uppercase"}}>Your Movie Persona</span> 
+                              <span>Your Movie Persona</span> 
                           </div>
                           <br/>
                           <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
@@ -177,8 +224,7 @@ export class Profile extends Component {
                                   <p>We're looking for your matches, please wait!</p>
                                   <RingLoader />
                                 </Fragment>
-                              }
-                            
+                              }                           
                       </Inner2>
                   </ProfileStyled>
                 </TabPane>
