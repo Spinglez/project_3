@@ -5,7 +5,6 @@ import { Header, RingLoader, WrappedEmailForm } from '../../components/index'
 import { Modal, Tabs } from 'antd';
 import { Avatar } from '@material-ui/core/';
 import { Row, Col } from 'antd';
-
 import surveyData from '../../data/surveyData.json'
 
 import Inner2 from '../../components/Base/Inner2';
@@ -120,24 +119,30 @@ export class Profile extends Component {
 
               <ProfileStyled>
                 <Inner2>
-                  <div style={{ display: "flex", justifyContent: "space-evenly"}}>
-                    {/* <Ava/> */}
-                    <Avatar style={{ width: 60, height: 60}}>
-                      <div style={{
-                          width: 55, 
-                          height: 55,
-                          color: "#fafafa",
-                          alignSelf:"center"
-                          }}>
-                          <Icon size={'100%'} icon={ic_mood}/>
-                      </div>
-                    </Avatar>
-                    <h1>{this.state.dbData.data.firstName}</h1>
-                  </div>
+                    <Row>
+                      <Col xs={4} sm={3} md={4} lg={2}>
+                      
+                        <Avatar style={{ width: 60, height: 60}}>
+                          <div style={{
+                              width: 55, 
+                              height: 55,
+                              color: "#fafafa",
+                              alignSelf:"center"
+                              }}>
+                              <Icon size={'100%'} icon={ic_mood}/>
+                          </div>
+                        </Avatar>
+                      </Col>
+                      <Col xs={12} sm={10} md={10}>
+                        <h1>{this.state.dbData.data.firstName}</h1>
+                      </Col>
+                    </Row>
 
                   <hr/>
+
                     <Row gutter={48}>
-                        <Col xs={20} md={6} lg={5}>
+                        <Col sm={6} lg={5}>
+                          <div className="iconContainer">
                             
                             {
                               profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Lover of Darkness" &&
@@ -181,18 +186,22 @@ export class Profile extends Component {
                               </div>
                             }
                             
+                          </div>
                         </Col>
                                   
-                        <Col xs={20} md={12} lg={18}>
+
+                        <Col sm={15} lg={18}>
+                        <div className="iconContainer">
                           <div>
                             <h3>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</h3>
                               <span>Your Movie Persona</span> 
                           </div>
                           <br/>
                           <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
+                        </div>
                         </Col>
                     </Row>
-
+  
                   <Fragment>
                         <hr/>
                         <h3>Your Movie Attributes</h3>
