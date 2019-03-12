@@ -20,6 +20,10 @@ module.exports = app => {
     })
   })
 
+  app.get('/api/Users/savedmovies:User', (req, res) =>{
+    db.SavedMovies.find({ userId : req.params.userId })
+  })
+
   app.post('/api/Users:id', (req,res) => {
     let id = req.params.id;
     const { userDescription } = req.body;
@@ -55,17 +59,17 @@ module.exports = app => {
     });
   })
   
-  app.post('/api/Users/SavedMovies', (req, res) =>{
+  app.post('/api/Users/savedmovies', (req, res) =>{
     let data = new db.SavedMovies();
 
     console.log("req.body", req.body);
 
     const { moviePoster, movieTitle } = req.body;
-    const usersId = req.body['users._id'] 
+    const userId = req.body['userId'] 
 
     console.log('Movie Title', movieTitle);
 
-    if (!movieTitle || !moviePoster || !usersId) 
+    if (!movieTitle || !moviePoster || !userId) 
       {
         return res.json({
           success: false,
@@ -73,29 +77,17 @@ module.exports = app => {
         })
       }
 
-      data.moviePoster = moviePoster;
-      data.movieTitle = movieTitle;
-      data.usersId = usersId;
+    data.moviePoster = moviePoster;
+    data.movieTitle = movieTitle;
+    data.userId = userId;
 
-      data.save(err => {
-        console.log("data", data)
-        if (err) throw err;
-        return res.json({ success: true });
+    data.save(err => {
+      console.log("data", data)
+      if (err) throw err;
+      return res.json({ success: true });
       })
-      
-      function storeSavedMovies(usersId){
-        return db.Users.find({ _id: usersId }).populate('savedMovies').exec((err, usersUpdatedData) => {
-          console.log("Users Updated data", usersUpdatedData);
-        })
-      }
-      storeSavedMovies(usersId)
-      
-      // db.Users.find({}).populate('savedMovies').exec((err, usersUpdatedData) => {
-      //   console.log("Users Updated data", usersUpdatedData);
-      // })
 
-
-    })
+  })
 
   // End user <API>Routes</API>
   // Start Data Processing Routes

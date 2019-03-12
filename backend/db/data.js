@@ -46,11 +46,13 @@ const SavedMoviesSchema = new Schema(
     movieTitle: { 
       type: String,
       required: true
-    }
-    // users: [{ 
-    //   type: Schema.Types.ObjectId, 
-    //   ref: "Users" 
-    // }]
+    },
+    userId: [
+      { 
+        type: Schema.Types.ObjectId, 
+        ref: "Users" 
+      }
+    ]
   }
 )
 
