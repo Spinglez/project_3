@@ -143,7 +143,8 @@ export class Profile extends Component {
           <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
           <div>
             <p>
-            {`${this.state.dbUser.data.firstName}`}
+            {`${this.state.dbSavedMovies.data.moviePoster[0]}`}
+            {`${this.state.dbSavedMovies.data.movieTitle[0]}`}
             </p>
           </div>
           </TabPane> 
