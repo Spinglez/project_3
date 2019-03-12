@@ -120,7 +120,7 @@ export class Profile extends Component {
               <ProfileStyled>
                 <Inner2>
                     <Row>
-                      <Col xs={4} sm={3} md={4} lg={2}>
+                      <Col xs={7} sm={3} md={2} lg={2}>
                       
                         <Avatar style={{ width: 60, height: 60}}>
                           <div style={{
@@ -133,7 +133,7 @@ export class Profile extends Component {
                           </div>
                         </Avatar>
                       </Col>
-                      <Col xs={12} sm={10} md={10}>
+                      <Col xs={12} sm={10} md={8}>
                         <h1>{this.state.dbData.data.firstName}</h1>
                       </Col>
                     </Row>
@@ -141,7 +141,7 @@ export class Profile extends Component {
                   <hr/>
 
                     <Row gutter={48}>
-                        <Col sm={6} lg={5}>
+                        <Col sm={24} md={6} lg={5}>
                           <div className="iconContainer">
                             
                             {
@@ -190,8 +190,8 @@ export class Profile extends Component {
                         </Col>
                                   
 
-                        <Col sm={15} lg={18}>
-                        <div className="iconContainer">
+                        <Col sm={24} md={17} lg={18}>
+                        <div className="personasContainer">
                           <div>
                             <h3>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</h3>
                               <span>Your Movie Persona</span> 
@@ -204,11 +204,17 @@ export class Profile extends Component {
   
                   <Fragment>
                         <hr/>
-                        <h3>Your Movie Attributes</h3>
+                        <h3 style={{textAlign: "center"}}>Your Movie Attributes</h3>
+                        <hr/>
                           { 
                             surveyData.map((surveyObject,index) => {
                               return(
-                              <h4> <em>You answered</em> <br/>{`${this.mapResponses(surveyObject, index)[1]} to ${this.mapResponses(surveyObject, index)[0]}`}</h4>
+                                <div className="movieAttr">
+                                  <h5>Question: {`${this.mapResponses(surveyObject, index)[0]}`}</h5>
+                                  <span className="youAnswer">You answered</span>
+                                  <p className="answer">{`${this.mapResponses(surveyObject, index)[1]} `}</p>
+                                </div>
+
                               )
                             })
                           }
@@ -238,23 +244,6 @@ export class Profile extends Component {
                   </ProfileStyled>
                 </TabPane>
                 
-{/* 
-              <TabPane tab="Find Your Match" key="2">
-                <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
-
-              <WrappedEmailForm 
-                clearSubmit={this.clearSubmit} 
-                dbData={this.state.dbData} 
-                friendEmail={this.state.friendEmail} />
-                {this.state.submitStatus === true &&
-                  <Fragment>
-                    <p>We're looking for your matches, please wait!</p>
-                    <RingLoader />
-                  </Fragment>
-                  }
-                  
-              </TabPane> */}
-              
             </Tabs>
           </Fragment>
           

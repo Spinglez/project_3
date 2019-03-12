@@ -10,7 +10,6 @@ const Inner = styled.div `
     @media only screen and (max-width: 768px){
         padding: 1rem;
         margin: 5px 10px;
-        background-color: yellowgreen;
     }
 
 `;

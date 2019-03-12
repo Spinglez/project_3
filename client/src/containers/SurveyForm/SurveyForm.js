@@ -62,7 +62,7 @@ const Typo = styled.p`
     background: ${props => props.theme.lightGrey};
     padding: 10px;
     border-radius: 5px;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Port Lligat Sans', sans-serif;
     font-size: 1.2rem;
 `;
 
