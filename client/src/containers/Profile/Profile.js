@@ -13,6 +13,7 @@ export class Profile extends Component {
   state = {
     user: null,
     dbData: {},
+    dbSavedMovies: {},
     friendEmail: '',
     submitStatus: false,
     update: false,
@@ -25,6 +26,18 @@ export class Profile extends Component {
     call.get('test@gmail.com')
       .then((res) => {
         this.setState({ dbData: res.data })
+        console.log('this content is set');
+      }).then(() => {
+        this.setState({ update: true })
+        console.log('this has set state as update to true');
+      }).catch(err => {
+        if (err) console.log(err);
+      })
+
+    // this call gets saved movies based on the user and populates the dbSavedMovies array
+    call.getMovies('5c8436bdb54c7262a4829f8c')
+      .then((res) => {
+        this.setState({ dbSavedMovies: res.data })
         console.log('this content is set');
       }).then(() => {
         this.setState({ update: true })
@@ -127,6 +140,11 @@ export class Profile extends Component {
           </TabPane>
           <TabPane tab="Your Saved Movies" key="3">
           <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
+          <div>
+            <p>
+            {`${this.state.dbUser.data.firstName}`}
+            </p>
+          </div>
           </TabPane> 
             
             </Tabs>

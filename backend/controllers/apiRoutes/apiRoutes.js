@@ -20,9 +20,9 @@ module.exports = app => {
     })
   })
 
-  app.get('/api/Users/savedmovies:User', (req, res) =>{
-    db.SavedMovies.find({ userId : req.params.userId })
-  })
+  // app.get('/api/Users/savedmovies:User', (req, res) =>{
+  //   db.SavedMovies.find({ userId : req.params.userId })
+  // })
 
   app.post('/api/Users:id', (req,res) => {
     let id = req.params.id;
