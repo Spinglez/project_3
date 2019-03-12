@@ -125,6 +125,9 @@ export class Profile extends Component {
               }
               
           </TabPane>
+          <TabPane tab="Your Saved Movies" key="3">
+          <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
+          </TabPane> 
             
             </Tabs>
 
@@ -137,7 +140,7 @@ export class Profile extends Component {
             <RingLoader />
           </Fragment>
         }
-      </Fragment>
+    </Fragment>
     )
   }
 }
