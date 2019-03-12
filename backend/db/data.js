@@ -6,10 +6,6 @@ const UsersSchema = new Schema(
   {
     firstName: String,
     lastName: String,
-    token: {
-      type: String,
-      required: true
-    },
     email: {
       type: String,
       // required: true
@@ -39,10 +35,14 @@ const SavedMoviesSchema = new Schema(
       type: String,
       required: true
     },
-    movieTitle: { 
+    movieTitle: {
       type: String,
       required: true
     },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Users'
+    }
   }
 )
 
