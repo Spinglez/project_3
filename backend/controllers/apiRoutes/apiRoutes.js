@@ -2,6 +2,7 @@ const db = require("../../db/Data");
 const Call = require('../utils/Call');
 const movieById = require('../utils/Call');
 const movieByTitle = require('../utils/Call');
+const matchAnalysis = require('../dataProc/returnMatch');
 
 module.exports = app => {
 
@@ -13,6 +14,7 @@ module.exports = app => {
     });
   })
 
+  // Get request for singular users
   app.get('/api/Users:User', (req,res) =>{
     db.Users.findOne({ email: req.params.User }, (err, data) => {
       if (err) return res.json({ success: false, error: err });
@@ -20,20 +22,47 @@ module.exports = app => {
     })
   })
 
-  // app.get('/api/Users/savedmovies:User', (req, res) =>{
-  //   db.SavedMovies.find({ userId : req.params.userId })
-  // })
+  // get request for saved movies
+  app.get('/api/savedmovies:user', (req,res)=>{
+    db.SavedMovies.find({userId : req.params.user}, (err, data) =>{
+      if (err) return res.json({ success: false, error: err });
+      return res.json({ success: true, data: data });
+    })
+  })
 
+  // post request for saving movies.
+  app.post('/api/savedmovies', (req,res)=>{
+    let data = new db.SavedMovies()
+
+    const { movieTitle, moviePoster, userId } = req.body
+
+    if (!userId && userId !== 0 || !movieTitle || !moviePoster) {
+      return res.json({ success: false, error: 'Invalid inputs missing fields'})
+    }
+
+    data.moviePoster = moviePoster;
+    data.movieTitle = movieTitle;
+    data.userId = userId;
+
+    data.save(err => {
+      console.log("data", data);
+      if (err) throw err;
+      return res.json({ success: true });
+    });
+  })
+
+  // Post request to update  users data
   app.post('/api/Users:id', (req,res) => {
     let id = req.params.id;
     const { userDescription } = req.body;
     console.log(id, userDescription);
       db.Users.findByIdAndUpdate(id, { userDescription: userDescription }, (err,data) =>{
           if (err) throw err;
-          return res.json({success: true});
+          return res.json({ success: true });
     })
   })
 
+  // Creating a new user
   app.post('/api/Users', (req,res) => {
     let data = new db.Users();
 
@@ -122,6 +151,8 @@ module.exports = app => {
         // IN here is where we will run the data processing functions that are imported
       myPromise.then(result =>{
         console.log(result);
+        let myresult = matchAnalysis.matchIdentifier(result[0].movieSurvey,result[1].movieSurvey);
+        console.log(matchAnalysis.queryBuilder(myresult))
         // use result[0] and result[1] to pass through the array of arrays return the data through res.json
         res.json({success: true})
       });

@@ -35,6 +35,7 @@ export class Profile extends Component {
       })
 
     // this call gets saved movies based on the user and populates the dbSavedMovies array
+    // using hardcoded user id for now
     call.getMovies('5c8436bdb54c7262a4829f8c')
       .then((res) => {
         this.setState({ dbSavedMovies: res.data })

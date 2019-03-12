@@ -6,10 +6,6 @@ const UsersSchema = new Schema(
   {
     firstName: String,
     lastName: String,
-    token: {
-      type: String,
-      required: true
-    },
     email: {
       type: String,
       // required: true
@@ -42,6 +38,7 @@ const SavedMoviesSchema = new Schema(
       type: String,
       required: true
     },
+<<<<<<< HEAD
     // movie title string
     movieTitle: { 
       type: String,
@@ -53,6 +50,16 @@ const SavedMoviesSchema = new Schema(
         ref: "Users" 
       }
     ]
+=======
+    movieTitle: {
+      type: String,
+      required: true
+    },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Users'
+    }
+>>>>>>> 59b5cc7621778e818fd1af79858ee63842921b0d
   }
 )
 
