@@ -39,13 +39,15 @@ export class Profile extends Component {
     call.getMovies('5c8436bdb54c7262a4829f8c')
       .then((res) => {
         this.setState({ dbSavedMovies: res.data })
+        // console.log('dbSavedMovies data', res.data);
         console.log('this content is set');
-      }).then(() => {
-        this.setState({ update: true })
-        console.log('this has set state as update to true');
-      }).catch(err => {
-        if (err) console.log(err);
       })
+      // .then(() => {
+      //   this.setState({ update: true })
+      //   console.log('this has set state as update to true');
+      // }).catch(err => {
+      //   if (err) console.log(err);
+      // })
   }
 
   componentWillUnmount() {
@@ -143,8 +145,8 @@ export class Profile extends Component {
           <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
           <div>
             <p>
-            {`${this.state.dbSavedMovies.data.moviePoster[0]}`}
-            {`${this.state.dbSavedMovies.data.movieTitle[0]}`}
+            {/* {`${this.state.dbSavedMovies.data}`} */}
+            {`${this.state.dbSavedMovies.data}`}
             </p>
           </div>
           </TabPane> 
