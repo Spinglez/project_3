@@ -36,27 +36,31 @@ class Auth extends Component {
 
   // }
 
+
+  // Setting login to true in local storage
   localLogin(){
     localStorage.setItem('isLoggedIn', 'true');
   }
+
+  //Clearing local storage on logout
 
   localLogout() {
     localStorage.clear();
   }
 
+  //Calling Auth0 for our login prompt, logging them out if we receive an error
+
   login() {
-    this.auth0.authorize({}, (err, authResult) => {
-      console.log(err, authResult);
-      if (err) this.logout();
-      else {
-        this.localLogin();
-      }
-    });
+    this.auth0.authorize();
   }
 
+  // Simple function checking to see if a user is logged in
+
   isAuthenticated() {
-    return localStorage.getItem(this.isLoggedIn) === "true";
+    return localStorage.getItem('isLoggedIn') === "true";
   }
+
+  //Calling our local logout function and clearing our login values
 
   logout() {
     this.localLogout();
@@ -66,11 +70,14 @@ class Auth extends Component {
     });
   }
 
+
+  //Loading our login values into local storage
   
   handleAuthentication() {
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
+        this.localLogin();
         localStorage.setItem("access_token", authResult.accessToken);
         localStorage.setItem('id_token', authResult.idToken);
         let expiresAt = JSON.stringify((authResult.expiresIn) * 1000 + new Date().getTime());
@@ -86,7 +93,5 @@ class Auth extends Component {
   }
 
 }
-
-// const Auth = new Auth();
 
 export default Auth;

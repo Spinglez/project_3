@@ -22,13 +22,12 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Welcome}></Route>
           <Route exact path="/register" component={CreateAccount} ></Route>
-          {/* <Route exact path="/survey" component={SurveyForm}></Route> */}
 
           <Route path="/survey" render={(props) => (
             !auth.isAuthenticated() ? (
               <Redirect to="/" />
             ) : (
-                <SurveyForm auth={auth} {...props} />
+                <SurveyForm auth={auth} {...props}/>
               )
           )} />
 
@@ -36,7 +35,7 @@ class App extends Component {
             !auth.isAuthenticated() ? (
               <Redirect to="/" />
             ) : (
-                <Profile auth={auth} {...props} />
+                <Profile auth={auth} {...props}/>
               )
           )} />
 
@@ -44,13 +43,14 @@ class App extends Component {
             handleAuthentication(props);
             return <Callback {...props} />
           }}/>
+
           <Route path="/results" render={(props) => (
             !auth.isAuthenticated() ? (
               <Redirect to="/" />
             ) : (
                 <Results auth={auth} {...props} />
               )
-          )} />
+            )}/>
               <Route component={ErrorPage}></Route>
         </Switch>
       </BrowserRouter>

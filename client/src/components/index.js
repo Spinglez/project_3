@@ -13,5 +13,4 @@ export { default as WelcomeStyle4 } from './WelcomeStyle/WelcomeStyles4';
 export { default as WelcomeStyle5 } from './WelcomeStyle/WelcomeStyles5';
 export { default as SurveyCarousel } from './SurveyCarousel/SurveyCarousel';
 export { default as Auth } from './Auth/Auth';
-export { default as SurveyCarousel } from './SurveyCarousel/SurveyCarousel'
 export { default as WrappedEmailForm } from './EmailForm/EmailForm';
