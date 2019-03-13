@@ -87,7 +87,7 @@ module.exports = app => {
 
         // IN here is where we will run the data processing functions that are imported
       myPromise.then(result =>{
-        console.log(result);
+        console.log('this is the non processed result',result);
         // use result[0] and result[1] to pass through the array of arrays return the data through res.json
         res.json({success: true})
       });
