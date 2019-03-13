@@ -16,47 +16,46 @@ class Auth extends Component {
   loginCallback = () => {};
   logoutCallback = () => {};
 
-  userProfile = null;
-  authFlag = "isLoggedIn";
-  authStatus = this.isAuthenticated
-    ? "init_with_auth_flag"
-    : "init_no_auth_flag";
-  idToken = null;
-  idTokenPayload = null;
-  accessToken;
+  // userProfile = null;
+  // authFlag = "isLoggedIn";
+  // authStatus = this.isAuthenticated
+  //   ? "init_with_auth_flag"
+  //   : "init_no_auth_flag";
+  // idToken = null;
+  // idTokenPayload = null;
+  // accessToken;
 
-  localLogin(authResult) {
-    localStorage.setItem(this.authFlag, true);
-    this.idToken = authResult.idToken;
-    localStorage.setItem(this.idToken);
-    this.userProfile = authResult.idTokenPayload;
-    localStorage.setItem(this.idTokenPayload);
-    this.accessToken = authResult.accessToken;
-    this.loginCallback({ loggedIn: true });
+  // localLogin(authResult) {
+  //   localStorage.setItem(this.authFlag, true);
+  //   this.idToken = authResult.idToken;
+  //   localStorage.setItem(this.idToken);
+  //   this.userProfile = authResult.idTokenPayload;
+  //   localStorage.setItem(this.idTokenPayload);
+  //   this.accessToken = authResult.accessToken;
+  //   this.loginCallback({ loggedIn: true });
 
+  // }
+
+  localLogin(){
+    localStorage.setItem('isLoggedIn', 'true');
   }
 
   localLogout() {
     localStorage.clear();
   }
 
-  getAccessToken() {
-    return this.accessToken;
-  }
-
   login() {
     this.auth0.authorize({}, (err, authResult) => {
       console.log(err, authResult);
-      if (err) this.localLogout();
+      if (err) this.logout();
       else {
-        this.localLogin(authResult);
-        this.accessToken = authResult.accessToken;
+        this.localLogin();
       }
     });
   }
 
   isAuthenticated() {
-    return localStorage.getItem(this.authFlag) === "true";
+    return localStorage.getItem(this.isLoggedIn) === "true";
   }
 
   logout() {
@@ -76,7 +75,6 @@ class Auth extends Component {
         localStorage.setItem('id_token', authResult.idToken);
         let expiresAt = JSON.stringify((authResult.expiresIn) * 1000 + new Date().getTime());
         localStorage.setItem('expires_at', expiresAt);
-        localStorage.setItem('isLoggedIn', 'true');
         const user = jwtdecode(authResult.idToken);
         localStorage.setItem('user_email', user.email);
         localStorage.setItem('user_picture', user.picture);
