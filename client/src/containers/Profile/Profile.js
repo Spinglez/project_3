@@ -39,7 +39,7 @@ export class Profile extends Component {
     call.getMovies('5c8436bdb54c7262a4829f8c')
       .then((res) => {
         this.setState({ dbSavedMovies: res.data })
-        // console.log('dbSavedMovies data', res.data);
+        console.log('dbSavedMovies data', res.data);
         console.log('this content is set');
       })
       // .then(() => {
@@ -100,8 +100,8 @@ export class Profile extends Component {
   mapMovies = () => {
     let movieSet = []
     for(let i = 0; i < this.state.dbSavedMovies.data.length; i++){
-      movieSet.push(this.state.dbSavedMovies.data[i])
-      console.log('movie data', this.state.dbSavedMovies.data[i])
+      console.log('movie data', this.state.dbSavedMovies.data[0])
+      
     }
     
     return [movieSet]
@@ -154,11 +154,13 @@ export class Profile extends Component {
           <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
             <div>
               <p>
-              {`${this.state.dbSavedMovies.data}`}
+                {`${this.mapMovies()}`} 
+                {/* {`${this.state.dbSavedMovies.data[0].moviePoster}`} */}
               </p>
               <p>
-              {/* {`${this.mapMovies()}`}  */}
-              </p> 
+                {/* <img src={`${this.state.dbSavedMovies.data[0].moviePoster}`} alt="Movie Poster">
+                </img> */}
+              </p>
             </div>
           </TabPane> 
             
