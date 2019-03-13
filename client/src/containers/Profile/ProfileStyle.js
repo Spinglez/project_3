@@ -13,10 +13,10 @@ const Profile = styled.div`
     align-self:center;
     
     @media only screen and (max-width: 768px){
+       margin: 0 auto;
        width: 200px;
        height: auto;
        align-self: center;
-       margin: 0 auto;
       }
   }
 
