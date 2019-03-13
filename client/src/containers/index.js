@@ -9,3 +9,4 @@ export { default as ErrorPage } from './404/ErrorPage';
 export { default as CreateAccount } from './CreateAccount/CreateAccount';
 export { default as Results } from './Results/Results';
 export { default as Profile } from './Profile/Profile';
+export { default as Callback } from './Callback/Callback';
