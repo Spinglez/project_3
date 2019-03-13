@@ -28,6 +28,8 @@
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
     "mongoose": "^5.4.16",
+    "imdb-prime": "^1.0.0",
+    "mongoose": "^5.4.17",
     "morgan": "^1.9.1"
   }
 }
