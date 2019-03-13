@@ -97,6 +97,15 @@ export class Profile extends Component {
     return [question, responseSet]
   }
 
+  mapMovies = () => {
+    let movieSet = []
+    for(let i = 0; i < this.state.dbSavedMovies.data.length; i++){
+      movieSet.push(this.state.dbSavedMovies.data[i])
+      console.log('movie data', this.state.dbSavedMovies.data[i])
+    }
+    
+    return [movieSet]
+  }
 
   render() {
     return (
@@ -143,15 +152,17 @@ export class Profile extends Component {
           </TabPane>
           <TabPane tab="Your Saved Movies" key="3">
           <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
-          <div>
-            <p>
-            {/* {`${this.state.dbSavedMovies.data}`} */}
-            {`${this.state.dbSavedMovies.data}`}
-            </p>
-          </div>
+            <div>
+              <p>
+              {`${this.state.dbSavedMovies.data}`}
+              </p>
+              <p>
+              {/* {`${this.mapMovies()}`}  */}
+              </p> 
+            </div>
           </TabPane> 
             
-            </Tabs>
+          </Tabs>
 
           </Fragment>
         }
