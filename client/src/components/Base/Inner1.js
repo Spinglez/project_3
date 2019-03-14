@@ -14,21 +14,4 @@ const Inner = styled.div `
 
 `;
 
-// injectGlobal`
-//     html{
-//     box-sizing: border-box;
-//     font-size: 12px;
-//     }
-
-//     *, *:before, *:after{
-//        box-sizing: inherit;
-//     } 
-
-//     body{
-//         padding: 0;
-//         margin: 0 auto;
-//     }
-
-// `;
-
 export default Inner;

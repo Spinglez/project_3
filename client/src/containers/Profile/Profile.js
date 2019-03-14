@@ -207,14 +207,13 @@ export class Profile extends Component {
                         <h3 style={{textAlign: "center"}}>Your Movie Attributes</h3>
                         <hr/>
                           { 
-                            surveyData.map((surveyObject,index) => {
+                            surveyData.map((surveyObject, index) => {
                               return(
                                 <div className="movieAttr">
                                   <h5>Question: {`${this.mapResponses(surveyObject, index)[0]}`}</h5>
                                   <span className="youAnswer">You answered</span>
-                                  <p className="answer">{`${this.mapResponses(surveyObject, index)[1]} `}</p>
+                                  <p className="answer">{`${this.mapResponses(surveyObject, index)[1]}`}</p>
                                 </div>
-
                               )
                             })
                           }

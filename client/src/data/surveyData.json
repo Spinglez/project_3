@@ -2,13 +2,13 @@
     {
         "step": 0,
         "question": "Pick any of the following genres you enjoy.",
-        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Musical","Mystery","Romance","Thriller", "Action"],
+        "answerOptions": ["Comedy", "Documentary", "Drama", "SciFi/Fantasy", "Horror", "Musical", "Mystery", "Romance", "Thriller", "Action"],
         "image": ["./images/happy.png", "./images/interview.png", "./images/masks.png", "./images/harry-potter.png", "./images/saw.png","./images/karaoke.png", "./images/search.png", "./images/like.png", "./images/special-effects.png","./images/special-effects.png"]
     },
     {
         "step": 1,
         "question": "Pick any of the following genres you don't sit well with.",
-        "answerOptions": ["Comedy","Documentary","Drama","SciFi/Fantasy","Horror","Music","Mystery","Romance","Thriller","Action"],
+        "answerOptions": ["Comedy", "Documentary", "Drama", "SciFi/Fantasy", "Horror", "Music", "Mystery", "Romance", "Thriller", "Action"],
         "image": ["./images/happy.png", "./images/interview.png", "./images/masks.png", "./images/harry-potter.png", "./images/saw.png", "./images/karaoke.png", "./images/search.png", "./images/like.png", "./images/special-effects.png","./images/special-effects.png"]
     },
     {
@@ -32,13 +32,13 @@
     {
         "step": 5,
         "question": "What's your typical movie night?",
-        "answerOptions": ["Netflix and Chill","Movies in Theatre","Online Stuff","TV shows are cool"],
+        "answerOptions": ["Netflix and Chill", "Movies in Theatre", "Online Stuff", "TV shows are cool"],
         "image": ["./images/wink.png", "./images/cinema.png","./images/domain.png", "./images/television.png"]
     },
     {
         "step": 6,
         "question": "What kind of mood do you want to have after the movie?",
-        "answerOptions": ["Hehe","A New Hope","Left With Questions","Satisfaction"],
+        "answerOptions": ["Hehe", "A New Hope", "Left With Questions", "Satisfaction"],
         "image": ["./images/wink.png", "./images/children.png","./images/thinking.png", "./images/smiley-face.png"]
     }
 ]

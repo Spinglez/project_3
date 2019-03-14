@@ -20,6 +20,7 @@ const Profile = styled.div`
       }
   }
 
+
   .personasContainer {
       margin: 0 auto;
       font-size: 1.2rem;
