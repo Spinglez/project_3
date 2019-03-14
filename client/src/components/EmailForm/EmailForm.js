@@ -61,7 +61,7 @@ class RegistrationForm extends Component {
                 required: true, message: 'Please input your matches E-mail!',
               }],
             })(
-              <Input placeholder="yourdate@gmail.com" name="friendEmail" onChange={this.props.handleInputChange} />
+              <Input placeholder="yourdate@gmail.com" name="friendEmail" value={this.props.friendEmail} onChange={this.props.handleInputChange} />
             )}
           </Form.Item>
           <Form.Item>

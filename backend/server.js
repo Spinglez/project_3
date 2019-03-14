@@ -5,11 +5,12 @@ const logger = require('morgan');
 const cors = require('cors')
 require('dotenv').config();
 
-const API_PORT = 3001;
+const API_PORT = process.env.PORT || 3001;
 const app = express();
 // const router = express.Router();
+const M_LAB_KEY = process.env.MONGODBKEY;
 
-const dbRoute = 'mongodb://spinglez:'+ process.env.MONGODBKEY +'@ds153314.mlab.com:53314/moviesuser' || "mongodb://localhost/movieknight";
+const dbRoute = 'mongodb://spinglez:'+ M_LAB_KEY +'@ds153314.mlab.com:53314/moviesuser' || "mongodb://localhost/movieknight";
 
 mongoose.connect(
   dbRoute,
