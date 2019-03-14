@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Auth } from '../../components/index'
-import { Redirect } from 'react-router-dom'
+// import { Auth } from '../../components/index'
 
 export class Callback extends Component {
 
@@ -8,7 +7,6 @@ export class Callback extends Component {
         return (
             <div>
                 Loading ...
-                <Redirect to= '/survey' />
             </div>
         )
     }
