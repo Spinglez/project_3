@@ -21,8 +21,9 @@ export class Profile extends Component {
   }
 
   componentDidMount() {
+    let user = localStorage.getItem('user_email')
     // this call needs to be updated to local storage email pull. when ready
-    call.get('test@gmail.com')
+    call.get(user)
       .then((res) => {
         this.setState({ dbData: res.data })
         console.log('this content is set');
@@ -77,7 +78,7 @@ export class Profile extends Component {
     for(let i = 0; i < this.state.dbData.data.movieSurvey[index].length; i++){
       responseSet.push(surveyObject.answerOptions[this.state.dbData.data.movieSurvey[index][i]])
     }
-    
+
     return [question, responseSet]
   }
 
@@ -102,7 +103,7 @@ export class Profile extends Component {
           <h1>Your Movie Attributes</h1>
           <Fragment>
           {
-            
+
             surveyData.map((surveyObject,index) => {
               return(
               <p>{`You answered ${this.mapResponses(surveyObject, index)[1]} to ${this.mapResponses(surveyObject, index)[0]}`}</p>
@@ -113,9 +114,9 @@ export class Profile extends Component {
           </TabPane>
           <TabPane tab="Find Your Match" key="2">
           <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
-          <WrappedEmailForm 
-            clearSubmit={this.clearSubmit} 
-            dbData={this.state.dbData} 
+          <WrappedEmailForm
+            clearSubmit={this.clearSubmit}
+            dbData={this.state.dbData}
             friendEmail={this.state.friendEmail} />
             {this.state.submitStatus === true &&
               <Fragment>
@@ -123,9 +124,9 @@ export class Profile extends Component {
                 <RingLoader />
                </Fragment>
               }
-              
+
           </TabPane>
-            
+
             </Tabs>
 
           </Fragment>
