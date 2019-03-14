@@ -34,6 +34,7 @@ export class Profile extends Component {
     dbData: {},
     friendEmail: '',
     submitStatus: false,
+    matchedmovies: [],
     update: false,
     currentSection: "profile",
     firstTime: true,
@@ -47,7 +48,6 @@ export class Profile extends Component {
         this.setState({ dbData: res.data })
       }).then(() => {
         this.setState({ update: true })
-        console.log('this has set state as update to true');
       }).catch(err => {
         if (err) console.log(err);
       })
@@ -65,6 +65,11 @@ export class Profile extends Component {
     })
   }
 
+  handlePost = (data) =>{
+    this.setState({ matchedmovies: data, submitStatus: false })
+    console.log('state is set again here!');
+  }
+
   clearModal = () =>{
     this.setState({firstTime: false})
   }
@@ -72,8 +77,7 @@ export class Profile extends Component {
   clearSubmit = () => {
     this.setState({
       friendEmail: '',
-      submitStatus: true,
-      firstTime: false
+      submitStatus: true
     });
   }
 
@@ -232,9 +236,11 @@ export class Profile extends Component {
                               clearSubmit={this.clearSubmit}
                               dbData={this.state.dbData}
                               friendEmail={this.state.friendEmail}
-                              handleInputChange={this.handleInputChange}/>
+                              handleInputChange={this.handleInputChange}
+                              matchedmovies={this.state.matchedmovies}
+                              handlePost={this.handlePost}/>
 
-                              {this.state.submitStatus === true &&
+                            {this.state.submitStatus === true &&
                                 <Fragment>
                                   <p>We're looking for your matches, please wait!</p>
                                   <RingLoader />
