@@ -43,8 +43,9 @@ export class Profile extends Component {
   }
 
   componentDidMount() {
+    let user = localStorage.getItem('user_email')
     // this call needs to be updated to local storage email pull. when ready
-    call.get('test@gmail.com')
+    call.get(user)
       .then((res) => {
         this.setState({ dbData: res.data })
         console.log('this content is set');
@@ -99,7 +100,7 @@ export class Profile extends Component {
     for(let i = 0; i < this.state.dbData.data.movieSurvey[index].length; i++){
       responseSet.push(surveyObject.answerOptions[this.state.dbData.data.movieSurvey[index][i]])
     }
-    
+
     return [question, responseSet]
   }
 
