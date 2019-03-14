@@ -65,6 +65,10 @@ export class Profile extends Component {
     })
   }
 
+  clearModal = () =>{
+    this.setState({firstTime: false})
+  }
+
   clearSubmit = () => {
     this.setState({
       friendEmail: '',
@@ -88,6 +92,7 @@ export class Profile extends Component {
       ),
       onOk() { },
     });
+    this.clearModal();
   }
 
   mapResponses = (surveyObject, index) => {
@@ -106,7 +111,7 @@ export class Profile extends Component {
         <Header />
         {this.state.update &&
           <Fragment>
-          {this.state.firstTime && this.state.update &&
+          {this.state.firstTime === true &&
             this.info()
           }
           { this.state.update &&
@@ -117,10 +122,10 @@ export class Profile extends Component {
                 <Inner2>
                     <Row>
                       <Col xs={7} sm={3} md={2} lg={2}>
-                      
+
                         <Avatar style={{ width: 60, height: 60}}>
                           <div style={{
-                              width: 55, 
+                              width: 55,
                               height: 55,
                               color: "#fafafa",
                               alignSelf:"center"
@@ -139,7 +144,7 @@ export class Profile extends Component {
                     <Row gutter={48}>
                         <Col sm={24} md={6} lg={5}>
                           <Fragment className="iconContainer">
-                            
+
                             {
                               profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Lover of Darkness" &&
                               <div className="icon">
@@ -181,26 +186,26 @@ export class Profile extends Component {
                                 <Icon size={'100%'} icon={u1F48F}/>
                               </div>
                             }
-                            
+
                           </Fragment>
                         </Col>
                         <Col sm={24} md={17} lg={18}>
                         <div className="personasContainer">
                           <div>
                             <h3>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</h3>
-                              <span>Your Movie Persona</span> 
+                              <span>Your Movie Persona</span>
                           </div>
                           <br/>
                           <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
                         </div>
                         </Col>
                     </Row>
-  
+
                   <Fragment>
                         <hr/>
                         <h3 style={{textAlign: "center"}}>Your Movie Attributes</h3>
                         <hr/>
-                          { 
+                          {
                             surveyData.map((surveyObject, index) => {
                               console.log("INDEX PASSED")
                               return(
@@ -223,27 +228,28 @@ export class Profile extends Component {
                       <Inner2>
                           <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
 
-                            <WrappedEmailForm 
-                              clearSubmit={this.clearSubmit} 
-                              dbData={this.state.dbData} 
-                              friendEmail={this.state.friendEmail} />
+                            <WrappedEmailForm
+                              clearSubmit={this.clearSubmit}
+                              dbData={this.state.dbData}
+                              friendEmail={this.state.friendEmail}
+                              handleInputChange={this.handleInputChange}/>
 
                               {this.state.submitStatus === true &&
                                 <Fragment>
                                   <p>We're looking for your matches, please wait!</p>
                                   <RingLoader />
                                 </Fragment>
-                              }                           
+                              }
                       </Inner2>
                   </ProfileStyled>
                 </TabPane>
-                
+
             </Tabs>
           }
           </Fragment>
-          
+
         }
-        
+
         {
           this.state.update === false &&
           <Fragment>
