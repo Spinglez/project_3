@@ -125,17 +125,10 @@ export class Profile extends Component {
               <ProfileStyled>
                 <Inner2>
                     <Row>
-                      <Col xs={7} sm={8} md={5} lg={5}>
+                      <Col xs={11} sm={8} md={5} lg={4}>
 
-                        <Avatar style={{ width: 120, height: 120}}>
-                          <div style={{
-                              width: 80,
-                              height: 80,
-                              color: "#fafafa",
-                              alignSelf:"center"
-                              }}>
+                        <Avatar style={{ width: 130, height: 130}}>
                               <img src={this.state.dbData.data.image} alt={this.state.dbData.data.firstName}></img>
-                          </div>
                         </Avatar>
                       </Col>
                       <Col xs={12} sm={12} md={10}>
