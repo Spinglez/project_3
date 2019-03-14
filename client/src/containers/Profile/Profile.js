@@ -82,8 +82,8 @@ export class Profile extends Component {
       title: `Hi there ${this.state.dbData.data.firstName}!`,
       content: (
         <div>
-          <p>Nice to see you today. Welcome to MovieKnight.</p>
-          <p>This is your profile page, consider it your MovieKnight Hub.</p>
+          <p>Nice to see you today. Welcome to movieNite!</p>
+          <p>This is your profile page, consider it your movieNite Hub.</p>
         </div>
       ),
       onOk() { },
