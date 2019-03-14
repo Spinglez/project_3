@@ -1,4 +1,4 @@
-const db = require("../../db/Data");
+const db = require("../../db/data");
 const Call = require('../utils/Call');
 const movieById = require('../utils/Call');
 const movieByTitle = require('../utils/Call');

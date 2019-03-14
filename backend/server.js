@@ -24,6 +24,7 @@ db.once("open", () => console.log("connected to the database"));
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors())
@@ -32,5 +33,8 @@ app.use(logger("dev"));
 
 require("./controllers/apiRoutes/apiRoutes")(app)
 
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
