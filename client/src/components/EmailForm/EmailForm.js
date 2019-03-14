@@ -23,10 +23,10 @@ class RegistrationForm extends Component {
                 email1: email1,
                 email2: email2
               };
-              console.log(postBody);
               call.post(postBody)
                 .then(res => {
-                  console.log(res);
+                  console.log(res.data);
+                  this.props.handlePost(res.data);
                 }).catch(err => {
                   if (err) console.error(err);
                 });
