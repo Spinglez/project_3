@@ -1,5 +1,5 @@
 import React,  { Component }  from 'react';
-import logo from '../../containers/Welcome/reelLogo.png'; //REEL logo
+import logo from '../Logo/reelLogo.png'; //REEL logo
 
 const logoStyle = {
   width: "35px",

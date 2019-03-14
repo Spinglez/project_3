@@ -6,6 +6,9 @@ import appDescription from '../../data/appDescription.json'
 import { Logo, WelcomeStyle1, WelcomeStyle2, WelcomeStyle3, WelcomeStyle4, WelcomeStyle5 }  from '../../components/index';
 import styled, { ThemeProvider} from 'styled-components';
 
+import Inner1 from '../../components/Base/Inner1';
+
+
 const theme = {
     navyBlue: "#002744",
     offWhite: "#fafafa",
@@ -21,24 +24,44 @@ const StyledApp = styled.div `
     padding: 2rem;
 `;
 
-// Everything inside the main container will have maxWidth: 960px 
-const Inner = styled.div `
-    margin: 0 auto;
-    border-radius: 8px;
-    max-width: ${props => props.theme.maxWidth}
-`;
-
 // Styling for Titles, Description
 const H1 = styled.h1`
     text-transform: uppercase;
     font-family: 'Righteous', sans-serif;
     font-size: 2rem;
+    -webkit-animation: tracking-in-expand-fwd-top 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	        animation: tracking-in-expand-fwd-top 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+            @keyframes tracking-in-expand-fwd-top {
+                0% {
+                    letter-spacing: -0.5em;
+                    -webkit-transform: translateZ(-700px) translateY(-500px);
+                            transform: translateZ(-700px) translateY(-500px);
+                    opacity: 0;
+                }
+                40% {
+                    opacity: 0.6;
+                }
+                100% {
+                    -webkit-transform: translateZ(0) translateY(0);
+                            transform: translateZ(0) translateY(0);
+                    opacity: 1;
+                }
+}
+    /* For small screen */
+    @media only screen and (max-width: 768px){
+        font-size: 1.5rem;
+    }
 `;
 
 const H2 = styled.h2`
     letter-spacing: 3px;    
     font-family: 'Cabin Sketch', cursive;
     font-size: 1.4rem;
+
+    /* For small screen */
+    @media only screen and (max-width: 668px){
+        font-size: .9rem;
+    }
 `;
 
 const P = styled.p `
@@ -46,6 +69,11 @@ const P = styled.p `
     font-size: 1.2rem;
     font-weight: bold;
     letter-spacing: 2px;
+
+    /* For small screen */
+    @media only screen and (max-width: 668px){
+        font-size: .6rem;
+    }
 `;
 
 const styles = {
@@ -86,9 +114,10 @@ export class Welcome extends Component {
             <ThemeProvider theme={theme}>
                 <StyledApp style={{backgroundColor: this.state.appInfo[this.state.activeStep].backgroundColor}}>
                     <Fragment>
-                        <Inner>
+             
+                        <Inner1>
                             <Logo activeStep={this.state.activeStep} />
-                            <Grid
+                            <Grid 
                                 container
                                 direction="column"
                                 justify="center"
@@ -128,6 +157,7 @@ export class Welcome extends Component {
                                     activeStep={this.state.activeStep}
                                 />
                             </Grid>
+
                                 <H1 style={{color: this.state.appInfo[this.state.activeStep].headerColor}}>{this.state.appInfo[this.state.activeStep].header}</H1>
                                 <H2 style={{color: this.state.appInfo[this.state.activeStep].description1Color}}>{this.state.appInfo[this.state.activeStep].description1}</H2>
                                 <P style={{color: this.state.appInfo[this.state.activeStep].description2Color, fontSize: "20px"}}>{this.state.appInfo[this.state.activeStep].description2}</P>
@@ -148,7 +178,7 @@ export class Welcome extends Component {
                                     </NavLink>
                                 }
                             </Grid>
-                        </Inner>    
+                        </Inner1>    
                     </Fragment>
                 </StyledApp>
             </ThemeProvider>

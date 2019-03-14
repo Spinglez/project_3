@@ -14,26 +14,48 @@ const themeColor = {
     lightGrey: "#78909c",
     lightBlue: "#b3e5fc",
     maxWidth: "960px",
-    boxShadow: "9px 13px 40px -3px rgba(0,0,0,0.51);",
 };
-
-const StyledImg = styled.img`
-    background-color: ${props => props.theme.lightBlue};
-    padding: 8px;
-    max-width: 60px;
-    border-radius: 50%;
-`;
 
 const Inner = styled.div`
     max-width: ${props => props.theme.maxWidth};
     margin: 0 auto;
     border-radius: 8px;
     margin-bottom: 10px;
+
+    @media only screen and (max-width: 668px){
+        max-width: 768px;
+        padding: 15px; 
+    }
+`;
+
+const StyledImg = styled.img`
+    background-color: ${props => props.theme.lightBlue};
+    padding: 8px;
+    width: 60px;
+    border-radius: 50%;
+
+    @media only screen and (max-width: 768px){
+        width: 50px;
+        padding: 5px;
+    }
+
+    @media only screen and (max-width: 576px){
+        width: 75px;
+        padding: 8px;
+    }
 `;
 
 const StyledCard = styled.div `
-    box-shadow: ${props => props.theme.boxShadow};
     margin-top: 5px;
+    top:50%;
+    bottom:0;
+    left:10px;
+    right:10px;
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    box-shadow:0 0 20px rgba(0,0,0,0.8);
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
 `;
 
 const Typo = styled.p`
@@ -41,7 +63,7 @@ const Typo = styled.p`
     background: ${props => props.theme.lightGrey};
     padding: 10px;
     border-radius: 5px;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Port Lligat Sans', sans-serif;
     font-size: 1.2rem;
 `;
 
@@ -84,14 +106,10 @@ export class SurveyForm extends Component {
     }
 
     handleBack = () => {
-        console.log("populated array after handleback:", responseSetArray)
         this.setState(state => ({
           step: state.step - 1,
         }));
         var prevSelections = responseSetArray[this.state.step-1];
-        console.log(this.state.step)
-        console.log(prevSelections);
-        console.log(responseSetArray)
         this.setState({setSelectionStatus: prevSelections})
 
       };
@@ -119,7 +137,6 @@ export class SurveyForm extends Component {
     }
 
     handleNext = () => {
-        console.log("populated array after handlenext:", responseSetArray)
         window.scrollTo(0, 0);
         const { step } = this.state
 
@@ -226,7 +243,7 @@ export class SurveyForm extends Component {
                                                 data-id ={index}
                                                 bordered={false}
                                                 padding={2}
-                                                style={{ marginLeft: "2%", maxWidth: "200px",
+                                                style={{ marginLeft: "2%", width: "180px", 
                                                 backgroundColor: this.state.setSelectionStatus[index] ? "#78909c" : "white" }}
                                                 onClick={() => this.handleSelect(index)}
                                                 >

@@ -108,10 +108,9 @@ const styles = theme => ({
   },
   header: {
     display: 'flex',
-    alignItems: 'center',
-    height: 50,
+    justifyContent: 'flex-start',
+    height: 30,
     backgroundColor: "#4190cc",
-    paddingLeft: theme.spacing.unit * 4,
   },
   img: {
     height: 255,

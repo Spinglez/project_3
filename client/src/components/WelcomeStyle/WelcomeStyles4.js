@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-
-
 import { Icon } from 'react-icons-kit'
-
 // Calendar icon
 import {u1F4C5} from 'react-icons-kit/noto_emoji_regular/u1F4C5'
-
 
 const theme = {
     navyBlue:"#002744",
@@ -18,14 +14,17 @@ const StylePage = styled.div `
     width: 250px;
     height: 240px;
     box-shadow: 0 2px 8px #b2b2b2;
-    background-color: blueviolet;
-    margin: auto;
+    margin: 0 auto;
     border-radius: 5%;
     padding: 8px;
     background-color: ${props => props.theme.darkRed};
-    color: orange;
-`;
 
+    @media only screen and (max-width: 576px){
+        width: 220px;
+        height: 220px;
+        margin: 0 auto;
+    }
+`;
 
 const Container = styled.div `
     background-color: ${props => props.theme.navyBlue};
@@ -63,7 +62,6 @@ class CustomCard4 extends Component {
                             </div>
                     </Container>
         
- 
                 </StylePage>
             </ThemeProvider>
         );

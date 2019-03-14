@@ -2,12 +2,12 @@ import { Personas } from '../data/personas';
 
 export const profileAnalysis = {
     movieType: surveyResponses => {
-        let likeSet = surveyResponses[0];
-        let dislikeSet = surveyResponses[1];
-        let heartRace = surveyResponses[4];
+        let likeSet = surveyResponses[0][0];
+        let dislikeSet = surveyResponses[0][1];
+        let heartRace = surveyResponses[0][4];
         let heartRaceSelection = []
         let visualsSelection = []
-        let visuals = surveyResponses[3];
+        let visuals = surveyResponses[0][3];
         for(let k = 0; k < heartRace.length; k++){
             if(heartRace[k]){
                 heartRaceSelection.push(k);
@@ -16,7 +16,6 @@ export const profileAnalysis = {
                 visualsSelection.push(k);
             }
         }
-        console.log(dislikeSet,likeSet,heartRace,visuals)
         if (dislikeSet.length === 0) {
             return "Equal Opportunity Watcher"
         }
@@ -33,7 +32,6 @@ export const profileAnalysis = {
                 }
                 }
             }
-        console.log("PERSONA ARRAY",personaArr)
         if (personaArr.length > 1) {
             if (personaArr.includes("Studious Viewer")) {
                 if (!personaArr.includes("Action Seeker") || !personaArr.includes("Hopeless Romantic")){
@@ -67,7 +65,6 @@ export const profileAnalysis = {
             }
         }
         else {
-            console.log("Hitting no match case")
             return [personaArr[0], "While this personality may describe you well, let's go ahead and take a look at what your date ends up with so we can craft your selection more accurately."];
         }
     }
