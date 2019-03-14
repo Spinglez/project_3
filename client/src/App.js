@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Welcome, SurveyForm, ErrorPage, CreateAccount, Callback, Profile, Results } from './containers/index';
 import { Auth } from './components/index'
+import history from './components/history'
 import './App.scss';
 
 // 
@@ -18,7 +19,7 @@ const handleAuthentication = (nextState, replace) => {
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
           <Route exact path="/" component={Welcome}></Route>
           <Route exact path="/register" component={CreateAccount} ></Route>
@@ -53,7 +54,7 @@ class App extends Component {
             )}/>
               <Route component={ErrorPage}></Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
         );
       }
     }
