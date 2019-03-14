@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {Auth} from './components/index'
+// import {Auth} from './components/index'
 
-const auth = new Auth();
+// const auth = new Auth();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
