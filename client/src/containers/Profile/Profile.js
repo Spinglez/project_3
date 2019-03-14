@@ -27,7 +27,17 @@ export class Profile extends Component {
       .then((res) => {
         this.setState({ dbData: res.data })
         console.log('this content is set');
-      }).then(() => {
+      })
+      .then(
+        call.getMovies('5c8436bdb54c7262a4829f8c')
+        .then((res) => {
+          this.setState({ dbSavedMovies: res.data })
+          console.log('dbSavedMovies', res.data)
+          console.log('this content is set')
+          // console.log(this.state.dbSavedMovies.data[0].moviePoster)
+        })
+      )
+      .then(() => {
         this.setState({ update: true })
         console.log('this has set state as update to true');
       }).catch(err => {
@@ -36,23 +46,23 @@ export class Profile extends Component {
 
     // this call gets saved movies based on the user and populates the dbSavedMovies array
     // using hardcoded user id for now
-    call.getMovies('5c8436bdb54c7262a4829f8c')
-      .then((res) => {
-        this.setState({ dbSavedMovies: res.data })
-        console.log('dbSavedMovies data', res.data);
-        console.log('this content is set');
-      })
-      // .then(() => {
-      //   this.setState({ update: true })
-      //   console.log('this has set state as update to true');
-      // }).catch(err => {
-      //   if (err) console.log(err);
-      // })
+    // call.getMovies('5c8436bdb54c7262a4829f8c')
+    //   .then((res) => {
+    //     this.setState({ dbSavedMovies: res.data })
+    //     console.log('dbSavedMovies data', res.data)
+    //     console.log('this content is set')
+    //   })
+    //   .then(() => {
+    //     this.setState({ update: true })
+    //     console.log('this has set state as update to true');
+    //   }).catch(err => {
+    //     if (err) console.log(err);
+    //   })
   }
 
-  componentWillUnmount() {
-    this.setState({ update: false })
-  }
+  // componentWillUnmount() {
+  //   this.setState({ update: false })
+  // }
 
   handleInputChange = event => {
     let value = event.target.value
@@ -95,16 +105,6 @@ export class Profile extends Component {
     }
     
     return [question, responseSet]
-  }
-
-  mapMovies = () => {
-    let movieSet = []
-    for(let i = 0; i < this.state.dbSavedMovies.data.length; i++){
-      console.log('movie data', this.state.dbSavedMovies.data[0])
-      
-    }
-    
-    return [movieSet]
   }
 
   render() {
@@ -153,14 +153,21 @@ export class Profile extends Component {
           <TabPane tab="Your Saved Movies" key="3">
           <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
             <div>
-              <p>
-                {`${this.mapMovies()}`} 
-                {/* {`${this.state.dbSavedMovies.data[0].moviePoster}`} */}
-              </p>
-              <p>
-                {/* <img src={`${this.state.dbSavedMovies.data[0].moviePoster}`} alt="Movie Poster">
+                {
+                // this.state.dbSavedMovies === !null && 
+
+                this.state.dbSavedMovies.data.map(movie => {
+                  // console.log('poster', movie.moviePoster)
+                  return (<div><img src={movie.moviePoster} alt={movie.movieTitle} />
+                  <p>{movie.movieTitle}</p>
+                  </div>
+                  )})
+                }
+             
+                {/* <img src={this.state.dbSavedMovies.data[0].moviePoster} alt={this.state.dbSavedMovies.data[0].movieTitle}>
                 </img> */}
-              </p>
+                {/* {`${this.mapMovies()}`} 
+                {`${this.state.dbSavedMovies.data[0].moviePoster}`} */}
             </div>
           </TabPane> 
             
