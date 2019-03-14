@@ -4,10 +4,32 @@ import { profileAnalysis } from '../../utils/profileAnalysis';
 import { Header, RingLoader, WrappedEmailForm } from '../../components/index'
 import { Modal, Tabs } from 'antd';
 import { Avatar } from '@material-ui/core/';
+import { Row, Col } from 'antd';
 import surveyData from '../../data/surveyData.json'
 
-const TabPane = Tabs.TabPane;
+import Inner2 from '../../components/Base/Inner2';
+import ProfileStyled from '../Profile/ProfileStyle';
+// import Ava from '../../components/Avatar/Avatar';
 
+import { Icon } from 'react-icons-kit'
+// Profile Example
+import {ic_mood} from 'react-icons-kit/md/ic_mood'
+// Lover of Darkness
+import {u1F480} from 'react-icons-kit/noto_emoji_regular/u1F480'
+// Studious Viewer
+import {u1F4F0} from 'react-icons-kit/noto_emoji_regular/u1F4F0'
+// Action Seeker
+import {u1F52B} from 'react-icons-kit/noto_emoji_regular/u1F52B'
+// Futuristic
+import {empire} from 'react-icons-kit/fa/empire'
+// Entertainee
+import {u1F601} from 'react-icons-kit/noto_emoji_regular/u1F601'
+// Hopeless Romantic
+import {u1F48F} from 'react-icons-kit/noto_emoji_regular/u1F48F'
+
+
+
+const TabPane = Tabs.TabPane;
 export class Profile extends Component {
 
   state = {
@@ -17,7 +39,7 @@ export class Profile extends Component {
     submitStatus: false,
     update: false,
     currentSection: "profile",
-    firstTime: true
+    firstTime: true,
   }
 
   componentDidMount() {
@@ -87,55 +109,155 @@ export class Profile extends Component {
     return (
       <Fragment>
         <Header />
+
         {this.state.update === true &&
           <Fragment>
           {this.state.firstTime &&
             this.info()
           }
           <Tabs defaultActiveKey="1" onChange={this.callback}>
-          <TabPane tab={`${this.state.dbData.data.firstName}'s Profile`} key="1">
-          <Avatar />
-          <h1>{this.state.dbData.data.firstName}</h1>
-          <hr></hr>
-          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</p>
-          <p>Your Movie Persona</p>
-          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
-          <h1>Your Movie Attributes</h1>
-          <Fragment>
-          {
+            <TabPane tab={`${this.state.dbData.data.firstName}'s Profile`} key="1">
 
-            surveyData.map((surveyObject,index) => {
-              return(
-              <p>{`You answered ${this.mapResponses(surveyObject, index)[1]} to ${this.mapResponses(surveyObject, index)[0]}`}</p>
-              )
-            })
-          }
-          </Fragment>
-          </TabPane>
-          <TabPane tab="Find Your Match" key="2">
-          <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
-          <WrappedEmailForm
-            clearSubmit={this.clearSubmit}
-            dbData={this.state.dbData}
-            friendEmail={this.state.friendEmail} />
-            {this.state.submitStatus === true &&
-              <Fragment>
-                <p>We're looking for your matches, please wait!</p>
-                <RingLoader />
-               </Fragment>
-              }
+              <ProfileStyled>
+                <Inner2>
+                    <Row>
+                      <Col xs={7} sm={3} md={2} lg={2}>
+                      
+                        <Avatar style={{ width: 60, height: 60}}>
+                          <div style={{
+                              width: 55, 
+                              height: 55,
+                              color: "#fafafa",
+                              alignSelf:"center"
+                              }}>
+                              <Icon size={'100%'} icon={ic_mood}/>
+                          </div>
+                        </Avatar>
+                      </Col>
+                      <Col xs={12} sm={10} md={8}>
+                        <h1>{this.state.dbData.data.firstName}</h1>
+                      </Col>
+                    </Row>
 
-          </TabPane>
+                  <hr/>
 
+                    <Row gutter={48}>
+                        <Col sm={24} md={6} lg={5}>
+                          <div className="iconContainer">
+                            
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Lover of Darkness" &&
+                              <div className="icon">
+                                <Icon size={'100%'} icon={u1F480}/>
+                              </div>
+                            }
+
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Studious Viewer" &&
+                              <div className="icon">
+                                <Icon size={'100%'} icon={u1F4F0}/>
+                              </div>
+                            }
+
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Action Seeker" &&
+                              <div className="icon">
+                                <Icon size={'100%'} icon={u1F52B}/>
+                              </div>
+                            }
+
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Futuristic" &&
+                              <div className="icon">
+                                <Icon size={'100%'} icon={empire}/>
+                              </div>
+                            }
+
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Entertainee" &&
+                              <div className="icon">
+                                <Icon size={'100%'} icon={u1F601}/>
+                              </div>
+                            }
+
+                            {
+                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Hopeless Romantic" &&
+                              <div className="icon">
+                                <Icon size={'100%'} icon={u1F48F}/>
+                              </div>
+                            }
+                            
+                          </div>
+                        </Col>
+                                  
+
+                        <Col sm={24} md={17} lg={18}>
+                        <div className="personasContainer">
+                          <div>
+                            <h3>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</h3>
+                              <span>Your Movie Persona</span> 
+                          </div>
+                          <br/>
+                          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
+                        </div>
+                        </Col>
+                    </Row>
+  
+                  <Fragment>
+                        <hr/>
+                        <h3 style={{textAlign: "center"}}>Your Movie Attributes</h3>
+                        <hr/>
+                          { 
+                            surveyData.map((surveyObject, index) => {
+                              return(
+                                <div className="movieAttr">
+                                  <h5>Question: {`${this.mapResponses(surveyObject, index)[0]}`}</h5>
+                                  <span className="youAnswer">You answered</span>
+                                  <p className="answer">{`${this.mapResponses(surveyObject, index)[1]}`}</p>
+                                </div>
+                              )
+                            })
+                          }
+                  </Fragment>
+                </Inner2>
+              </ProfileStyled>
+            </TabPane>
+
+                {/* -------------------------------------------------EMAIL TAB---------------------------------------------------------- */}
+                <TabPane tab="Find Your Match" key="2">
+                  <ProfileStyled>
+                      <Inner2>
+                          <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
+
+                            <WrappedEmailForm 
+                              clearSubmit={this.clearSubmit} 
+                              dbData={this.state.dbData} 
+                              friendEmail={this.state.friendEmail} />
+
+                              {this.state.submitStatus === true &&
+                                <Fragment>
+                                  <p>We're looking for your matches, please wait!</p>
+                                  <RingLoader />
+                                </Fragment>
+                              }                           
+                      </Inner2>
+                  </ProfileStyled>
+                </TabPane>
+                
             </Tabs>
-
           </Fragment>
+          
         }
+        
         {
           this.state.update === false &&
           <Fragment>
-            <h1>Please wait while we load your profile page, thanks for your patience!</h1>
-            <RingLoader />
+            <Inner2>
+              <ProfileStyled>
+                <h3>Please wait while we load your profile page, thanks for your patience!</h3>
+                <RingLoader />
+              </ProfileStyled>
+            </Inner2>
           </Fragment>
         }
       </Fragment>

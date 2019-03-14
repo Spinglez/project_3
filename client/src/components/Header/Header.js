@@ -18,8 +18,8 @@ export default function Header() {
     return (
         <div className={styles.root}>
             <StyledAppBar position="static">
-                <Toolbar>
-                        <Logo />
+                <Toolbar style={{ display: "flex", justifyContent: "space-between"}}>
+                    <Logo />
                 </Toolbar>
             </StyledAppBar>
         </div>
