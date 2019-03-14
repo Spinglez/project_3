@@ -66,7 +66,6 @@ module.exports = app => {
   app.post('/api/match', (req,res) => {
       let { email1, email2 } = req.body;
       const data  = [];
-      let queryData = [];
       let myPromise =
         new Promise((resolve, reject)=>{
           try {

@@ -5,7 +5,8 @@ import 'antd/dist/antd.css';
 import {  Card as AntCard } from 'antd';
 import styled, { ThemeProvider} from 'styled-components';
 import surveyData from '../../data/surveyData.json'
-import { Header, SurveyCarousel} from '../../components/index'
+import { Header, SurveyCarousel, RingLoader} from '../../components/index';
+import axios from 'axios';
 
 const themeColor = {
     navyBlue: "#002744",
@@ -68,7 +69,8 @@ export class SurveyForm extends Component {
         questionSet: surveyData,
         responseSet: responseSetArray,
         setSelectionStatus: [],
-        active: "white"
+        active: "white",
+        loading: false
     }
 
     componentDidUpdate(prevProps){
@@ -93,6 +95,26 @@ export class SurveyForm extends Component {
         this.setState({setSelectionStatus: prevSelections})
 
       };
+
+    handleSubmit = () => {
+        axios.post('/api/Users',
+        {
+            firstName: "Matt",
+            lastName: "Wong",
+            token: localStorage.getItem("access_token"),
+            email: localStorage.getItem("user_email"),
+            movieSurvey: this.state.responseSet,
+            image: localStorage.getItem("user_picture"),
+        }).then(() => {
+            this.setState({loading: true});
+            setTimeout(function(){
+                /* eslint no-restricted-globals:0 */
+                location.pathname = '/profile';
+            }, 3000);
+        }).catch(function (error) {
+            console.log(error);
+          });
+    }
 
     handleNext = () => {
         console.log("populated array after handlenext:", responseSetArray)
@@ -228,9 +250,19 @@ export class SurveyForm extends Component {
                             <Button size="medium" onClick={this.handleBack} disabled={this.state.step === 0}>
                                 BACK
                             </Button>
-                            <Button size="medium" onClick={this.handleNext} disabled={this.state.step === 10}>
+                            { this.state.step < 5 ?
+                                <Button size="medium" onClick={this.handleNext}>
                                 Next
+                            </Button> :
+                            
+                            <Button size="medium" onClick={this.handleSubmit}>
+                                Submit Survey
                             </Button>
+                            }
+                            {
+                                this.state.loading &&
+                                <RingLoader />
+                            }
                         </Grid>
 
                         </Inner>
