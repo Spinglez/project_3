@@ -2,6 +2,7 @@ const db = require("../../db/Data");
 const Call = require('../utils/Call');
 const movieById = require('../utils/Call');
 const movieByTitle = require('../utils/Call');
+const matchAnalysis = require('../dataProc/returnMatch');
 
 module.exports = app => {
 
@@ -65,6 +66,7 @@ module.exports = app => {
   app.post('/api/match', (req,res) => {
       let { email1, email2 } = req.body;
       const data  = [];
+      let queryData = [];
       let myPromise =
         new Promise((resolve, reject)=>{
           try {
@@ -87,12 +89,19 @@ module.exports = app => {
 
         // IN here is where we will run the data processing functions that are imported
       myPromise.then(result =>{
-        console.log('this is the non processed result',result);
-        // use result[0] and result[1] to pass through the array of arrays return the data through res.json
-        res.json({success: true})
-      });
+        let firstRes = result[0].movieSurvey
+        let secondRes = result[1].movieSurvey
+        let myresult = matchAnalysis.matchIdentifier(firstRes, secondRes);
+        let matchGenres = matchAnalysis.queryBuilder(myresult)
+        let stringQuery = matchGenres.toString();
+        Call.tmDB(stringQuery).then(response =>{
+          console.log(response.data.results);
+          return res.json({success: true, data: response.data.results})
+        });
+      })
+  });
 
-  })
+
 
   app.get('/api/call:call', (req,res) =>{
     let query = req.params.call
