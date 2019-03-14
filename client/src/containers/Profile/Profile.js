@@ -1,16 +1,16 @@
 import React, { Component, Fragment } from 'react'
 import call from '../../utils/call';
 import { profileAnalysis } from '../../utils/profileAnalysis';
-import { Header, RingLoader, WrappedEmailForm } from '../../components/index'
+import { Header, Footer, RingLoader, WrappedEmailForm } from '../../components/index'
 import { Modal, Tabs } from 'antd';
 import { Avatar } from '@material-ui/core/';
 import { Row, Col } from 'antd';
 import surveyData from '../../data/surveyData.json'
 import Inner2 from '../../components/Base/Inner2';
 import ProfileStyled from '../Profile/ProfileStyle';
+
+
 import { Icon } from 'react-icons-kit'
-// Profile Example
-import {ic_mood} from 'react-icons-kit/md/ic_mood'
 // Lover of Darkness
 import {u1F480} from 'react-icons-kit/noto_emoji_regular/u1F480'
 // Studious Viewer
@@ -121,20 +121,20 @@ export class Profile extends Component {
               <ProfileStyled>
                 <Inner2>
                     <Row>
-                      <Col xs={7} sm={3} md={2} lg={2}>
+                      <Col xs={7} sm={8} md={5} lg={5}>
 
-                        <Avatar style={{ width: 60, height: 60}}>
+                        <Avatar style={{ width: 120, height: 120}}>
                           <div style={{
-                              width: 55,
-                              height: 55,
+                              width: 80,
+                              height: 80,
                               color: "#fafafa",
                               alignSelf:"center"
                               }}>
-                              <Icon size={'100%'} icon={ic_mood}/>
+                              <img src={this.state.dbData.data.image} alt={this.state.dbData.data.firstName}></img>
                           </div>
                         </Avatar>
                       </Col>
-                      <Col xs={12} sm={10} md={8}>
+                      <Col xs={12} sm={12} md={10}>
                         <h1>{this.state.dbData.data.firstName}</h1>
                       </Col>
                     </Row>
@@ -261,6 +261,7 @@ export class Profile extends Component {
             </Inner2>
           </Fragment>
         }
+        <Footer/>
       </Fragment>
     )
   }
