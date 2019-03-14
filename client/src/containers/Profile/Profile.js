@@ -47,14 +47,21 @@ export class Profile extends Component {
     call.get(user)
       .then((res) => {
         this.setState({ dbData: res.data })
+      }).then(() =>{
+      // this call gets saved movies based on the user and populates the dbSavedMovies array
+      call.getMovies('5c8acd26884ab93ba4cbf8ae')
+        .then((res) => {
+        this.setState({ dbSavedMovies: res.data })
+        console.log('dbSavedMovies data', res.data)
+        console.log('this content is set')
+        })
       }).then(() => {
         this.setState({ update: true })
       }).catch(err => {
         if (err) console.log(err);
       })
-
-    // this call gets saved movies based on the user and populates the dbSavedMovies array
-    // using hardcoded user id for now
+  }
+    
     // call.getMovies('5c8436bdb54c7262a4829f8c')
     //   .then((res) => {
     //     this.setState({ dbSavedMovies: res.data })
@@ -67,11 +74,11 @@ export class Profile extends Component {
     //   }).catch(err => {
     //     if (err) console.log(err);
     //   })
-  }
-
-  // componentWillUnmount() {
-  //   this.setState({ update: false })
   // }
+
+  componentWillUnmount() {
+    this.setState({ update: false })
+  }
 
   handleInputChange = event => {
     let value = event.target.value
@@ -262,6 +269,31 @@ export class Profile extends Component {
                                   <RingLoader />
                                 </Fragment>
                               }
+                      </Inner2>
+                  </ProfileStyled>
+                </TabPane>
+              {/* -------------------------------------------------SAVED MOVIES TAB---------------------------------------------------------- */}
+              <TabPane tab="Your Saved Movies" key="3">
+                  <ProfileStyled>
+                      <Inner2>
+                        <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
+                        <h4>Saved Movies Here...</h4>
+                        {/* Place a conditional/ternary operation to show a message like "Match with friends to get movies to save!" if no saved movies exist */}
+                          {
+                            // this.state.dbSavedMovies.data === !null &&
+                            this.state.dbSavedMovies.data.map(movie => {
+                            // console.log('poster', movie.moviePoster)
+                            return (<div><img src={movie.moviePoster} alt={movie.movieTitle} />
+                            <p>{movie.movieTitle}</p>
+                            </div>
+                            )})
+                          }
+                          {this.state.submitStatus === true &&
+                            <Fragment>
+                              <p>Loading your saved movies, please wait!</p>
+                              <RingLoader />
+                            </Fragment>
+                          }
                       </Inner2>
                   </ProfileStyled>
                 </TabPane>
