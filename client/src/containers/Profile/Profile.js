@@ -126,9 +126,8 @@ export class Profile extends Component {
                 <Inner2>
                     <Row>
                       <Col xs={11} sm={8} md={5} lg={4}>
-
                         <Avatar style={{ width: 130, height: 130}}>
-                              <img src={this.state.dbData.data.image} alt={this.state.dbData.data.firstName}></img>
+                          <img src={this.state.dbData.data.image} alt={this.state.dbData.data.firstName}></img>
                         </Avatar>
                       </Col>
                       <Col xs={12} sm={12} md={10}>
@@ -220,7 +219,7 @@ export class Profile extends Component {
             </TabPane>
 
                 {/* -------------------------------------------------EMAIL TAB---------------------------------------------------------- */}
-                <TabPane tab="Find Your Match" key="2">
+                <TabPane style={{height: '100vh'}} tab="Find Your Match" key="2">
                   <ProfileStyled>
                       <Inner2>
                           <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>

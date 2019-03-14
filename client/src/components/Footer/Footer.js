@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default function Footer() {
 
-    const StyledAppBar = styled.div `
+    const StyledFooter = styled.div `
       background-color: #78909cab;
       font-family: 'Port Lligat Sans', sans-serif;
       opacity: .5;
@@ -14,9 +14,9 @@ export default function Footer() {
 
     return (
         <div>
-            <StyledAppBar position="sticky">
+            <StyledFooter>
               movieNite Copyright 2019 All Rights Reserved
-            </StyledAppBar>
+            </StyledFooter>
         </div>
     )
 }

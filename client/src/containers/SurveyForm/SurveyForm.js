@@ -22,7 +22,7 @@ const Inner = styled.div`
     margin: 0 auto;
     border-radius: 8px;
     margin-bottom: 10px;
-
+    
     @media only screen and (max-width: 668px){
         max-width: 768px;
         padding: 15px; 
