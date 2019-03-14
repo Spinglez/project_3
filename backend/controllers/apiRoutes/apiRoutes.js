@@ -36,20 +36,19 @@ module.exports = app => {
 
     console.log(req.body);
 
-    const { token, firstName, lastName, email, movieSurvey, userDescription } = req.body;
+    const { firstName, lastName, email, movieSurvey, image } = req.body;
 
-    if ((!token && token !== 0) || !movieSurvey || !email) {
+    if (!movieSurvey || !email) {
       return res.json({
         success: false,
         error: "INVALID INPUTS"
       });
     }
-    data.firstName = req.body.firstName;
-    data.lastName = req.body.lastName;
+    data.firstName = firstName;
+    data.lastName = lastName;
     data.email = email;
-    data.movieSurvey = req.body.movieSurvey;
-    data.userDescription = userDescription;
-    data.token = token;
+    data.movieSurvey = movieSurvey;
+    data.image = image;
     data.save(err => {
       if (err) throw err;
       return res.json();
@@ -66,7 +65,6 @@ module.exports = app => {
   app.post('/api/match', (req,res) => {
       let { email1, email2 } = req.body;
       const data  = [];
-      let queryData = [];
       let myPromise =
         new Promise((resolve, reject)=>{
           try {

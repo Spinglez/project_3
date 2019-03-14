@@ -6,11 +6,8 @@ import { Modal, Tabs } from 'antd';
 import { Avatar } from '@material-ui/core/';
 import { Row, Col } from 'antd';
 import surveyData from '../../data/surveyData.json'
-
 import Inner2 from '../../components/Base/Inner2';
 import ProfileStyled from '../Profile/ProfileStyle';
-// import Ava from '../../components/Avatar/Avatar';
-
 import { Icon } from 'react-icons-kit'
 // Profile Example
 import {ic_mood} from 'react-icons-kit/md/ic_mood'
@@ -48,7 +45,6 @@ export class Profile extends Component {
     call.get(user)
       .then((res) => {
         this.setState({ dbData: res.data })
-        console.log('this content is set');
       }).then(() => {
         this.setState({ update: true })
         console.log('this has set state as update to true');
@@ -98,23 +94,22 @@ export class Profile extends Component {
     let question = surveyObject.question;
     let responseSet = []
     for(let i = 0; i < this.state.dbData.data.movieSurvey[index].length; i++){
-      responseSet.push(surveyObject.answerOptions[this.state.dbData.data.movieSurvey[index][i]])
+      if(this.state.dbData.data.movieSurvey[index][i]){
+        responseSet.push(` ${surveyObject.answerOptions[i]}`)
+      }
     }
-
     return [question, responseSet]
   }
-
-
   render() {
     return (
       <Fragment>
         <Header />
-
-        {this.state.update === true &&
+        {this.state.update &&
           <Fragment>
-          {this.state.firstTime &&
+          {this.state.firstTime && this.state.update &&
             this.info()
           }
+          { this.state.update &&
           <Tabs defaultActiveKey="1" onChange={this.callback}>
             <TabPane tab={`${this.state.dbData.data.firstName}'s Profile`} key="1">
 
@@ -143,7 +138,7 @@ export class Profile extends Component {
 
                     <Row gutter={48}>
                         <Col sm={24} md={6} lg={5}>
-                          <div className="iconContainer">
+                          <Fragment className="iconContainer">
                             
                             {
                               profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Lover of Darkness" &&
@@ -187,10 +182,8 @@ export class Profile extends Component {
                               </div>
                             }
                             
-                          </div>
+                          </Fragment>
                         </Col>
-                                  
-
                         <Col sm={24} md={17} lg={18}>
                         <div className="personasContainer">
                           <div>
@@ -209,6 +202,7 @@ export class Profile extends Component {
                         <hr/>
                           { 
                             surveyData.map((surveyObject, index) => {
+                              console.log("INDEX PASSED")
                               return(
                                 <div className="movieAttr">
                                   <h5>Question: {`${this.mapResponses(surveyObject, index)[0]}`}</h5>
@@ -245,6 +239,7 @@ export class Profile extends Component {
                 </TabPane>
                 
             </Tabs>
+          }
           </Fragment>
           
         }

@@ -6,13 +6,9 @@ const UsersSchema = new Schema(
   {
     firstName: String,
     lastName: String,
-    token: {
-      type: String,
-      required: true
-    },
     email: {
       type: String,
-      // required: true
+      required: true
     },
     updated: {
       type: {Date, Default: Date.now}
@@ -21,7 +17,6 @@ const UsersSchema = new Schema(
       type:[],
       required: true
     },
-    userDescription: String,
     image: String,
     savedMovies: [{type: Schema.Types.ObjectId, ref: 'SavedMovies'}]
   },
