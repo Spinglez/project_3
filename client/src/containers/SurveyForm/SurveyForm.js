@@ -97,15 +97,17 @@ export class SurveyForm extends Component {
       };
 
     handleSubmit = () => {
+        responseSetArray.push(this.state.setSelectionStatus);
+
         axios.post('/api/Users',
         {
-            firstName: "Matt",
-            lastName: "Wong",
-            token: localStorage.getItem("access_token"),
+            firstName: localStorage.getItem("user_first"),
+            lastName: localStorage.getItem("user_last"),
             email: localStorage.getItem("user_email"),
-            movieSurvey: this.state.responseSet,
+            movieSurvey: responseSetArray,
             image: localStorage.getItem("user_picture"),
-        }).then(() => {
+        })
+        .then(() => {
             this.setState({loading: true});
             setTimeout(function(){
                 /* eslint no-restricted-globals:0 */
@@ -113,7 +115,7 @@ export class SurveyForm extends Component {
             }, 3000);
         }).catch(function (error) {
             console.log(error);
-          });
+          })
     }
 
     handleNext = () => {
@@ -250,7 +252,7 @@ export class SurveyForm extends Component {
                             <Button size="medium" onClick={this.handleBack} disabled={this.state.step === 0}>
                                 BACK
                             </Button>
-                            { this.state.step < 5 ?
+                            { this.state.step < 6 ?
                                 <Button size="medium" onClick={this.handleNext}>
                                 Next
                             </Button> :

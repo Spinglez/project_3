@@ -26,7 +26,8 @@ export class Profile extends Component {
     call.get(user)
       .then((res) => {
         this.setState({ dbData: res.data })
-        console.log('this content is set');
+        console.log(res.data);
+        console.log("MOVIE SURVEY STATE",this.state.dbData.data.movieSurvey)
       }).then(() => {
         this.setState({ update: true })
         console.log('this has set state as update to true');
@@ -76,9 +77,10 @@ export class Profile extends Component {
     let question = surveyObject.question;
     let responseSet = []
     for(let i = 0; i < this.state.dbData.data.movieSurvey[index].length; i++){
-      responseSet.push(surveyObject.answerOptions[this.state.dbData.data.movieSurvey[index][i]])
+      if(this.state.dbData.data.movieSurvey[index][i]){
+        responseSet.push(surveyObject.answerOptions[i])
+      }
     }
-
     return [question, responseSet]
   }
 
@@ -87,23 +89,24 @@ export class Profile extends Component {
     return (
       <Fragment>
         <Header />
-        {this.state.update === true &&
+        {this.state.update &&
           <Fragment>
           {this.state.firstTime &&
             this.info()
           }
+          { this.state.update &&
           <Tabs defaultActiveKey="1" onChange={this.callback}>
           <TabPane tab={`${this.state.dbData.data.firstName}'s Profile`} key="1">
           <Avatar />
           <h1>{this.state.dbData.data.firstName}</h1>
           <hr></hr>
-          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</p>
+          <p>{profileAnalysis.movieType(this.state.dbData.data.movieSurvey)[0]}</p>
           <p>Your Movie Persona</p>
-          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
+          <p>{profileAnalysis.movieType(this.state.dbData.data.movieSurvey)[1]}</p>
           <h1>Your Movie Attributes</h1>
+    
           <Fragment>
-          {
-
+          { this.state.update &&
             surveyData.map((surveyObject,index) => {
               return(
               <p>{`You answered ${this.mapResponses(surveyObject, index)[1]} to ${this.mapResponses(surveyObject, index)[0]}`}</p>
@@ -124,11 +127,9 @@ export class Profile extends Component {
                 <RingLoader />
                </Fragment>
               }
-
           </TabPane>
-
             </Tabs>
-
+          }
           </Fragment>
         }
         {
