@@ -68,20 +68,19 @@ module.exports = app => {
 
     console.log(req.body);
 
-    const { token, firstName, lastName, email, movieSurvey, userDescription } = req.body;
+    const { firstName, lastName, email, movieSurvey, image } = req.body;
 
-    if ((!token && token !== 0) || !movieSurvey || !email) {
+    if (!movieSurvey || !email) {
       return res.json({
         success: false,
         error: "INVALID INPUTS"
       });
     }
-    data.firstName = req.body.firstName;
-    data.lastName = req.body.lastName;
+    data.firstName = firstName;
+    data.lastName = lastName;
     data.email = email;
-    data.movieSurvey = req.body.movieSurvey;
-    data.userDescription = userDescription;
-    data.token = token;
+    data.movieSurvey = movieSurvey;
+    data.image = image;
     data.save(err => {
       if (err) throw err;
       return res.json();
@@ -150,14 +149,19 @@ module.exports = app => {
 
         // IN here is where we will run the data processing functions that are imported
       myPromise.then(result =>{
-        console.log(result);
-        let myresult = matchAnalysis.matchIdentifier(result[0].movieSurvey,result[1].movieSurvey);
-        console.log(matchAnalysis.queryBuilder(myresult))
-        // use result[0] and result[1] to pass through the array of arrays return the data through res.json
-        res.json({success: true})
-      });
+        let firstRes = result[0].movieSurvey
+        let secondRes = result[1].movieSurvey
+        let myresult = matchAnalysis.matchIdentifier(firstRes, secondRes);
+        let matchGenres = matchAnalysis.queryBuilder(myresult)
+        let stringQuery = matchGenres.toString();
+        Call.tmDB(stringQuery).then(response =>{
+          console.log(response.data.results);
+          return res.json({success: true, data: response.data.results})
+        });
+      })
+  });
 
-  })
+
 
   app.get('/api/call:call', (req,res) =>{
     let query = req.params.call

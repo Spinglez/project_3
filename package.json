@@ -19,12 +19,16 @@
   },
   "homepage": "https://github.com/Spinglez/project_3#readme",
   "dependencies": {
+    "auth0-js": "^9.10.0",
     "axios": "^0.18.0",
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
+    "history": "^4.7.2",
     "imdb-prime": "^1.0.0",
+    "jwt-decode": "^2.2.0",
     "mongoose": "^5.4.17",
     "morgan": "^1.9.1"
   }

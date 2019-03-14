@@ -7,7 +7,7 @@ class RegistrationForm extends Component {
       confirmDirty: false,
       autoCompleteResult: [],
     };
-  
+
     handleConfirmBlur = (e) => {
       const value = e.target.value;
       this.setState({ confirmDirty: this.state.confirmDirty || !!value });
@@ -23,10 +23,10 @@ class RegistrationForm extends Component {
                 email1: email1,
                 email2: email2
               };
-              console.log(postBody);
               call.post(postBody)
                 .then(res => {
-                  console.log(res);
+                  console.log(res.data);
+                  this.props.handlePost(res.data);
                 }).catch(err => {
                   if (err) console.error(err);
                 });
@@ -34,10 +34,10 @@ class RegistrationForm extends Component {
           }
         });
       }
-  
+
     render() {
       const { getFieldDecorator } = this.props.form;
-  
+
       const formItemLayout = {
         labelCol: {
           xs: { span: 24 },
@@ -48,7 +48,7 @@ class RegistrationForm extends Component {
           sm: { span: 16 },
         },
       };
-  
+
       return (
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
           <Form.Item
@@ -61,7 +61,7 @@ class RegistrationForm extends Component {
                 required: true, message: 'Please input your matches E-mail!',
               }],
             })(
-              <Input placeholder="yourdate@gmail.com" />
+              <Input placeholder="yourdate@gmail.com" name="friendEmail" onChange={this.props.handleInputChange} />
             )}
           </Form.Item>
           <Form.Item>
@@ -71,8 +71,8 @@ class RegistrationForm extends Component {
       );
     }
   }
-  
+
   const WrappedEmailForm = Form.create({ name: 'register' })(RegistrationForm);
-  
+
 
 export default WrappedEmailForm;

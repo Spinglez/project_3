@@ -23,8 +23,8 @@ const MatchAnalysis = {
     queryBuilder: (genres) => {
             let idArr = []
             for (let index = 0; index < genreIds.genres.length; index++) {
-                if(genres.includes(genreIds[index].name)){
-                    idArr.push(genreIds[index].id)
+                if(genres.includes(genreIds.genres[index].name)){
+                    idArr.push(genreIds.genres[index].id)
                 }
             }
             return idArr;

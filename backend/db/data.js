@@ -8,7 +8,7 @@ const UsersSchema = new Schema(
     lastName: String,
     email: {
       type: String,
-      // required: true
+      required: true
     },
     updated: {
       type: {Date, Default: Date.now}
@@ -17,7 +17,6 @@ const UsersSchema = new Schema(
       type:[],
       required: true
     },
-    userDescription: String,
     image: String,
     savedMovies: [
       {
