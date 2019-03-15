@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const getURL = "http://localhost:3001/api/Users"
-const matchURL = "http://localhost:3001/api/match"
+const getURL = "/api/Users"
+const matchURL = "/api/match"
 
 export default {
   get : (query) => {
