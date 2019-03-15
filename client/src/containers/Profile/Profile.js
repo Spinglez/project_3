@@ -282,27 +282,13 @@ export class Profile extends Component {
                         <SavedMovies 
                           data={this.state.dbSavedMovies}
                         />
-                          {/* {
-                            this.state.dbSavedMovies.data === !null &&
-                            this.state.dbSavedMovies.data.map(movie => {
-                            return (
-                            <div>
-                              <p>{movie.movieTitle}</p>
-                              <img 
-                              src={movie.moviePoster} 
-                              alt={movie.movieTitle}
-                              key={movie._id} 
-                              />
-                            </div>
-                            )})
-                          } */}
 
-                          {this.state.submitStatus === true &&
-                            <Fragment>
-                              <p>Loading your saved movies, please wait!</p>
-                              <RingLoader />
-                            </Fragment>
-                          }
+                        {this.state.submitStatus === true &&
+                          <Fragment>
+                            <p>Loading your saved movies, please wait!</p>
+                            <RingLoader />
+                          </Fragment>
+                        }
                       </Inner2>
                   </ProfileStyled>
                 </TabPane>

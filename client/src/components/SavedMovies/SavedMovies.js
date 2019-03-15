@@ -1,24 +1,20 @@
 import React, { Fragment } from 'react';
 
 const SavedMovies = (props) => {
-    console.log('this', this)
     let moviesData = props.data;
     console.log('movieData', moviesData)
       return (
-      <div key={moviesData._id}>
-          {
           moviesData.data.map(movie =>
           <Fragment>
+          <div key={movie._id}>  
             {/* <p>{movie.movieTitle}</p> */}
-              <img 
-              src={movie.moviePoster} 
+              <img
+              src={movie.moviePoster}
               alt={movie.movieTitle}
-              key={movie._id} 
               />
+            </div>     
           </Fragment>
-            )
-          }
-      </div>   
+          )
       )
 }
 
