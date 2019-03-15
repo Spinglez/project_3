@@ -8,6 +8,7 @@ import { Row, Col } from 'antd';
 import surveyData from '../../data/surveyData.json'
 import Inner2 from '../../components/Base/Inner2';
 import ProfileStyled from '../Profile/ProfileStyle';
+import styled from 'styled-components';
 
 
 import { Icon } from 'react-icons-kit'
@@ -16,13 +17,25 @@ import {u1F480} from 'react-icons-kit/noto_emoji_regular/u1F480'
 // Studious Viewer
 import {u1F4F0} from 'react-icons-kit/noto_emoji_regular/u1F4F0'
 // Action Seeker
-import {u1F52B} from 'react-icons-kit/noto_emoji_regular/u1F52B'
+import Skydiving from '../../containers/Profile/sky-diving.png' 
 // Futuristic
 import {empire} from 'react-icons-kit/fa/empire'
 // Entertainee
 import {u1F601} from 'react-icons-kit/noto_emoji_regular/u1F601'
 // Hopeless Romantic
 import {u1F48F} from 'react-icons-kit/noto_emoji_regular/u1F48F'
+
+
+
+const PosterDiv = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+
+  @media only screen and (max-width: 576px){
+      display: block;
+    } 
+`;
+
 
 const TabPane = Tabs.TabPane;
 
@@ -150,7 +163,7 @@ export class Profile extends Component {
                       <Col xs={11} sm={8} md={5} lg={4}>
 
                         <Avatar style={{ width: 130, height: 130}}>
-                              <img src={this.state.dbData.data.image} alt={this.state.dbData.data.firstName}></img>
+                              <img className="imgAvatar" src={this.state.dbData.data.image} alt={this.state.dbData.data.firstName}></img>
                         </Avatar>
                       </Col>
                       <Col xs={12} sm={12} md={10}>
@@ -180,8 +193,8 @@ export class Profile extends Component {
 
                             {
                               profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Action Seeker" &&
-                              <div className="icon">
-                                <Icon size={'100%'} icon={u1F52B}/>
+                              <div>
+                                <img className="icon" src={Skydiving} alt="skydiving"/>
                               </div>
                             }
 
@@ -209,20 +222,20 @@ export class Profile extends Component {
                           </Fragment>
                         </Col>
                         <Col sm={24} md={17} lg={18}>
-                        <div className="personasContainer">
-                          <div>
-                            <h3>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</h3>
-                              <span>Your Movie Persona</span>
+                          <div className="personasContainer">
+                            <div>
+                              <h2>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</h2>
+                                <span>Your Movie Persona</span>
+                            </div>
+                            <br/>
+                            <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
                           </div>
-                          <br/>
-                          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
-                        </div>
                         </Col>
                     </Row>
 
                   <Fragment>
                         <hr/>
-                        <h3 style={{textAlign: "center"}}>Your Movie Attributes</h3>
+                        <h2 style={{textAlign: "center"}}>Your Movie Attributes</h2>
                         <hr/>
                           {
                             surveyData.map((surveyObject, index) => {
@@ -245,7 +258,7 @@ export class Profile extends Component {
                 <TabPane tab="Find Your Match" key="2">
                   <ProfileStyled>
                       <Inner2>
-                          <h2>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h2>
+                          <h3>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h3>
 
                             <WrappedEmailForm
                               clearSubmit={this.clearSubmit}
@@ -266,15 +279,16 @@ export class Profile extends Component {
                 </TabPane>
               {/* -------------------------------------------------SAVED MOVIES TAB---------------------------------------------------------- */}
               <TabPane tab="Your Saved Movies" key="3">
-                  <ProfileStyled>
-                      <Inner2>
+                  <ProfileStyled >
+                      <Inner2> 
                         <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
 
                         {/* Place a conditional/ternary operation to show a message like "Match with friends to get movies to save!" if no saved movies exist? */}
-
-                        <SavedMovies 
-                          data={this.state.dbSavedMovies}
-                        />
+                              <PosterDiv>
+                                <SavedMovies 
+                                  data={this.state.dbSavedMovies}
+                                />
+                              </PosterDiv>
 
                         {this.state.submitStatus === true &&
                           <Fragment>
@@ -285,7 +299,6 @@ export class Profile extends Component {
                       </Inner2>
                   </ProfileStyled>
                 </TabPane>
-
             </Tabs>
           }
           </Fragment>
@@ -303,7 +316,7 @@ export class Profile extends Component {
             </Inner2>
           </Fragment>
         }
-        <Footer/>
+        <Footer style={{position: 'fixed'}}/>
       </Fragment>
     )
   }
