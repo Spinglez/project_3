@@ -6,6 +6,7 @@ const Inner = styled.div `
     margin: 0 auto;
     border-radius: 8px;
     max-width: 960px;
+    height: 100vh;
 
     @media only screen and (max-width: 768px){
         padding: 0 10px;

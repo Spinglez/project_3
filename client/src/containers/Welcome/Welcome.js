@@ -117,33 +117,33 @@ export class Welcome extends Component {
              
                         <Inner1>
                             <Logo activeStep={this.state.activeStep} />
-                            <Grid 
-                                container
-                                direction="column"
-                                justify="center"
-                                alignItems="center"
-                            >
-                            {
-                                this.state.activeStep === 0 && 
-                                <WelcomeStyle1 activeStep = {this.state.activeStep}/>
-                            }
-                            {
-                                this.state.activeStep === 1 && 
-                                <WelcomeStyle2 activeStep = {this.state.activeStep}/>
-                            }
-                            {
-                                this.state.activeStep === 2 && 
-                                <WelcomeStyle3 activeStep = {this.state.activeStep}/>
-                            }
-                            {
-                                this.state.activeStep === 3 && 
-                                <WelcomeStyle4 activeStep = {this.state.activeStep}/>
-                            }
-                            {
-                                this.state.activeStep === 4 && 
-                                <WelcomeStyle5 activeStep = {this.state.activeStep}/>
-                            }
-                           
+                                <Grid 
+                                    container
+                                    direction="column"
+                                    justify="center"
+                                    alignItems="center"
+                                >
+                                {
+                                    this.state.activeStep === 0 && 
+                                    <WelcomeStyle1 activeStep = {this.state.activeStep}/>
+                                }
+                                {
+                                    this.state.activeStep === 1 && 
+                                    <WelcomeStyle2 activeStep = {this.state.activeStep}/>
+                                }
+                                {
+                                    this.state.activeStep === 2 && 
+                                    <WelcomeStyle3 activeStep = {this.state.activeStep}/>
+                                }
+                                {
+                                    this.state.activeStep === 3 && 
+                                    <WelcomeStyle4 activeStep = {this.state.activeStep}/>
+                                }
+                                {
+                                    this.state.activeStep === 4 && 
+                                    <WelcomeStyle5 activeStep = {this.state.activeStep}/>
+                                }
+                            
                             <Grid
                                 justify="center"
                                 style={{ display: "flex" }}
@@ -172,9 +172,9 @@ export class Welcome extends Component {
                                 </Button>
                                     :
                                     <NavLink to= "/register">
-                                    <Button size="small" onClick={this.handleNext}>
-                                    CREATE ACCOUNT
-                                    </Button>
+                                        <Button size="small" onClick={this.handleNext}>
+                                        CREATE ACCOUNT
+                                        </Button>
                                     </NavLink>
                                 }
                             </Grid>
