@@ -18,7 +18,12 @@ const UsersSchema = new Schema(
       required: true
     },
     image: String,
-    savedMovies: [{type: Schema.Types.ObjectId, ref: 'SavedMovies'}]
+    savedMovies: [
+      {
+        type: Schema.Types.ObjectId, 
+        ref: "SavedMovies"
+      }
+    ]
   },
   { timestamps: true },
 );
@@ -27,17 +32,19 @@ const UsersSchema = new Schema(
 // Saved movies associated with Users Schema
 const SavedMoviesSchema = new Schema(
   {
-    // TENATIVE
-
-    // movie image poster URL
-    moviePoster: {
+    // url pointing to hosted movie poster image
+    moviePoster: { 
       type: String,
       required: true
     },
-    movieTitle: { 
+    movieTitle: {
       type: String,
       required: true
     },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Users'
+    }
   }
 )
 

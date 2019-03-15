@@ -32,7 +32,6 @@ const imdb = require("imdb-prime");
   //   }
   //   movieByTitle('Titanic');
 
-
 const Call = {
   tmDB : query => {
     let key = process.env.TMDBKEY;
