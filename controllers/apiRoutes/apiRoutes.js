@@ -14,6 +14,7 @@ module.exports = app => {
     });
   })
 
+  // Get request for singular users
   app.get('/api/Users:User', (req,res) =>{
     db.Users.findOne({ email: req.params.User }, (err, data) => {
       if (err) return res.json({ success: false, error: err });
@@ -21,16 +22,47 @@ module.exports = app => {
     })
   })
 
+  // get request for saved movies
+  app.get('/api/savedmovies:user', (req,res)=>{
+    db.SavedMovies.find({userId : req.params.user}, (err, data) =>{
+      if (err) return res.json({ success: false, error: err });
+      return res.json({ success: true, data: data });
+    })
+  })
+
+  // post request for saving movies.
+  app.post('/api/savedmovies', (req,res)=>{
+    let data = new db.SavedMovies()
+
+    const { movieTitle, moviePoster, userId } = req.body
+
+    if (!userId && userId !== 0 || !movieTitle || !moviePoster) {
+      return res.json({ success: false, error: 'Invalid inputs missing fields'})
+    }
+
+    data.moviePoster = moviePoster;
+    data.movieTitle = movieTitle;
+    data.userId = userId;
+
+    data.save(err => {
+      console.log("data", data);
+      if (err) throw err;
+      return res.json({ success: true });
+    });
+  })
+
+  // Post request to update  users data
   app.post('/api/Users:id', (req,res) => {
     let id = req.params.id;
     const { userDescription } = req.body;
     console.log(id, userDescription);
       db.Users.findByIdAndUpdate(id, { userDescription: userDescription }, (err,data) =>{
           if (err) throw err;
-          return res.json({success: true});
+          return res.json({ success: true });
     })
   })
 
+  // Creating a new user
   app.post('/api/Users', (req,res) => {
     let data = new db.Users();
 
@@ -53,6 +85,36 @@ module.exports = app => {
       if (err) throw err;
       return res.json();
     });
+  })
+  
+  app.post('/api/Users/savedmovies', (req, res) =>{
+    let data = new db.SavedMovies();
+
+    console.log("req.body", req.body);
+
+    const { moviePoster, movieTitle } = req.body;
+    const userId = req.body['userId'] 
+
+    console.log('Movie Title', movieTitle);
+
+    if (!movieTitle || !moviePoster || !userId) 
+      {
+        return res.json({
+          success: false,
+          error: "MOVIE TITLE, POSTER, OR USER ID MISSING"
+        })
+      }
+
+    data.moviePoster = moviePoster;
+    data.movieTitle = movieTitle;
+    data.userId = userId;
+
+    data.save(err => {
+      console.log("data", data)
+      if (err) throw err;
+      return res.json({ success: true });
+      })
+
   })
 
   // End user <API>Routes</API>

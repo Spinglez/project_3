@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import call from '../../utils/call';
 import { profileAnalysis } from '../../utils/profileAnalysis';
-import { Header, Footer, RingLoader, WrappedEmailForm } from '../../components/index'
+import { Header, Footer, RingLoader, WrappedEmailForm, SavedMovies } from '../../components/index'
 import { Modal, Tabs } from 'antd';
 import { Avatar } from '@material-ui/core/';
 import { Row, Col } from 'antd';
@@ -24,14 +24,14 @@ import {u1F601} from 'react-icons-kit/noto_emoji_regular/u1F601'
 // Hopeless Romantic
 import {u1F48F} from 'react-icons-kit/noto_emoji_regular/u1F48F'
 
-
-
 const TabPane = Tabs.TabPane;
+
 export class Profile extends Component {
 
   state = {
     user: null,
     dbData: {},
+    dbSavedMovies: {},
     friendEmail: '',
     submitStatus: false,
     matchedmovies: [],
@@ -46,16 +46,38 @@ export class Profile extends Component {
     call.get(user)
       .then((res) => {
         this.setState({ dbData: res.data })
+      }).then(() =>{
+      // this call gets saved movies based on the user and populates the dbSavedMovies array
+      call.getMovies('5c8acd26884ab93ba4cbf8ae')
+        .then((res) => {
+        this.setState({ dbSavedMovies: res.data })
+        console.log('dbSavedMovies data', res.data)
+        console.log('this content is set')
+        })
       }).then(() => {
         this.setState({ update: true })
       }).catch(err => {
         if (err) console.log(err);
       })
   }
+    
+    // call.getMovies('5c8436bdb54c7262a4829f8c')
+    //   .then((res) => {
+    //     this.setState({ dbSavedMovies: res.data })
+    //     console.log('dbSavedMovies data', res.data)
+    //     console.log('this content is set')
+    //   })
+    //   .then(() => {
+    //     this.setState({ update: true })
+    //     console.log('this has set state as update to true');
+    //   }).catch(err => {
+    //     if (err) console.log(err);
+    //   })
+  // }
 
-  componentWillUnmount() {
-    this.setState({ update: false })
-  }
+  // componentWillUnmount() {
+  //   this.setState({ update: false })
+  // }
 
   handleInputChange = event => {
     let value = event.target.value
@@ -239,6 +261,27 @@ export class Profile extends Component {
                                   <RingLoader />
                                 </Fragment>
                               }
+                      </Inner2>
+                  </ProfileStyled>
+                </TabPane>
+              {/* -------------------------------------------------SAVED MOVIES TAB---------------------------------------------------------- */}
+              <TabPane tab="Your Saved Movies" key="3">
+                  <ProfileStyled>
+                      <Inner2>
+                        <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
+
+                        {/* Place a conditional/ternary operation to show a message like "Match with friends to get movies to save!" if no saved movies exist? */}
+
+                        <SavedMovies 
+                          data={this.state.dbSavedMovies}
+                        />
+
+                        {this.state.submitStatus === true &&
+                          <Fragment>
+                            <p>Loading your saved movies, please wait!</p>
+                            <RingLoader />
+                          </Fragment>
+                        }
                       </Inner2>
                   </ProfileStyled>
                 </TabPane>
