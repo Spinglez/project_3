@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import call from '../../utils/call';
 import { profileAnalysis } from '../../utils/profileAnalysis';
-import { Header, RingLoader, WrappedEmailForm } from '../../components/index'
+import { Header, RingLoader, WrappedEmailForm, SavedMovies } from '../../components/index'
 import { Modal, Tabs } from 'antd';
 import { Avatar } from '@material-ui/core/';
 import { Row, Col } from 'antd';
@@ -24,9 +24,8 @@ import {u1F601} from 'react-icons-kit/noto_emoji_regular/u1F601'
 // Hopeless Romantic
 import {u1F48F} from 'react-icons-kit/noto_emoji_regular/u1F48F'
 
-
-
 const TabPane = Tabs.TabPane;
+
 export class Profile extends Component {
 
   state = {
@@ -76,9 +75,9 @@ export class Profile extends Component {
     //   })
   // }
 
-  componentWillUnmount() {
-    this.setState({ update: false })
-  }
+  // componentWillUnmount() {
+  //   this.setState({ update: false })
+  // }
 
   handleInputChange = event => {
     let value = event.target.value
@@ -277,17 +276,27 @@ export class Profile extends Component {
                   <ProfileStyled>
                       <Inner2>
                         <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
-                        <h4>Saved Movies Here...</h4>
-                        {/* Place a conditional/ternary operation to show a message like "Match with friends to get movies to save!" if no saved movies exist */}
-                          {
-                            // this.state.dbSavedMovies.data === !null &&
+
+                        {/* Place a conditional/ternary operation to show a message like "Match with friends to get movies to save!" if no saved movies exist? */}
+
+                        <SavedMovies 
+                          data={this.state.dbSavedMovies}
+                        />
+                          {/* {
+                            this.state.dbSavedMovies.data === !null &&
                             this.state.dbSavedMovies.data.map(movie => {
-                            // console.log('poster', movie.moviePoster)
-                            return (<div><img src={movie.moviePoster} alt={movie.movieTitle} />
-                            <p>{movie.movieTitle}</p>
+                            return (
+                            <div>
+                              <p>{movie.movieTitle}</p>
+                              <img 
+                              src={movie.moviePoster} 
+                              alt={movie.movieTitle}
+                              key={movie._id} 
+                              />
                             </div>
                             )})
-                          }
+                          } */}
+
                           {this.state.submitStatus === true &&
                             <Fragment>
                               <p>Loading your saved movies, please wait!</p>
