@@ -5,6 +5,7 @@
 
 export { default as Logo } from './Logo/Logo';
 export { default as Header } from './Header/Header';
+export { default as Footer } from './Footer/Footer';
 export { default as RingLoader } from './RingLoader/loader';
 export { default as WelcomeStyle1 } from './WelcomeStyle/WelcomeStyles1';
 export { default as WelcomeStyle2 } from './WelcomeStyle/WelcomeStyles2';

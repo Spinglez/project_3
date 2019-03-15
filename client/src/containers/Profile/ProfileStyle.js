@@ -19,7 +19,7 @@ const Profile = styled.div`
        align-self: center;
       }
   }
-
+  
 
   .personasContainer {
       margin: 0 auto;
@@ -30,6 +30,12 @@ const Profile = styled.div`
         align-self: center;
         margin: 0 auto;
       }
+  }
+
+  img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
   }
 
   h1 {

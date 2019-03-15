@@ -5,8 +5,9 @@ import 'antd/dist/antd.css';
 import {  Card as AntCard } from 'antd';
 import styled, { ThemeProvider} from 'styled-components';
 import surveyData from '../../data/surveyData.json'
-import { Header, SurveyCarousel, RingLoader} from '../../components/index';
+import { Header, Footer, SurveyCarousel, RingLoader} from '../../components/index';
 import axios from 'axios';
+
 
 const themeColor = {
     navyBlue: "#002744",
@@ -285,6 +286,7 @@ export class SurveyForm extends Component {
                         </Grid>
 
                         </Inner>
+                        <Footer/>
                 </Fragment>
             </ThemeProvider>
         )
