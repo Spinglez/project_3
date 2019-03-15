@@ -35,7 +35,7 @@ app.use(logger("dev"));
 require("./controllers/apiRoutes/apiRoutes")(app)
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join("project_3", "client", "build", "index.html"));
 });
 
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
