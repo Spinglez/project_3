@@ -6,7 +6,7 @@ import appDescription from '../../data/appDescription.json'
 import { Logo, WelcomeStyle1, WelcomeStyle2, WelcomeStyle3, WelcomeStyle4, WelcomeStyle5 }  from '../../components/index';
 import styled, { ThemeProvider} from 'styled-components';
 
-import Inner1 from '../../components/Base/Inner1';
+import WelcomeInner from '../../components/Base/WelcomeInner';
 
 
 const theme = {
@@ -115,7 +115,7 @@ export class Welcome extends Component {
                 <StyledApp style={{backgroundColor: this.state.appInfo[this.state.activeStep].backgroundColor}}>
                     <Fragment>
              
-                        <Inner1>
+                        <WelcomeInner>
                             <Logo activeStep={this.state.activeStep} />
                                 <Grid 
                                     container
@@ -178,7 +178,7 @@ export class Welcome extends Component {
                                     </NavLink>
                                 }
                             </Grid>
-                        </Inner1>    
+                        </WelcomeInner>    
                     </Fragment>
                 </StyledApp>
             </ThemeProvider>

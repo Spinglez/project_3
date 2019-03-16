@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< HEAD
     "start": "node server.js",
+=======
+    "start": "concurrently \"cd backend && nodemon server.js\" \"cd client && npm start\"",
+>>>>>>> 0225fe522d66e3b07726c15b67f5100c95e7ac24
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
@@ -30,6 +34,7 @@
     "imdb-prime": "^1.0.0",
     "jwt-decode": "^2.2.0",
     "mongoose": "^5.4.17",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "unirest": "^0.6.0"
   }
 }
