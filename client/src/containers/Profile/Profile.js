@@ -313,9 +313,13 @@ export class Profile extends Component {
 
                               <PosterDiv>
                                 { update && dbData.data ?
+                                <Grid container justify="center" style={{display:"flex", marginTop: "3em"}} spacing={16}>
+
                                 <SavedMovies 
                                   data={dbSavedMovies}
-                                /> :
+                                /> 
+                                </Grid>
+                                :
                                 <Fragment>
                                   <p>No saved movies yet! Navigate to the <strong>Find Your Match</strong> tab to get your compatible movies</p>
                                 </Fragment>
@@ -336,6 +340,7 @@ export class Profile extends Component {
                         {/* { update && dbData.data ?
                         <SavedMovies
                           data={dbSavedMovies}
+                          
                         /> :
                         <Fragment>
                           <p>No saved movies yet! Navigate to the <strong>Find Your Match</strong> tab to get your compatible movies</p>

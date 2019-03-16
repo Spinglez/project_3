@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -19,8 +19,19 @@ const styles = {
   },
 };
 
-function MovieCard(props) {
-  const { classes, image, adult, title, overview, popularity, releaseDate, voteScore, key, saveMovie, removeMovie, id } = props;
+class MovieCard extends Component{
+   state = {
+       disabled: false
+   }
+
+  disableButton = (title, overview, image, votescore) => {
+    this.setState({disabled:true});
+    this.props.saveMovie(title, overview, image, votescore)
+  }
+  render(){
+
+  const { classes, image, adult, title, overview, popularity, releaseDate, voteScore, key, saveMovie, removeMovie, id } = this.props;
+
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -41,7 +52,7 @@ function MovieCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions style={{display:"grid"}}>
-        <Button size="small" color="primary" onClick={()=> saveMovie(title, overview, image, voteScore)}>
+        <Button size="small" color="primary" disabled={this.state.disabled} onClick={()=> this.disableButton(title, overview, image, voteScore)}>
           Save
         </Button>
         <Button size="small" color="primary" onClick={()=> removeMovie(id)}>
@@ -55,6 +66,7 @@ function MovieCard(props) {
       </CardActions>
     </Card>
   );
+  }
 }
 
 MovieCard.propTypes = {
