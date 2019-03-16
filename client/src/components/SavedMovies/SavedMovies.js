@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
+import { Button } from '@material-ui/core';
 
 const Poster = styled.img`
-    width: 245px;
+    width: 200px;
     height: auto;
     border-radius: 5px;
     margin: 0 auto;
@@ -29,12 +30,15 @@ const SavedMovies = (props) => {
     console.log('movieData', moviesData)
       return (
           moviesData.data.map(movie =>
-            <StyledDiv key={movie._id}>  
+            <Fragment>
+            <StyledDiv key={movie._id}>
                 <Poster
-                  src={movie.moviePoster}
+                  src={"https://image.tmdb.org/t/p/w500" + movie.moviePoster}
                   alt={movie.movieTitle}
-                />      
+                />
             </StyledDiv>
+            <Button size="small" style={{display: "grid"}}>Check Availability</Button>   
+            </Fragment>   
           )
       )
 }
