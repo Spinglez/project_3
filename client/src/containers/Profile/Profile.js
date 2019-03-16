@@ -65,41 +65,40 @@ export class Profile extends Component {
         this.setState({ dbData: res.data })
       }).then(() =>{
       // this call gets saved movies based on the user and populates the dbSavedMovies array
-      call.getMovies('5c8acd26884ab93ba4cbf8ae')
-        .then((res) => {
-        this.setState({ dbSavedMovies: res.data })
-        console.log('dbSavedMovies data', res.data)
-        console.log('this content is set')
-        })
+        this.refreshSavedMovies(this.state.dbData.data._id)
       }).then(() => {
         this.setState({ update: true })
       }).catch(err => {
         if (err) console.log(err);
       })
   }
-    
-    // call.getMovies('5c8436bdb54c7262a4829f8c')
-    //   .then((res) => {
-    //     this.setState({ dbSavedMovies: res.data })
-    //     console.log('dbSavedMovies data', res.data)
-    //     console.log('this content is set')
-    //   })
-    //   .then(() => {
-    //     this.setState({ update: true })
-    //     console.log('this has set state as update to true');
-    //   }).catch(err => {
-    //     if (err) console.log(err);
-    //   })
-  // }
 
-  // componentWillUnmount() {
-  //   this.setState({ update: false })
-  // }
 
-  saveMovie = (movieIndex) => {
-    console.log(movieIndex)
-    // let reducedMovieSet = this.state.matchedmovies.data.filter(movie => movie.id != movieIndex);
-    // this.setState({matchedmovies: reducedMovieSet});
+  saveMovie = (title,overview,image,voteScore) => {
+    let user =  this.state.dbData.data._id
+
+      const postObj = {
+        title:title,
+        overview:overview,
+        image:image,
+        voteScore:voteScore,
+        userId: user
+      }
+
+      call.postSave(postObj).then((res, err) =>{
+        if (err) console.error(err);
+        console.log(res);
+        this.refreshSavedMovies(this.state.dbData.data._id)
+      })
+  }
+
+  refreshSavedMovies = (user) => {
+    call.getMovies(user)
+      .then((res) => {
+      this.setState({ dbSavedMovies: res.data })
+      console.log('dbSavedMovies data', res.data)
+      console.log('this content is set')
+      })
   }
 
   removeMovie = (movieIndex) => {
@@ -141,7 +140,7 @@ export class Profile extends Component {
   callback(key) {
     console.log(key);
   }
-  
+
   info() {
     Modal.info({
       title: `Hi there ${this.state.dbData.data.firstName}!`,
@@ -181,8 +180,8 @@ export class Profile extends Component {
             this.info()
           }
           {update &&
-          <Tabs defaultActiveKey="1" onChange={this.callback} 
-          tabPosition="top"  >
+          <Tabs defaultActiveKey="1" onChange={this.callback}
+          tabPosition="left">
             <TabPane tab={`${dbData.data.firstName}'s Profile`} key="1">
 
               <ProfileStyled>
@@ -332,6 +331,23 @@ export class Profile extends Component {
                                 </Fragment>
                               }
                       </ProfileInner>
+
+
+                        {/* { update && dbData.data ?
+                        <SavedMovies
+                          data={dbSavedMovies}
+                        /> :
+                        <Fragment>
+                          <p>No saved movies yet! Navigate to the <strong>Find Your Match</strong> tab to get your compatible movies</p>
+                        </Fragment>
+                        }
+
+                        {submitStatus &&
+                          <Fragment>
+                            <p>Loading your saved movies, please wait!</p>
+                            <RingLoader />
+                          </Fragment>
+                        } */}
                   </ProfileStyled>
                 </TabPane>
 
@@ -386,7 +402,7 @@ export class Profile extends Component {
       </Fragment>
 
     )
-    
+
   }
 }
 
