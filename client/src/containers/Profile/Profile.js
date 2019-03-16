@@ -61,29 +61,24 @@ export class Profile extends Component {
         if (err) console.log(err);
       })
   }
-    
-    // call.getMovies('5c8436bdb54c7262a4829f8c')
-    //   .then((res) => {
-    //     this.setState({ dbSavedMovies: res.data })
-    //     console.log('dbSavedMovies data', res.data)
-    //     console.log('this content is set')
-    //   })
-    //   .then(() => {
-    //     this.setState({ update: true })
-    //     console.log('this has set state as update to true');
-    //   }).catch(err => {
-    //     if (err) console.log(err);
-    //   })
-  // }
 
-  // componentWillUnmount() {
-  //   this.setState({ update: false })
-  // }
 
-  saveMovie = (movieIndex) => {
-    console.log(movieIndex)
-    // let reducedMovieSet = this.state.matchedmovies.data.filter(movie => movie.id != movieIndex);
-    // this.setState({matchedmovies: reducedMovieSet});
+  saveMovie = (title,overview,image,voteScore) => {
+    let user =  this.state.dbData.data._id
+
+      const postObj = {
+        title:title,
+        overview:overview,
+        image:image,
+        voteScore:voteScore,
+        userId: user
+      }
+
+      call.postSave(postObj).then((res, err) =>{
+        if (err) console.error(err);
+        console.log(res);
+      })
+
   }
 
   removeMovie = (movieIndex) => {
@@ -125,7 +120,7 @@ export class Profile extends Component {
   callback(key) {
     console.log(key);
   }
-  
+
   info() {
     Modal.info({
       title: `Hi there ${this.state.dbData.data.firstName}!`,
@@ -163,7 +158,7 @@ export class Profile extends Component {
             this.info()
           }
           {update &&
-          <Tabs defaultActiveKey="1" onChange={this.callback} 
+          <Tabs defaultActiveKey="1" onChange={this.callback}
           tabPosition="left">
             <TabPane tab={`${dbData.data.firstName}'s Profile`} key="1">
 
@@ -294,7 +289,7 @@ export class Profile extends Component {
                         <h2>{`${dbData.data.firstName}'s Saved Movies`}</h2>
 
                         { update && dbData.data ?
-                        <SavedMovies 
+                        <SavedMovies
                           data={dbSavedMovies}
                         /> :
                         <Fragment>
@@ -361,7 +356,7 @@ export class Profile extends Component {
       </Fragment>
 
     )
-    
+
   }
 }
 

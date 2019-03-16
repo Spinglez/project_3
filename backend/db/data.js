@@ -20,7 +20,7 @@ const UsersSchema = new Schema(
     image: String,
     savedMovies: [
       {
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: "SavedMovies"
       }
     ]
@@ -33,13 +33,19 @@ const UsersSchema = new Schema(
 const SavedMoviesSchema = new Schema(
   {
     // url pointing to hosted movie poster image
-    moviePoster: { 
+    moviePoster: {
       type: String,
       required: true
     },
     movieTitle: {
       type: String,
       required: true
+    },
+    overview: {
+      type: String
+    },
+    voteScore: {
+      type: Number
     },
     userId: {
       type: Schema.Types.ObjectId,
