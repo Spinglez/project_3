@@ -11,7 +11,7 @@ const Poster = styled.img`
     margin: 0 auto;
 
     @media only screen and (max-width: 768px){
-        width: 200px;
+        width: 170px;
     }  
 
     @media only screen and (max-width: 576px){
