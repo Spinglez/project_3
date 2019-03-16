@@ -7,7 +7,7 @@ import styled, { ThemeProvider} from 'styled-components';
 import surveyData from '../../data/surveyData.json'
 import { Header, Footer, SurveyCarousel, RingLoader} from '../../components/index';
 import axios from 'axios';
-
+import LoaderInner from '../../components/Base/LoaderInner';
 
 const themeColor = {
     navyBlue: "#002744",
@@ -281,12 +281,14 @@ export class SurveyForm extends Component {
                             }
                             {
                                 this.state.loading &&
-                                <RingLoader />
+                                <LoaderInner>
+                                    <RingLoader />
+                                </LoaderInner>
                             }
                         </Grid>
 
                         </Inner>
-                        <Footer/>
+                        <Footer style={{position: 'fixed', marginBottom: 0}}/>
                 </Fragment>
             </ThemeProvider>
         )

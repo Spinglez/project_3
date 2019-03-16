@@ -6,7 +6,8 @@ import { Modal, Tabs } from 'antd';
 import { Avatar, Grid} from '@material-ui/core/';
 import { Row, Col } from 'antd';
 import surveyData from '../../data/surveyData.json'
-import Inner2 from '../../components/Base/Inner2';
+import ProfileInner from '../../components/Base/ProfileInner';
+import LoaderInner from '../../components/Base/LoaderInner';
 import ProfileStyled from '../Profile/ProfileStyle';
 import styled from 'styled-components';
 
@@ -145,10 +146,12 @@ export class Profile extends Component {
     Modal.info({
       title: `Hi there ${this.state.dbData.data.firstName}!`,
       content: (
-        <div>
-          <p>Nice to see you today. Welcome to movieNite!</p>
-          <p>This is your profile page, consider it your movieNite Hub.</p>
-        </div>
+        <ProfileStyled>
+          <div>
+            <h2>Nice to see you today. Welcome to movieNite!</h2>
+            <p>This is your profile page, consider it your movieNite Hub.</p>
+          </div>
+        </ProfileStyled>
       ),
       onOk() { },
     });
@@ -179,11 +182,11 @@ export class Profile extends Component {
           }
           {update &&
           <Tabs defaultActiveKey="1" onChange={this.callback} 
-          tabPosition="left" closable={true} >
+          tabPosition="top"  >
             <TabPane tab={`${dbData.data.firstName}'s Profile`} key="1">
 
               <ProfileStyled>
-                <Inner2>
+                <ProfileInner>
                     <Row>
                       <Col xs={11} sm={8} md={5} lg={4}>
                         <Avatar style={{ width: 130, height: 130}}>
@@ -274,14 +277,14 @@ export class Profile extends Component {
                             })
                           }
                   </Fragment>
-                </Inner2>
+                </ProfileInner>
               </ProfileStyled>
             </TabPane>
 
                 {/* -------------------------------------------------EMAIL TAB---------------------------------------------------------- */}
                 <TabPane tab="Find Your Match" key="2">
                   <ProfileStyled>
-                      <Inner2>
+                      <ProfileInner>
                           <h3>{`Hey ${this.state.dbData.data.firstName}, who's your date tonight?`}</h3>
 
                             <WrappedEmailForm
@@ -295,16 +298,18 @@ export class Profile extends Component {
                             {submitStatus &&
                                 <Fragment>
                                   <p>We're looking for your matches, please wait!</p>
-                                  <RingLoader />
+                                  <LoaderInner>
+                                    <RingLoader />  
+                                  </LoaderInner>
                                 </Fragment>
                             }
-                      </Inner2>
+                      </ProfileInner>
                   </ProfileStyled>
                 </TabPane>
               {/* -------------------------------------------------SAVED MOVIES TAB---------------------------------------------------------- */}
               <TabPane tab="Your Saved Movies" key="3">
                   <ProfileStyled>
-                      <Inner2>
+                      <ProfileInner>
                         <h2>{`${dbData.data.firstName}'s Saved Movies`}</h2>
 
                               <PosterDiv>
@@ -321,10 +326,12 @@ export class Profile extends Component {
                               {submitStatus &&
                                 <Fragment>
                                   <p>Loading your saved movies, please wait!</p>
-                                  <RingLoader />
+                                  <LoaderInner>
+                                    <RingLoader />
+                                  </LoaderInner>
                                 </Fragment>
                               }
-                      </Inner2>
+                      </ProfileInner>
                   </ProfileStyled>
                 </TabPane>
 
@@ -351,9 +358,9 @@ export class Profile extends Component {
                         )
                       })
                       :
-                    <Inner2>
+                    <ProfileInner>
                       <p>Whoops! No movies? Looks like you might need to check your match's email one more time.</p>
-                    </Inner2>
+                    </ProfileInner>
                   }
                   </Grid>
                 </TabPane>
@@ -366,15 +373,16 @@ export class Profile extends Component {
         {
           !update &&
           <Fragment>
-            <Inner2>
               <ProfileStyled>
-                <h3>Please wait while we load your profile page, thanks for your patience!</h3>
-                <RingLoader />
+                <LoaderInner>
+                  <h3>Please wait while we load your profile page, thanks for your patience!</h3>
+                  <RingLoader />
+                </LoaderInner>
               </ProfileStyled>
-            </Inner2>
           </Fragment>
         }
-        <Footer style={{position: 'fixed'}}/>
+        
+        <Footer style={{position: 'fixed', marginBottom: 0}}/>
       </Fragment>
 
     )
