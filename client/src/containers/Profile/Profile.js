@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import call from '../../utils/call';
 import { profileAnalysis } from '../../utils/profileAnalysis';
-import { Header, Footer, RingLoader, WrappedEmailForm, SavedMovies } from '../../components/index'
+import { Header, Footer, RingLoader, WrappedEmailForm, SavedMovies, MovieCard } from '../../components/index'
 import { Modal, Tabs } from 'antd';
-import { Avatar } from '@material-ui/core/';
+import { Avatar, Grid} from '@material-ui/core/';
 import { Row, Col } from 'antd';
 import surveyData from '../../data/surveyData.json'
 import Inner2 from '../../components/Base/Inner2';
 import ProfileStyled from '../Profile/ProfileStyle';
-
+import { NavLink } from 'react-router-dom';
 
 import { Icon } from 'react-icons-kit'
 // Lover of Darkness
@@ -23,6 +23,7 @@ import {empire} from 'react-icons-kit/fa/empire'
 import {u1F601} from 'react-icons-kit/noto_emoji_regular/u1F601'
 // Hopeless Romantic
 import {u1F48F} from 'react-icons-kit/noto_emoji_regular/u1F48F'
+import spacing from '@material-ui/core/styles/spacing';
 
 const TabPane = Tabs.TabPane;
 
@@ -36,7 +37,7 @@ export class Profile extends Component {
     submitStatus: false,
     matchedmovies: [],
     update: false,
-    currentSection: "profile",
+    currentSection: 1,
     firstTime: true,
   }
 
@@ -79,6 +80,24 @@ export class Profile extends Component {
   //   this.setState({ update: false })
   // }
 
+  saveMovie = (movieIndex) => {
+    console.log(movieIndex)
+    // let reducedMovieSet = this.state.matchedmovies.data.filter(movie => movie.id != movieIndex);
+    // this.setState({matchedmovies: reducedMovieSet});
+  }
+
+  removeMovie = (movieIndex) => {
+    console.log(movieIndex)
+    let reducedMovieSet = this.state.matchedmovies.data.filter(movie => movie.id != movieIndex);
+    console.log(reducedMovieSet)
+    this.setState(
+      {matchedmovies: {
+        data: reducedMovieSet,
+        success: true
+      }
+    })
+  }
+
   handleInputChange = event => {
     let value = event.target.value
     const name = event.target.name
@@ -106,7 +125,7 @@ export class Profile extends Component {
   callback(key) {
     console.log(key);
   }
-
+  
   info() {
     Modal.info({
       title: `Hi there ${this.state.dbData.data.firstName}!`,
@@ -132,17 +151,21 @@ export class Profile extends Component {
     return [question, responseSet]
   }
   render() {
+
+    const { firstTime ,update, dbData, dbSavedMovies, matchedmovies, friendEmail, submitStatus } = this.state;
+
     return (
       <Fragment>
         <Header />
-        {this.state.update &&
+        {update &&
           <Fragment>
-          {this.state.firstTime === true &&
+          {firstTime &&
             this.info()
           }
-          { this.state.update &&
-          <Tabs defaultActiveKey="1" onChange={this.callback}>
-            <TabPane tab={`${this.state.dbData.data.firstName}'s Profile`} key="1">
+          {update &&
+          <Tabs defaultActiveKey="1" onChange={this.callback} 
+          tabPosition="left">
+            <TabPane tab={`${dbData.data.firstName}'s Profile`} key="1">
 
               <ProfileStyled>
                 <Inner2>
@@ -150,11 +173,11 @@ export class Profile extends Component {
                       <Col xs={11} sm={8} md={5} lg={4}>
 
                         <Avatar style={{ width: 130, height: 130}}>
-                              <img src={this.state.dbData.data.image} alt={this.state.dbData.data.firstName}></img>
+                              <img src={dbData.data.image} alt={dbData.data.firstName}></img>
                         </Avatar>
                       </Col>
                       <Col xs={12} sm={12} md={10}>
-                        <h1>{this.state.dbData.data.firstName}</h1>
+                        <h1>{dbData.data.firstName}</h1>
                       </Col>
                     </Row>
 
@@ -165,42 +188,42 @@ export class Profile extends Component {
                           <Fragment className="iconContainer">
 
                             {
-                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Lover of Darkness" &&
+                              profileAnalysis.movieType([dbData.data.movieSurvey])[0] === "Lover of Darkness" &&
                               <div className="icon">
                                 <Icon size={'100%'} icon={u1F480}/>
                               </div>
                             }
 
                             {
-                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Studious Viewer" &&
+                              profileAnalysis.movieType([dbData.data.movieSurvey])[0] === "Studious Viewer" &&
                               <div className="icon">
                                 <Icon size={'100%'} icon={u1F4F0}/>
                               </div>
                             }
 
                             {
-                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Action Seeker" &&
+                              profileAnalysis.movieType([dbData.data.movieSurvey])[0] === "Action Seeker" &&
                               <div className="icon">
                                 <Icon size={'100%'} icon={u1F52B}/>
                               </div>
                             }
 
                             {
-                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Futuristic" &&
+                              profileAnalysis.movieType([dbData.data.movieSurvey])[0] === "Futuristic" &&
                               <div className="icon">
                                 <Icon size={'100%'} icon={empire}/>
                               </div>
                             }
 
                             {
-                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Entertainee" &&
+                              profileAnalysis.movieType([dbData.data.movieSurvey])[0] === "Entertainee" &&
                               <div className="icon">
                                 <Icon size={'100%'} icon={u1F601}/>
                               </div>
                             }
 
                             {
-                              profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0] === "Hopeless Romantic" &&
+                              profileAnalysis.movieType([dbData.data.movieSurvey])[0] === "Hopeless Romantic" &&
                               <div className="icon">
                                 <Icon size={'100%'} icon={u1F48F}/>
                               </div>
@@ -211,11 +234,11 @@ export class Profile extends Component {
                         <Col sm={24} md={17} lg={18}>
                         <div className="personasContainer">
                           <div>
-                            <h3>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[0]}</h3>
+                            <h3>{profileAnalysis.movieType([dbData.data.movieSurvey])[0]}</h3>
                               <span>Your Movie Persona</span>
                           </div>
                           <br/>
-                          <p>{profileAnalysis.movieType([this.state.dbData.data.movieSurvey])[1]}</p>
+                          <p>{profileAnalysis.movieType([dbData.data.movieSurvey])[1]}</p>
                         </div>
                         </Col>
                     </Row>
@@ -249,13 +272,13 @@ export class Profile extends Component {
 
                             <WrappedEmailForm
                               clearSubmit={this.clearSubmit}
-                              dbData={this.state.dbData}
-                              friendEmail={this.state.friendEmail}
+                              dbData={dbData}
+                              friendEmail={friendEmail}
                               handleInputChange={this.handleInputChange}
-                              matchedmovies={this.state.matchedmovies}
+                              matchedmovies={matchedmovies}
                               handlePost={this.handlePost}/>
 
-                            {this.state.submitStatus === true &&
+                            {submitStatus &&
                                 <Fragment>
                                   <p>We're looking for your matches, please wait!</p>
                                   <RingLoader />
@@ -268,15 +291,18 @@ export class Profile extends Component {
               <TabPane tab="Your Saved Movies" key="3">
                   <ProfileStyled>
                       <Inner2>
-                        <h2>{`${this.state.dbData.data.firstName}'s Saved Movies`}</h2>
+                        <h2>{`${dbData.data.firstName}'s Saved Movies`}</h2>
 
-                        {/* Place a conditional/ternary operation to show a message like "Match with friends to get movies to save!" if no saved movies exist? */}
-
+                        { update && dbData.data ?
                         <SavedMovies 
-                          data={this.state.dbSavedMovies}
-                        />
+                          data={dbSavedMovies}
+                        /> :
+                        <Fragment>
+                          <p>No saved movies yet! Navigate to the <strong>Find Your Match</strong> tab to get your compatible movies</p>
+                        </Fragment>
+                        }
 
-                        {this.state.submitStatus === true &&
+                        {submitStatus &&
                           <Fragment>
                             <p>Loading your saved movies, please wait!</p>
                             <RingLoader />
@@ -285,7 +311,35 @@ export class Profile extends Component {
                       </Inner2>
                   </ProfileStyled>
                 </TabPane>
-
+                {/* -------------------------------------------------MATCH RESULTS TAB---------------------------------------------------------- */}
+                <TabPane tab="Recommended Movies" key="4">
+                <Grid container justify="center" style={{display:"flex", marginTop: "3em"}} spacing={16}>
+                  {
+                    matchedmovies.data ?
+                    matchedmovies.data.map((movie, index) => {
+                      return (
+                        <MovieCard
+                        key={movie.id}
+                        id={movie.id}
+                        saveMovie={this.saveMovie}
+                        removeMovie={this.removeMovie}
+                        image = {movie.poster_path}
+                        adult = {movie.adult}
+                        title = {movie.original_title}
+                        overview = {movie.overview}
+                        popularity = {movie.popularity}
+                        releaseDate = {movie.release_date}
+                        voteScore = {movie.vote_average}
+                         />
+                      )
+                    })
+                    :
+                    <Inner2>
+                      <p>Whoops! No movies? Looks like you might need to check your match's email one more time.</p>
+                    </Inner2>
+                  }
+                  </Grid>
+                </TabPane>
             </Tabs>
           }
           </Fragment>
@@ -293,7 +347,7 @@ export class Profile extends Component {
         }
 
         {
-          this.state.update === false &&
+          !update &&
           <Fragment>
             <Inner2>
               <ProfileStyled>
@@ -305,7 +359,9 @@ export class Profile extends Component {
         }
         <Footer/>
       </Fragment>
+
     )
+    
   }
 }
 
