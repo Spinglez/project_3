@@ -5,11 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< HEAD
     "start": "node server.js",
-=======
-    "start": "concurrently \"cd backend && nodemon server.js\" \"cd client && npm start\"",
->>>>>>> 0225fe522d66e3b07726c15b67f5100c95e7ac24
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
