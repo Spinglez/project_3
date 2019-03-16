@@ -49,12 +49,7 @@ export class Profile extends Component {
         this.setState({ dbData: res.data })
       }).then(() =>{
       // this call gets saved movies based on the user and populates the dbSavedMovies array
-      call.getMovies('5c8acd26884ab93ba4cbf8ae')
-        .then((res) => {
-        this.setState({ dbSavedMovies: res.data })
-        console.log('dbSavedMovies data', res.data)
-        console.log('this content is set')
-        })
+        this.refreshSavedMovies(this.state.dbData.data._id)
       }).then(() => {
         this.setState({ update: true })
       }).catch(err => {
@@ -77,8 +72,17 @@ export class Profile extends Component {
       call.postSave(postObj).then((res, err) =>{
         if (err) console.error(err);
         console.log(res);
+        this.refreshSavedMovies(this.state.dbData.data._id)
       })
+  }
 
+  refreshSavedMovies = (user) => {
+    call.getMovies(user)
+      .then((res) => {
+      this.setState({ dbSavedMovies: res.data })
+      console.log('dbSavedMovies data', res.data)
+      console.log('this content is set')
+      })
   }
 
   removeMovie = (movieIndex) => {
