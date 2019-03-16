@@ -54,7 +54,7 @@ export class Profile extends Component {
     matchedmovies: [],
     update: false,
     currentSection: 1,
-    firstTime: true,
+    firstTime: true
   }
 
   componentDidMount() {
@@ -167,6 +167,7 @@ export class Profile extends Component {
     }
     return [question, responseSet]
   }
+  
   render() {
 
     const { firstTime ,update, dbData, dbSavedMovies, matchedmovies, friendEmail, submitStatus } = this.state;
