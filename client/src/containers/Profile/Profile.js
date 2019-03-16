@@ -295,6 +295,7 @@ export class Profile extends Component {
                         { update && dbData.data ?
                         <SavedMovies
                           data={dbSavedMovies}
+                          
                         /> :
                         <Fragment>
                           <p>No saved movies yet! Navigate to the <strong>Find Your Match</strong> tab to get your compatible movies</p>
