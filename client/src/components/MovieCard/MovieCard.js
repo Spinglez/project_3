@@ -41,7 +41,7 @@ function MovieCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions style={{display:"grid"}}>
-        <Button size="small" color="primary" onClick={()=> saveMovie(id)}>
+        <Button size="small" color="primary" onClick={()=> saveMovie(title, overview, image, voteScore)}>
           Save
         </Button>
         <Button size="small" color="primary" onClick={()=> removeMovie(id)}>
