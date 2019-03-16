@@ -8,12 +8,9 @@ import { Row, Col } from 'antd';
 import surveyData from '../../data/surveyData.json'
 import Inner2 from '../../components/Base/Inner2';
 import ProfileStyled from '../Profile/ProfileStyle';
-<<<<<<< HEAD
 import styled from 'styled-components';
 
-=======
-import { NavLink } from 'react-router-dom';
->>>>>>> 512de9e2dc933ef6d56fc23a7d66c91cf9ca32af
+// import { NavLink } from 'react-router-dom';
 
 import { Icon } from 'react-icons-kit'
 // Lover of Darkness
@@ -28,7 +25,7 @@ import {empire} from 'react-icons-kit/fa/empire'
 import {u1F601} from 'react-icons-kit/noto_emoji_regular/u1F601'
 // Hopeless Romantic
 import {u1F48F} from 'react-icons-kit/noto_emoji_regular/u1F48F'
-import spacing from '@material-ui/core/styles/spacing';
+// import spacing from '@material-ui/core/styles/spacing';
 
 
 
@@ -40,6 +37,7 @@ const PosterDiv = styled.div`
       display: block;
     } 
 `;
+
 
 
 const TabPane = Tabs.TabPane;
@@ -181,7 +179,7 @@ export class Profile extends Component {
           }
           {update &&
           <Tabs defaultActiveKey="1" onChange={this.callback} 
-          tabPosition="left">
+          tabPosition="left" closable={true} >
             <TabPane tab={`${dbData.data.firstName}'s Profile`} key="1">
 
               <ProfileStyled>
@@ -250,7 +248,7 @@ export class Profile extends Component {
                         <Col sm={24} md={17} lg={18}>
                           <div className="personasContainer">
                             <div>
-                              <h3>{profileAnalysis.movieType([dbData.data.movieSurvey])[0]}</h3>
+                              <h2>{profileAnalysis.movieType([dbData.data.movieSurvey])[0]}</h2>
                                 <span>Your Movie Persona</span>
                             </div>
                             <br/>
@@ -299,7 +297,7 @@ export class Profile extends Component {
                                   <p>We're looking for your matches, please wait!</p>
                                   <RingLoader />
                                 </Fragment>
-                              }
+                            }
                       </Inner2>
                   </ProfileStyled>
                 </TabPane>
@@ -320,39 +318,39 @@ export class Profile extends Component {
                                 }
                               </PosterDiv>
 
-                        {submitStatus &&
-                          <Fragment>
-                            <p>Loading your saved movies, please wait!</p>
-                            <RingLoader />
-                          </Fragment>
-                        }
+                              {submitStatus &&
+                                <Fragment>
+                                  <p>Loading your saved movies, please wait!</p>
+                                  <RingLoader />
+                                </Fragment>
+                              }
                       </Inner2>
                   </ProfileStyled>
                 </TabPane>
 
                 {/* -------------------------------------------------MATCH RESULTS TAB---------------------------------------------------------- */}
                 <TabPane tab="Recommended Movies" key="4">
-                <Grid container justify="center" style={{display:"flex", marginTop: "3em"}} spacing={16}>
-                  {
-                    matchedmovies.data ?
-                    matchedmovies.data.map((movie, index) => {
-                      return (
-                        <MovieCard
-                        key={movie.id}
-                        id={movie.id}
-                        saveMovie={this.saveMovie}
-                        removeMovie={this.removeMovie}
-                        image = {movie.poster_path}
-                        adult = {movie.adult}
-                        title = {movie.original_title}
-                        overview = {movie.overview}
-                        popularity = {movie.popularity}
-                        releaseDate = {movie.release_date}
-                        voteScore = {movie.vote_average}
-                         />
-                      )
-                    })
-                    :
+                  <Grid container justify="center" style={{display:"flex", marginTop: "3em"}} spacing={16}>
+                    {
+                      matchedmovies.data ?
+                      matchedmovies.data.map((movie, index) => {
+                        return (
+                          <MovieCard
+                          key={movie.id}
+                          id={movie.id}
+                          saveMovie={this.saveMovie}
+                          removeMovie={this.removeMovie}
+                          image = {movie.poster_path}
+                          adult = {movie.adult}
+                          title = {movie.original_title}
+                          overview = {movie.overview}
+                          popularity = {movie.popularity}
+                          releaseDate = {movie.release_date}
+                          voteScore = {movie.vote_average}
+                          />
+                        )
+                      })
+                      :
                     <Inner2>
                       <p>Whoops! No movies? Looks like you might need to check your match's email one more time.</p>
                     </Inner2>
