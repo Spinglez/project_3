@@ -32,7 +32,7 @@ const Profile = styled.div`
       }
   }
 
-  img {
+  .imgAvatar {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -44,16 +44,16 @@ const Profile = styled.div`
   }
 
   h2 {
+    color: #002744;
+    font-size: 1.8rem;
+    font-family: 'Oswald', sans-serif;
+  }
+
+  h3 {
     font-family: 'Dancing Script', cursive;
     font-size: 1.7rem;
     letter-spacing: 3px;
     font-weight: bold;
-  }
-
-  h3 {
-    color: #002744;
-    font-size: 1.8rem;
-    font-family: 'Oswald', sans-serif;
   }
 
   h4, span {
@@ -117,7 +117,7 @@ const Profile = styled.div`
       }
     }
 
-    .youAnswer{
+    .youAnswer {
       text-transform: uppercase;
       text-align: center; 
     }

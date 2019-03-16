@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 // Center div
-const Inner3 = styled.div `
+const CreateAccStyled = styled.div `
     position: fixed;
     top: 50%;
     left: 50%;
@@ -52,4 +52,4 @@ const Inner3 = styled.div `
     }
 `;
 
-export default Inner3;
+export default CreateAccStyled;
