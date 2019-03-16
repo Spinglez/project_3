@@ -103,7 +103,7 @@ export class Profile extends Component {
 
   removeMovie = (movieIndex) => {
     console.log(movieIndex)
-    let reducedMovieSet = this.state.matchedmovies.data.filter(movie => movie.id != movieIndex);
+    let reducedMovieSet = this.state.matchedmovies.data.filter(movie => movie.id !== movieIndex);
     console.log(reducedMovieSet)
     this.setState(
       {matchedmovies: {

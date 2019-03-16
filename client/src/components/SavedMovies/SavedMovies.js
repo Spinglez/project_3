@@ -9,7 +9,7 @@ const Poster = styled.img`
     margin: 0 auto;
 
     @media only screen and (max-width: 768px){
-        width: 200px;
+        width: 170px;
     }  
 
     @media only screen and (max-width: 576px){
@@ -31,13 +31,15 @@ const SavedMovies = (props) => {
       return (
           moviesData.data.map(movie =>
             <Fragment>
-            <StyledDiv key={movie._id}>
-                <Poster
-                  src={"https://image.tmdb.org/t/p/w500" + movie.moviePoster}
-                  alt={movie.movieTitle}
-                />
-            </StyledDiv>
-            <Button size="small" style={{display: "grid"}}>Check Availability</Button>   
+                <StyledDiv key={movie._id}>
+                    <Poster
+                    src={"https://image.tmdb.org/t/p/w500" + movie.moviePoster}
+                    alt={movie.movieTitle}
+                    />
+                    <div style={{textAlign: "center", marginTop: "5px"}}>
+                        <Button variant="contained" color="secondary" size="small">Check Availability</Button>   
+                    </div>
+                </StyledDiv>
             </Fragment>   
           )
       )
