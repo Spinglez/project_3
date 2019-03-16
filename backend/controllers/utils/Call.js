@@ -1,36 +1,6 @@
 const axios = require("axios");
 const imdb = require("imdb-prime");
-
-  // // Returns amazon Prime video availability
-  // let movieIdInput = 'tt0105793'
-  // // const primeCall = {
-  //   async function movieById (movieIdInput) {
-  //     // imdb id for movie passed into imdb.title
-  //     let movieId = await imdb.title(movieIdInput)
-  //     // console.log("movieId", movieId);
-  //     // return axios.get(movieById)
-  //     return movieId
-  //     }
-  //   movieById(movieIdInput)
-  //
-  // // Returns movie data - including imdb movie ID
-  // let movieTitleInput = 'Titanic';
-  //   async function movieByTitle (movieTitle) {
-  //     console.log(movieTitle);
-  //     let movieByTitle
-  //     await imdb.search(movieTitle).then(res=>{
-  //       console.log(res);
-  //       movieByTitle = res;
-  //     })
-  //     try {
-  //       console.log("movieByTitle", movieByTitle)
-  //     } catch (e) {
-  //       console.error(e);
-  //     } finally {
-  //       return axios.get(movieByTitle);
-  //     }
-  //   }
-  //   movieByTitle('Titanic');
+const unirest = require('unirest');
 
 const Call = {
   tmDB : query => {
@@ -50,6 +20,11 @@ const Call = {
     '&t='
     +query;
   return axios.get(qstring);
+  },
+  uni: query =>{
+    let key = process.env.UTELLY_KEY
+    let qstring = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term="+ query +"&country=us"
+    return unirest.get(qstring).header("X-RapidAPI-Key", key)
   }
 };
 

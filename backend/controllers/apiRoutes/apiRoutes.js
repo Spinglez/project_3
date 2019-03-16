@@ -3,6 +3,7 @@ const Call = require('../utils/Call');
 const movieById = require('../utils/Call');
 const movieByTitle = require('../utils/Call');
 const matchAnalysis = require('../dataProc/returnMatch');
+const unirest =  require('unirest')
 
 module.exports = app => {
 
@@ -166,7 +167,14 @@ module.exports = app => {
       })
   });
 
-
+  app.get('/api/availability:title', (req,res) =>{
+    let query = req.params.title
+    Call.uni(query).end((result, err) =>{
+      if (err) throw console.error(err);
+      console.log(result.status, result.headers, result.body);
+      return res.json({data: result.body})
+    })
+  })
 
   app.get('/api/call:call', (req,res) =>{
     let query = req.params.call
