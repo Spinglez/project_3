@@ -74,8 +74,10 @@ export class SavedMovies extends Component {
                     src={"https://image.tmdb.org/t/p/w500" + movie.moviePoster}
                     alt={movie.movieTitle}
                   />
+                  <div style={{textAlign: "center", marginTop: "5px"}}>
+                    <Button variant="contained" color="secondary" id={movie._id} onClick={() => this.getAvailability(movie.movieTitle.replace(/ /g, "+"))}>Check Availability</Button> 
+                  </div>
                 </StyledDiv>
-                <Button size="small" style={{ display: "grid" }} id={movie._id} onClick={() => this.getAvailability(movie.movieTitle.replace(/ /g, "+"))}>Check Availability</Button>
               </Fragment>
             )
           }
