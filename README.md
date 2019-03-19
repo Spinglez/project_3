@@ -1,18 +1,17 @@
-
 # movieNite 
 
-
->Demo: 
 
 ### OVERVIEW
 
 movieNite is a movie matching application to help you decide what movie to watch with a friend. Create an account, take a survey, and then search for a friend via email. When you connect with a friend, your movie interests are compared and the movies that fit best with both of your interests will be recommended to you!
 
-Visit the [website](movienite.herokuapp.com)!
+Visit the website at [https://matchmovienite.herokuapp.com](https://matchmovienite.herokuapp.com)!
+
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+
 
 ### Prerequisites
 
@@ -26,7 +25,7 @@ To gain access to API data, you will need to sign up and acquire API keys from:
 * [TMdb](https://www.themoviedb.org/documentation/api)
 * [Utelly](https://rapidapi.com/utelly/api/utelly) 
 
-Create a file named `.env` within the backend folder (along side the file server.js) and paste the following code within the `.env` file (do not include the curly brackets):
+Create a file named `.env` within the backend folder (along side the file server.js) and paste the following code within the file (do not include the curly brackets):
 
 ```
 TMDBKEY={YOUR API KEY}
@@ -56,6 +55,8 @@ Finally, navigate to the root of the project folder within the console you execu
 ```
 npm start
 ```
+
+You will need to create at least two user accounts and create a match between the users to fetch recommended movies that you can then save.
 
 ## Built With
 
