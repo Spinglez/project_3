@@ -3,7 +3,7 @@
 
 ### OVERVIEW
 
-movieNite is a movie matching application to help you decide what movie to watch with a friend. Create an account, take a survey, and then search for a friend via email. When you connect with a friend, your movie interests are compared and the movies that fit best with both of your interests will be recommended to you!
+movieNite is a movie matching application to help you decide what movie to watch with a friend. Create an account, take a survey, and then search for a friend via email. When you connect with a friend, your movie interests are compared and the movies that fit best with both of your interests will be recommended to you! You can also check what movies are currently streaming online.
 
 Visit the website at [https://matchmovienite.herokuapp.com](https://matchmovienite.herokuapp.com)!
 
@@ -56,7 +56,7 @@ Finally, navigate to the root of the project folder within the console you execu
 npm start
 ```
 
-You will need to create at least two user accounts and create a match between the users to fetch recommended movies that you can then save.
+You will need to create at least two user accounts and create a match between the users to fetch recommended movies that you can then save and see what services are currently streaming the movies.
 
 ## Built With
 
