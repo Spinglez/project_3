@@ -158,10 +158,12 @@ module.exports = app => {
         let firstRes = result[0].movieSurvey
         let secondRes = result[1].movieSurvey
         let myresult = matchAnalysis.matchIdentifier(firstRes, secondRes);
+        console.log(firstRes,secondRes);
+        console.log("BACKEND ANALYSIS OUTPUT:", myresult);
         let matchGenres = matchAnalysis.queryBuilder(myresult)
         let stringQuery = matchGenres.toString();
         Call.tmDB(stringQuery).then(response =>{
-          console.log(response.data.results);
+          // console.log(response.data.results);
           return res.json({success: true, data: response.data.results})
         });
       })
