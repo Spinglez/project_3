@@ -49,7 +49,6 @@ export class Profile extends Component {
 
       call.postSave(postObj).then((res, err) =>{
         if (err) console.error(err);
-        console.log(res);
         this.refreshSavedMovies(this.state.dbData.data._id)
       })
   }
@@ -58,13 +57,11 @@ export class Profile extends Component {
     call.getMovies(user)
       .then((res) => {
       this.setState({ dbSavedMovies: res.data })
-      console.log('dbSavedMovies data', res.data)
       console.log('this content is set')
       })
   }
 
   removeMovie = (movieIndex) => {
-    console.log(movieIndex)
     let reducedMovieSet = this.state.matchedmovies.data.filter(movie => movie.id !== movieIndex);
     console.log(reducedMovieSet)
     this.setState(
