@@ -35,11 +35,13 @@ const SavedMoviesSchema = new Schema(
     // url pointing to hosted movie poster image
     moviePoster: {
       type: String,
-      required: true
+      required: true,
+      unique: true
     },
     movieTitle: {
       type: String,
-      required: true
+      required: true,
+      unique: true
     },
     overview: {
       type: String
