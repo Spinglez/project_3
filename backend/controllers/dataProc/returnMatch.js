@@ -3,6 +3,7 @@ const genreIds = require("../utils/genreIds.json");
 
 const MatchAnalysis = {
     matchIdentifier: (array1,array2) => {
+        console.log(array1,array2)
         let alignedGenres = [];
         let dislikeGenreOverlap = [];
         // loop through question 1 answers
@@ -19,6 +20,7 @@ const MatchAnalysis = {
                     }
                 }
             }
+            console.log("ALIGNED:",alignedGenres)
             // after the loop, if aligned Genres empty, populate it with non-dislike genres
             if(alignedGenres.length === 0){
                 let options = surveyData[0].answerOptions;
@@ -30,6 +32,7 @@ const MatchAnalysis = {
                         }
                     })
                 }
+                console.log("SCARCITY CASE:", alignedGenres)
                 alignedGenres = alternateOptionSet; 
             }
             return alignedGenres;

@@ -157,9 +157,10 @@ module.exports = app => {
       myPromise.then(result =>{
         let firstRes = result[0].movieSurvey
         let secondRes = result[1].movieSurvey
+        console.log("ARRAYS: ", firstRes, secondRes);
         let myresult = matchAnalysis.matchIdentifier(firstRes, secondRes);
-        console.log(firstRes,secondRes);
-        console.log("BACKEND ANALYSIS OUTPUT:", myresult);
+        // console.log(firstRes,secondRes);
+        // console.log("BACKEND ANALYSIS OUTPUT:", myresult);
         let matchGenres = matchAnalysis.queryBuilder(myresult)
         let stringQuery = matchGenres.toString();
         Call.tmDB(stringQuery).then(response =>{
@@ -198,7 +199,7 @@ module.exports = app => {
 
     // movieById function accepts an imdb movie ID
     movieById().then(response => {
-      console.log(response.data);
+      // console.log(response.data);
       // return res.json(response.data);
     })
     .catch(err => {
@@ -207,7 +208,7 @@ module.exports = app => {
 
     // movieByTitle function accepts a string
     movieByTitle().then(response => {
-      console.log(response.data);
+      // console.log(response.data);
       // return res.json(response.data);
     })
     .catch(err => {
