@@ -162,21 +162,23 @@ export class Welcome extends Component {
                                 <H2 style={{color: this.state.appInfo[this.state.activeStep].description1Color}}>{this.state.appInfo[this.state.activeStep].description1}</H2>
                                 <P style={{color: this.state.appInfo[this.state.activeStep].description2Color, fontSize: "20px"}}>{this.state.appInfo[this.state.activeStep].description2}</P>
                                 
-                                <Button size="medium" color="secondary" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
-                                    BACK
-                                </Button>
-                                
-                                { this.state.activeStep < 4 ?
-                                <Button size="medium" color="primary" onClick={this.handleNext}>
-                                    NEXT
-                                </Button>
-                                    :
-                                    <NavLink to= "/register">
-                                        <Button size="small" onClick={this.handleNext}>
-                                        CREATE ACCOUNT
-                                        </Button>
-                                    </NavLink>
-                                }
+                                <div style={{display: "flex"}}>
+                                    <Button style={{marginRight: "15px"}} size="medium" color="secondary" variant="contained"  onClick={this.handleBack} disabled={this.state.activeStep === 0}>
+                                        BACK
+                                    </Button>
+                                    
+                                    { this.state.activeStep < 4 ?
+                                    <Button size="medium" color="primary" variant="contained"  onClick={this.handleNext}>
+                                        NEXT
+                                    </Button>
+                                        :
+                                        <NavLink to= "/register">
+                                            <Button size="medium" color="primary" variant="contained" onClick={this.handleNext}>
+                                            CREATE ACCOUNT
+                                            </Button>
+                                        </NavLink>
+                                    }
+                                </div>
                             </Grid>
                         </WelcomeInner>    
                     </Fragment>
