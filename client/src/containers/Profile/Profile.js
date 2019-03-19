@@ -4,6 +4,7 @@ import { Footer, NavDrawer } from '../../components/index'
 import { Modal } from 'antd';
 import ProfileStyled from '../Profile/ProfileStyle';
 
+
 export class Profile extends Component {
 
   state = {
@@ -33,6 +34,7 @@ export class Profile extends Component {
         if (err) console.log(err);
       })
   }
+
 
   saveMovie = (title,overview,image,voteScore) => {
     let user =  this.state.dbData.data._id
@@ -97,6 +99,7 @@ export class Profile extends Component {
     });
   }
 
+
   info() {
     Modal.info({
       title: `Hi there ${this.state.dbData.data.firstName}!`,
@@ -153,6 +156,7 @@ export class Profile extends Component {
           clearSubmit={this.clearSubmit}
           mapResponses={this.mapResponses}
           >
+
           </NavDrawer>
         </Fragment>
         <Footer style={{position: 'fixed', marginBottom: 0}}/>

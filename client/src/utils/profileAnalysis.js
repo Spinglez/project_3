@@ -21,6 +21,7 @@ export const profileAnalysis = {
         }
         else {
             let personaArr = [];
+            console.log("PERSONASET", personaArr);
             for (let i = 0; i < likeSet.length; i++) {
                 for (let j = 0; j < Personas.length; j++) {
                     if(likeSet[i]){
