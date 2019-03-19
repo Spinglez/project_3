@@ -25,7 +25,7 @@ class RegistrationForm extends Component {
               };
               call.post(postBody)
                 .then(res => {
-                  console.log(res.data);
+                  // console.log(res.data);
                   this.props.handlePost(res.data);
                 }).catch(err => {
                   if (err) console.error(err);

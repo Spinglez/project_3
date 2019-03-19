@@ -3,22 +3,39 @@ const genreIds = require("../utils/genreIds.json");
 
 const MatchAnalysis = {
     matchIdentifier: (array1,array2) => {
-        let alignedIndexes = []
+        console.log(array1,array2)
+        let alignedGenres = [];
+        let dislikeGenreOverlap = [];
+        // loop through question 1 answers
         for(let i = 0; i < array1[0].length; i++){
-            if(array2[0].includes(array1[0][i])){
-                alignedIndexes.push(array1[0][i]);
+                // if responses the same
+                if(array1[0][i] === array2[0][i]){
+                    // if both responses true
+                    if(array1[0][i]){
+                        alignedGenres.push(surveyData[0].answerOptions[i]);
+                    }
+                    // if both responses false
+                    else{
+                    dislikeGenreOverlap.push(surveyData[0].answerOptions[i]);
+                    }
+                }
             }
-        }
-        if(alignedIndexes.length === 1){
-            return surveyData[0].answerOptions[alignedIndexes[0]]
-        }
-        else{
-            let matchGenres = [];
-            for(let j = 0; j < alignedIndexes.length; j ++){
-                matchGenres.push(surveyData[0].answerOptions[alignedIndexes[j]]);
+            console.log("ALIGNED:",alignedGenres)
+            // after the loop, if aligned Genres empty, populate it with non-dislike genres
+            if(alignedGenres.length === 0){
+                let options = surveyData[0].answerOptions;
+                let alternateOptionSet = [];
+                while(alternateOptionSet.length <= 3){
+                    options.map(option => {
+                        if(!dislikeGenreOverlap.includes(option)){
+                            alternateOptionSet.push(option)
+                        }
+                    })
+                }
+                console.log("SCARCITY CASE:", alignedGenres)
+                alignedGenres = alternateOptionSet; 
             }
-            return matchGenres;
-        }
+            return alignedGenres;
     },
     queryBuilder: (genres) => {
             let idArr = []
