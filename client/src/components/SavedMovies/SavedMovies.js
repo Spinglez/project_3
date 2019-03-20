@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 import Availibility from '../AvailabilityDrawer/AvailabilityDrawer';
 import axios from 'axios';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 const Poster = styled.img`
     width: 200px;
@@ -70,12 +72,18 @@ export class SavedMovies extends Component {
             moviesData.data.map(movie =>
               <Fragment>
                 <StyledDiv key={movie._id}>
-                  <Poster
-                    src={"https://image.tmdb.org/t/p/w500" + movie.moviePoster}
-                    alt={movie.movieTitle}
-                  />
+                  <div style={{position: "relative"}}>
+                    <Poster
+                      src={"https://image.tmdb.org/t/p/w500" + movie.moviePoster}
+                      alt={movie.movieTitle}
+                    />
+                    <Tooltip title="Close">
+                      <Button size="small" style={{position: "absolute", zIndex: 99, right: -14, textShadow: "1px 1px 1px #78909c"}}>X</Button>
+                    </Tooltip>
+                  </div>
+
                   <div style={{textAlign: "center", marginTop: "5px"}}>
-                    <Button variant="contained" color="secondary" id={movie._id} onClick={() => this.getAvailability(movie.movieTitle.replace(/ /g, "+"))}>Check Availability</Button> 
+                    <Button variant="contained" color="secondary" size="small" id={movie._id} onClick={() => this.getAvailability(movie.movieTitle.replace(/ /g, "+"))}>Check Availability</Button> 
                   </div>
                 </StyledDiv>
               </Fragment>
