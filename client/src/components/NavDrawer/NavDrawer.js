@@ -20,6 +20,7 @@ import surveyData from '../../data/surveyData.json'
 import ProfileInner from '../../components/Base/ProfileInner';
 import LoaderInner from '../../components/Base/LoaderInner';
 import { RingLoader, WrappedEmailForm, SavedMovies, MovieCard, Logo } from '../../components/index';
+import { Auth } from '../index'
 import { Icon } from 'react-icons-kit'
 // Lover of Darkness
 import {u1F480} from 'react-icons-kit/noto_emoji_regular/u1F480'
@@ -33,6 +34,8 @@ import {empire} from 'react-icons-kit/fa/empire'
 import {u1F601} from 'react-icons-kit/noto_emoji_regular/u1F601'
 // Hopeless Romantic
 import {u1F48F} from 'react-icons-kit/noto_emoji_regular/u1F48F'
+
+const auth = new Auth ();
 
 const drawerWidth = 240;
 
@@ -151,9 +154,6 @@ export class NavDrawer extends Component {
                   <MenuIcon/>
                     <Logo /> 
                     <Typography variant="h6" color="inherit" noWrap></Typography>
-                    <Button variant="contained" color="secondary" size="small">
-                      Log Out
-                    </Button>
                 </IconButton>
               </Toolbar>
             </AppBar>
@@ -175,7 +175,7 @@ export class NavDrawer extends Component {
               <Divider />
               <List>
               { update &&
-                [ `${dbData.data.firstName}'s Profile`, 'Find Your Match', 'Your Saved Movies', 'Recommended Movies'].map((text, index) => (
+                [ `${dbData.data.firstName}'s Profile`, 'Find Your Match', 'Recommended Movies', 'Your Saved Movies'].map((text, index) => (
                   <ListItem 
                   button 
                   key={text}
@@ -186,6 +186,15 @@ export class NavDrawer extends Component {
                 ))}
               
               </List>
+              {auth.isAuthenticated() ? (
+    <Button onClick={() => auth.logout()} className="log-Button">
+        Logout
+    </Button>
+) : (
+    <Button onClick={() => auth.login()} className="log-Button">
+        Login
+    </Button>
+)}; 
             </Drawer>
             <main
               className={classNames(classes.content, {
