@@ -75,8 +75,8 @@ class CustomCard3 extends Component {
                                 <Icon size={'100%'} icon={u1F697}/>
                             </div>
                     </Container>
-        
-                    <Footer>MovieKnight.2019</Footer>
+
+                    <Footer>MovieNite.2019</Footer>
  
                 </StylePage>
             </ThemeProvider>
