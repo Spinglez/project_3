@@ -114,7 +114,7 @@ class WelcomeStyle extends Component {
                                         }}>
                                         <Icon size={'100%'} icon={u1F491}/>
                                     </div>
-                                <Footer>MovieNite.2019</Footer>
+                                <Footer>movieNite.2019</Footer>
                             </PuffInCenter>
 
                             <IconDiv>

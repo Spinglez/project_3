@@ -76,7 +76,7 @@ class CustomCard3 extends Component {
                             </div>
                     </Container>
 
-                    <Footer>MovieNite.2019</Footer>
+                    <Footer>movieNite.2019</Footer>
  
                 </StylePage>
             </ThemeProvider>
