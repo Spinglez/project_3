@@ -77,7 +77,7 @@ export class SavedMovies extends Component {
                       src={"https://image.tmdb.org/t/p/w500" + movie.moviePoster}
                       alt={movie.movieTitle}
                     />
-                    <Tooltip title="Close">
+                    <Tooltip title="Remove">
                       <Button size="small" style={{position: "absolute", zIndex: 99, right: -14, textShadow: "1px 1px 1px #78909c"}}>X</Button>
                     </Tooltip>
                   </div>
