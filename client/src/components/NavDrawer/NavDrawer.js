@@ -7,6 +7,8 @@ import {Drawer, CssBaseline, AppBar, Toolbar, List, Typography, Divider } from '
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -18,6 +20,7 @@ import surveyData from '../../data/surveyData.json'
 import ProfileInner from '../../components/Base/ProfileInner';
 import LoaderInner from '../../components/Base/LoaderInner';
 import { RingLoader, WrappedEmailForm, SavedMovies, MovieCard, Logo } from '../../components/index';
+import { Auth } from '../index'
 import { Icon } from 'react-icons-kit'
 // Lover of Darkness
 import {u1F480} from 'react-icons-kit/noto_emoji_regular/u1F480'
@@ -31,6 +34,8 @@ import {empire} from 'react-icons-kit/fa/empire'
 import {u1F601} from 'react-icons-kit/noto_emoji_regular/u1F601'
 // Hopeless Romantic
 import {u1F48F} from 'react-icons-kit/noto_emoji_regular/u1F48F'
+
+const auth = new Auth ();
 
 const drawerWidth = 240;
 
@@ -137,7 +142,7 @@ export class NavDrawer extends Component {
               className={classNames(classes.appBar, {
                 [classes.appBarShift]: open,
               })}
-              style={{backgroundColor: "#b3e5fc"}}
+              style={{backgroundColor: "#002744"}}
             >
               <Toolbar disableGutters={!open}>
                 <IconButton
@@ -146,14 +151,13 @@ export class NavDrawer extends Component {
                   onClick={this.handleDrawerOpen}
                   className={classNames(classes.menuButton, open && classes.hide)}
                 >
-                  <MenuIcon />
+                  <MenuIcon/>
+                    <Logo /> 
+                    <Typography variant="h6" color="inherit" noWrap></Typography>
                 </IconButton>
-                <Logo />
-                <Typography variant="h6" color="inherit" noWrap>
-    
-                </Typography>
               </Toolbar>
             </AppBar>
+
             <Drawer
               className={classes.drawer}
               variant="persistent"
@@ -171,7 +175,7 @@ export class NavDrawer extends Component {
               <Divider />
               <List>
               { update &&
-                [ `${dbData.data.firstName}'s Profile`, 'Find Your Match', 'Your Saved Movies', 'Recommended Movies'].map((text, index) => (
+                [ `${dbData.data.firstName}'s Profile`, 'Find Your Match', 'Recommended Movies', 'Your Saved Movies'].map((text, index) => (
                   <ListItem 
                   button 
                   key={text}
@@ -180,8 +184,17 @@ export class NavDrawer extends Component {
                     <ListItemText primary={text} />
                   </ListItem>
                 ))}
-              }
+              
               </List>
+              {auth.isAuthenticated() ? (
+    <Button onClick={() => auth.logout()} className="log-Button">
+        Logout
+    </Button>
+) : (
+    <Button onClick={() => auth.login()} className="log-Button">
+        Login
+    </Button>
+)}; 
             </Drawer>
             <main
               className={classNames(classes.content, {

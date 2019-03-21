@@ -89,7 +89,7 @@ class Auth extends Component {
         localStorage.setItem('user_picture', user.picture);
         localStorage.setItem('user_first', user.given_name);
         localStorage.setItem('user_last', user.family_name);
-        history.push('/survey')
+        history.push('/profile')
             } else if (err) {
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
