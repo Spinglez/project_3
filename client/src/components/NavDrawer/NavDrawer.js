@@ -137,7 +137,7 @@ export class NavDrawer extends Component {
               className={classNames(classes.appBar, {
                 [classes.appBarShift]: open,
               })}
-              style={{backgroundColor: "#b3e5fc"}}
+              style={{backgroundColor: "#002744"}}
             >
               <Toolbar disableGutters={!open}>
                 <IconButton
